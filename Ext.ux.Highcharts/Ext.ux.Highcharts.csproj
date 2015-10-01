@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE4318D2-A8F0-44E2-AF55-1634CCE7CFE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ext.ux.Highcharts</RootNamespace>
+    <AssemblyName>Ext.ux.Highcharts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ext.Net.Utilities">
+      <HintPath>..\packages\Ext.NET.Utilities.2.5.0\lib\Ext.Net.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Transformer.NET">
+      <HintPath>..\packages\Transformer.NET.2.1.1\lib\net35\Transformer.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChartBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Readme\Ext.NET.Utilities\BREAKING_CHANGES.txt" />
+    <Content Include="App_Readme\Ext.NET.Utilities\LICENSE.txt" />
+    <Content Include="App_Readme\Ext.NET.Utilities\README.txt" />
+    <Content Include="App_Readme\Transformer.NET\LICENSE.txt" />
+    <Content Include="App_Readme\Transformer.NET\README.txt" />
+    <Content Include="Resources\Chart\ux\Highcharts.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\AreaRangeSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\AreaSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\AreaSplineRangeSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\AreaSplineSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\BarSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\BoxPlotSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\BubbleSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\ColumnRangeSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\ColumnSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\ErrorBarSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\FunnelSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\GaugeSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\HeatmapSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\LineSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\MapBubbleSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\MapLineSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\MapPointSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\MapSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\PieSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\PyramidSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\RangeSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\ScatterSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\Serie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\SolidGaugeSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\SplineSerie.js" />
+    <Content Include="Resources\Chart\ux\Highcharts\WaterfallSerie.js" />
+    <Content Include="Resources\Chart\ux\Highmaps.js" />
+    <Content Include="Resources\Highcharts\adapters\standalone-framework.js" />
+    <Content Include="Resources\Highcharts\adapters\standalone-framework.src.js" />
+    <Content Include="Resources\Highcharts\highcharts-3d.js" />
+    <Content Include="Resources\Highcharts\highcharts-3d.src.js" />
+    <Content Include="Resources\Highcharts\highcharts-more.js" />
+    <Content Include="Resources\Highcharts\highcharts-more.src.js" />
+    <Content Include="Resources\Highcharts\highcharts.js" />
+    <Content Include="Resources\Highcharts\highcharts.src.js" />
+    <Content Include="Resources\Highcharts\modules\boost.js" />
+    <Content Include="Resources\Highcharts\modules\boost.src.js" />
+    <Content Include="Resources\Highcharts\modules\broken-axis.js" />
+    <Content Include="Resources\Highcharts\modules\broken-axis.src.js" />
+    <Content Include="Resources\Highcharts\modules\canvas-tools.js" />
+    <Content Include="Resources\Highcharts\modules\canvas-tools.src.js" />
+    <Content Include="Resources\Highcharts\modules\data.js" />
+    <Content Include="Resources\Highcharts\modules\data.src.js" />
+    <Content Include="Resources\Highcharts\modules\drilldown.js" />
+    <Content Include="Resources\Highcharts\modules\drilldown.src.js" />
+    <Content Include="Resources\Highcharts\modules\exporting.js" />
+    <Content Include="Resources\Highcharts\modules\exporting.src.js" />
+    <Content Include="Resources\Highcharts\modules\funnel.js" />
+    <Content Include="Resources\Highcharts\modules\funnel.src.js" />
+    <Content Include="Resources\Highcharts\modules\heatmap.js" />
+    <Content Include="Resources\Highcharts\modules\heatmap.src.js" />
+    <Content Include="Resources\Highcharts\modules\no-data-to-display.js" />
+    <Content Include="Resources\Highcharts\modules\no-data-to-display.src.js" />
+    <Content Include="Resources\Highcharts\modules\offline-exporting.js" />
+    <Content Include="Resources\Highcharts\modules\offline-exporting.src.js" />
+    <Content Include="Resources\Highcharts\modules\solid-gauge.js" />
+    <Content Include="Resources\Highcharts\modules\solid-gauge.src.js" />
+    <Content Include="Resources\Highcharts\modules\treemap.js" />
+    <Content Include="Resources\Highcharts\modules\treemap.src.js" />
+    <Content Include="Resources\Highcharts\themes\dark-blue.js" />
+    <Content Include="Resources\Highcharts\themes\dark-green.js" />
+    <Content Include="Resources\Highcharts\themes\dark-unica.js" />
+    <Content Include="Resources\Highcharts\themes\gray.js" />
+    <Content Include="Resources\Highcharts\themes\grid-light.js" />
+    <Content Include="Resources\Highcharts\themes\grid.js" />
+    <Content Include="Resources\Highcharts\themes\sand-signika.js" />
+    <Content Include="Resources\Highcharts\themes\skies.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
