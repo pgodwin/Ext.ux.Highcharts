@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.UI;
 using Ext.Net;
 
-[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.Serie.js", "text/javascript")]
-namespace Ext.ux.Highcharts
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.ColumnSerie.js", "text/javascript")]
+namespace Ext.ux.Highcharts.Series
 {
     /// <summary>
     /// Serie class is the base class for all the series types. Users shouldn't use any of the series classes directly, 
@@ -17,12 +13,10 @@ namespace Ext.ux.Highcharts
     /// </summary>
     [Designer(typeof(EmptyDesigner))]
     [DefaultProperty("")]
-    [ToolboxData("<{0}:Serie runat=\"server\"></{0}:Serie>")]
-    [Description("Serie")]
-
-    public partial class Serie : SerieBase
+    [ToolboxData("<{0}:ColumnSerie runat=\"server\"></{0}:ColumnSerie>")]
+    [Description("Column Serie")]
+    public partial class ColumnSerie : ColumnSerieBase
     {
-
         protected override List<ResourceItem> Resources
         {
             get
@@ -31,27 +25,19 @@ namespace Ext.ux.Highcharts
                 baseList.Capacity += 1;
 
                 // Sencha Wrapper
-                baseList.Add(new ClientScriptItem(typeof(HighChart), "Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.Serie.js", "Resources/Chart/ux/Highcharts/Serie.js"));
+                baseList.Add(new ClientScriptItem(typeof(HighChart), "Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.ColumnSerie.js", "Resources/Chart/ux/Highcharts/ColumnSerie.js"));
 
                 return baseList;
             }
         }
 
-       
+
         public override string InstanceOf
         {
             get
             {
-                return "Chart.ux.Highcharts.Serie";
+                return "Chart.ux.Highcharts.ColumnSerie";
             }
         }
-
     }
-
-    public partial class HighChartSeriesCollection : ItemsCollection<Serie>
-    {
-        
-    }
-
-    
 }

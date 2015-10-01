@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Xml.Serialization;
 using Ext.Net;
 using Newtonsoft.Json;
 
-namespace Ext.ux.Highcharts
+namespace Ext.ux.Highcharts.Series
 {
     public abstract partial class SerieBase : Observable
     {
@@ -16,6 +11,7 @@ namespace Ext.ux.Highcharts
         [ConfigOption]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
+        [Category("HighChart")]
         [Description("This field is used for setting data point color number or color hex in '#([0-9])'. Otherwise, the option is treated as a field name and the store should return rows with the same color field name. For column type series, if you want Highcharts to automatically color each data point, then you should use plotOptions.column.colorByPoint option in the series config.")]
         public virtual string ColorField
         {
@@ -34,6 +30,7 @@ namespace Ext.ux.Highcharts
         [ConfigOption]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
+        [Category("HighChart")]
         [Description("can be either an alias of yField (which has higher precedence if both are defined) or mapping to store's field with array of data points")]
         public virtual string DataIndex
         {
@@ -51,6 +48,7 @@ namespace Ext.ux.Highcharts
         [ConfigOption]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
+        [Category("HighChart")]
         [Description("Highcharts series type name. This field must be specified. Line, area, scatter and column series are the simplest form of charts (includes Polar) which has the simple data mappings: dataIndex or yField for y-axis values and xField for either x-axis category field or data point's x-axis coordinate.")]
         public virtual string Type
         {
@@ -70,6 +68,7 @@ namespace Ext.ux.Highcharts
         [ConfigOption]
         [DefaultValue(false)]
         [NotifyParentProperty(true)]
+        [Category("HighChart")]
         [Description("Setting this option to true will enforce the chart to clear the series if there is no record returned for the series")]
         public virtual bool UpdateNoRecord
         {
@@ -88,6 +87,7 @@ namespace Ext.ux.Highcharts
         [ConfigOption]
         [DefaultValue(true)]
         [NotifyParentProperty(true)]
+        [Category("HighChart")]
         [Description("The field used to hide the serie initial. Defaults to true.")]
         public virtual bool Visible
         {
@@ -106,6 +106,7 @@ namespace Ext.ux.Highcharts
         [ConfigOption]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
+        [Category("HighChart")]
         [Description("The field used to access the x-axis value from the items from the data source. Store's record")]
         public virtual string XField
         {
@@ -123,6 +124,7 @@ namespace Ext.ux.Highcharts
         [ConfigOption]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
+        [Category("HighChart")]
         [Description("The field used to access the y-axis value from the items from the data source. Store's record")]
         public virtual string YField
         {
