@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ext.ux.Highcharts", "Ext.ux
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ext.ux.Highcharts.Demo", "Ext.ux.Highcharts.Demo\Ext.ux.Highcharts.Demo.csproj", "{8E694634-4507-4152-B922-3F43E9C40AFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils.HighChartClassGen", "Utils.HighChartClassGen\Utils.HighChartClassGen.csproj", "{784B0408-71EF-4916-B480-0A2C1BC79724}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8E694634-4507-4152-B922-3F43E9C40AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E694634-4507-4152-B922-3F43E9C40AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E694634-4507-4152-B922-3F43E9C40AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{784B0408-71EF-4916-B480-0A2C1BC79724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{784B0408-71EF-4916-B480-0A2C1BC79724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{784B0408-71EF-4916-B480-0A2C1BC79724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{784B0408-71EF-4916-B480-0A2C1BC79724}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
