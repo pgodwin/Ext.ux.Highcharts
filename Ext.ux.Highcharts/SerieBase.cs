@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Ext.Net;
+using Newtonsoft.Json;
 
 namespace Ext.ux.Highcharts
 {
@@ -61,6 +63,7 @@ namespace Ext.ux.Highcharts
             {
                 this.ViewState["Type"] = value;
             }
+            
         }
 
 
@@ -133,7 +136,29 @@ namespace Ext.ux.Highcharts
                 this.ViewState["YField"] = value;
             }
         }
-     
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [XmlIgnore]
+        [JsonIgnore]
+        public override ConfigOptionsCollection ConfigOptions
+        {
+            get
+            {
+                ConfigOptionsCollection list = base.ConfigOptions;
+
+                list.Add("colorField", new ConfigOption("colorField", null, "", this.ColorField));
+                list.Add("dataIndex", new ConfigOption("dataIndex", null, "", this.DataIndex));
+                list.Add("type", new ConfigOption("type", null, "", this.Type));
+                list.Add("updateNoRecord", new ConfigOption("updateNoRecord", null, false, this.UpdateNoRecord));
+                list.Add("visible", new ConfigOption("visible", null, true, this.Visible));
+                list.Add("xField", new ConfigOption("xField", null, "", this.XField));
+                list.Add("yField", new ConfigOption("yField", null, "", this.XField));
+
+                return list;
+            }
+        }
      
     }
     

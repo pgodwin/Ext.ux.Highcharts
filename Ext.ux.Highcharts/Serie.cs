@@ -22,6 +22,7 @@ namespace Ext.ux.Highcharts
 
     public partial class Serie : SerieBase
     {
+
         protected override List<ResourceItem> Resources
         {
             get
@@ -45,6 +46,11 @@ namespace Ext.ux.Highcharts
             }
         }
 
+    }
+
+    public partial class HighChartSeriesCollection : ItemsCollection<Serie>
+    {
+        
     }
 
     
