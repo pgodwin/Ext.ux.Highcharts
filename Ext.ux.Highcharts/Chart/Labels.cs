@@ -73,6 +73,46 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// Inner HTML or text for the label.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Inner HTML or text for the label.")]
+            public string Html
+            {
+                get
+                {
+                    return this.State.Get<string>("Html", "");
+                }
+                set
+                {
+                    this.State.Set("Html", value);
+                }
+            }
+
+            /// <summary>
+            /// CSS styles for each label. To position the label, use left and top like this:style: {	left: '100px',	top: '100px'}
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"CSS styles for each label. To position the label, use left and top like this:style: {	left: '100px',	top: '100px'}")]
+            public string Style
+            {
+                get
+                {
+                    return this.State.Get<string>("Style", "");
+                }
+                set
+                {
+                    this.State.Set("Style", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -86,6 +126,10 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("html", new ConfigOption("html", null, "", this.Html));
+
+                list.Add("style", new ConfigOption("style", null, "", this.Style));
 
                 return list;
             }

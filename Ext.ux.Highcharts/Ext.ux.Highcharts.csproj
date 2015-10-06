@@ -106,7 +106,6 @@
     <Compile Include="Config\ChartConfig.cs" />
     <Compile Include="Config\ChartConfigBase.cs" />
     <Compile Include="Config\ChartConfigurationCollection.cs" />
-    <Compile Include="Config\TitleConfig.cs" />
     <Compile Include="Series\ColumnSerie.cs" />
     <Compile Include="Series\ColumnSerieBase.cs" />
     <Compile Include="HighChart.cs" />

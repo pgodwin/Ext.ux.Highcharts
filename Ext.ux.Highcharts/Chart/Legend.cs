@@ -799,6 +799,106 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// The color for the active up or down arrow in the legend page navigation.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"#3E576F")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color for the active up or down arrow in the legend page navigation.")]
+            public string ActiveColor
+            {
+                get
+                {
+                    return this.State.Get<string>("ActiveColor", @"#3E576F");
+                }
+                set
+                {
+                    this.State.Set("ActiveColor", value);
+                }
+            }
+
+            /// <summary>
+            /// How to animate the pages when navigating up or down. A value of true applies the default navigation given in  the chart.animation option. Additional options can be given as an object containing values for easing and duration.  .
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"How to animate the pages when navigating up or down. A value of true applies the default navigation given in  the chart.animation option. Additional options can be given as an object containing values for easing and duration.  .")]
+            public object Animation
+            {
+                get
+                {
+                    return this.State.Get<object>("Animation", null);
+                }
+                set
+                {
+                    this.State.Set("Animation", value);
+                }
+            }
+
+            /// <summary>
+            /// The pixel size of the up and down arrows in the legend paging navigation.  .
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(12)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The pixel size of the up and down arrows in the legend paging navigation.  .")]
+            public double? ArrowSize
+            {
+                get
+                {
+                    return this.State.Get<double?>("ArrowSize", 12);
+                }
+                set
+                {
+                    this.State.Set("ArrowSize", value);
+                }
+            }
+
+            /// <summary>
+            /// The color of the inactive up or down arrow in the legend page navigation.  .
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"#CCC")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color of the inactive up or down arrow in the legend page navigation.  .")]
+            public string InactiveColor
+            {
+                get
+                {
+                    return this.State.Get<string>("InactiveColor", @"#CCC");
+                }
+                set
+                {
+                    this.State.Set("InactiveColor", value);
+                }
+            }
+
+            /// <summary>
+            /// Text styles for the legend page navigation.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Text styles for the legend page navigation.")]
+            public string Style
+            {
+                get
+                {
+                    return this.State.Get<string>("Style", "");
+                }
+                set
+                {
+                    this.State.Set("Style", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -812,6 +912,16 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("activeColor", new ConfigOption("activeColor", null, @"#3E576F", this.ActiveColor));
+
+                list.Add("animation", new ConfigOption("animation", null, null, this.Animation));
+
+                list.Add("arrowSize", new ConfigOption("arrowSize", null, 12, this.ArrowSize));
+
+                list.Add("inactiveColor", new ConfigOption("inactiveColor", null, @"#CCC", this.InactiveColor));
+
+                list.Add("style", new ConfigOption("style", null, "", this.Style));
 
                 return list;
             }
@@ -830,6 +940,46 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// Generic CSS styles for the legend title.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"{""fontWeight"":""bold""}")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Generic CSS styles for the legend title.")]
+            public string Style
+            {
+                get
+                {
+                    return this.State.Get<string>("Style", @"{""fontWeight"":""bold""}");
+                }
+                set
+                {
+                    this.State.Set("Style", value);
+                }
+            }
+
+            /// <summary>
+            /// A text or HTML string for the title. 
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"null")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"A text or HTML string for the title. ")]
+            public string Text
+            {
+                get
+                {
+                    return this.State.Get<string>("Text", @"null");
+                }
+                set
+                {
+                    this.State.Set("Text", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -843,6 +993,10 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("style", new ConfigOption("style", null, @"{""fontWeight"":""bold""}", this.Style));
+
+                list.Add("text", new ConfigOption("text", null, @"null", this.Text));
 
                 return list;
             }

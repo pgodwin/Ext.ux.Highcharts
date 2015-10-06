@@ -1151,6 +1151,86 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// A number indicating how much space should be left between the start and the end of the break. The break size is given in axis units, so for instance on a datetime axis, a break size of 3600000 would indicate the equivalent of an hour.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"A number indicating how much space should be left between the start and the end of the break. The break size is given in axis units, so for instance on a datetime axis, a break size of 3600000 would indicate the equivalent of an hour.")]
+            public double? BreakSize
+            {
+                get
+                {
+                    return this.State.Get<double?>("BreakSize", 0);
+                }
+                set
+                {
+                    this.State.Set("BreakSize", value);
+                }
+            }
+
+            /// <summary>
+            /// The point where the break starts.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The point where the break starts.")]
+            public double? From
+            {
+                get
+                {
+                    return this.State.Get<double?>("From", null);
+                }
+                set
+                {
+                    this.State.Set("From", value);
+                }
+            }
+
+            /// <summary>
+            /// Defines an interval after which the break appears again. By default the breaks do not repeat.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Defines an interval after which the break appears again. By default the breaks do not repeat.")]
+            public double? Repeat
+            {
+                get
+                {
+                    return this.State.Get<double?>("Repeat", 0);
+                }
+                set
+                {
+                    this.State.Set("Repeat", value);
+                }
+            }
+
+            /// <summary>
+            /// The point where the break ends.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The point where the break ends.")]
+            public double? To
+            {
+                get
+                {
+                    return this.State.Get<double?>("To", null);
+                }
+                set
+                {
+                    this.State.Set("To", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -1164,6 +1244,14 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("breakSize", new ConfigOption("breakSize", null, 0, this.BreakSize));
+
+                list.Add("from", new ConfigOption("from", null, null, this.From));
+
+                list.Add("repeat", new ConfigOption("repeat", null, 0, this.Repeat));
+
+                list.Add("to", new ConfigOption("to", null, null, this.To));
 
                 return list;
             }
@@ -1182,6 +1270,86 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// An event fired after the breaks have rendered.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"An event fired after the breaks have rendered.")]
+            public string AfterBreaks
+            {
+                get
+                {
+                    return this.State.Get<string>("AfterBreaks", "");
+                }
+                set
+                {
+                    this.State.Set("AfterBreaks", value);
+                }
+            }
+
+            /// <summary>
+            /// As opposed to the setExtremes event, this event fires after the final min and max values are computed and corrected for minRange.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"As opposed to the setExtremes event, this event fires after the final min and max values are computed and corrected for minRange.")]
+            public string AfterSetExtremes
+            {
+                get
+                {
+                    return this.State.Get<string>("AfterSetExtremes", "");
+                }
+                set
+                {
+                    this.State.Set("AfterSetExtremes", value);
+                }
+            }
+
+            /// <summary>
+            /// An event fired when a break from this axis occurs on a point.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"An event fired when a break from this axis occurs on a point.")]
+            public string PointBreak
+            {
+                get
+                {
+                    return this.State.Get<string>("PointBreak", "");
+                }
+                set
+                {
+                    this.State.Set("PointBreak", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires when the minimum and maximum is set for the axis, either by calling the .setExtremes() method or by selecting an area in the chart. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on which library is used as the base for Highcharts.The new user set minimum and maximum values can be found by event.min and event.max. When an axis is zoomed all the way out from the ""Reset zoom"" button, event.min and event.max are null, and the new extremes are set based on this.dataMin and this.dataMax.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when the minimum and maximum is set for the axis, either by calling the .setExtremes() method or by selecting an area in the chart. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on which library is used as the base for Highcharts.The new user set minimum and maximum values can be found by event.min and event.max. When an axis is zoomed all the way out from the ""Reset zoom"" button, event.min and event.max are null, and the new extremes are set based on this.dataMin and this.dataMax.")]
+            public string SetExtremes
+            {
+                get
+                {
+                    return this.State.Get<string>("SetExtremes", "");
+                }
+                set
+                {
+                    this.State.Set("SetExtremes", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -1195,6 +1363,14 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("afterBreaks", new ConfigOption("afterBreaks", null, "", this.AfterBreaks));
+
+                list.Add("afterSetExtremes", new ConfigOption("afterSetExtremes", null, "", this.AfterSetExtremes));
+
+                list.Add("pointBreak", new ConfigOption("pointBreak", null, "", this.PointBreak));
+
+                list.Add("setExtremes", new ConfigOption("setExtremes", null, "", this.SetExtremes));
 
                 return list;
             }
@@ -1213,6 +1389,366 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// What part of the string the given position is anchored to. Can be one of ""left"", ""center"" or ""right"". Defaults to an intelligent guess based on which side of the chart the axis is on and the rotation of the label.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"center")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"What part of the string the given position is anchored to. Can be one of ""left"", ""center"" or ""right"". Defaults to an intelligent guess based on which side of the chart the axis is on and the rotation of the label.")]
+            public string Align
+            {
+                get
+                {
+                    return this.State.Get<string>("Align", @"center");
+                }
+                set
+                {
+                    this.State.Set("Align", value);
+                }
+            }
+
+            /// <summary>
+            /// For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to false to disable rotation, which will cause the labels to word-wrap if possible.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(new double[] { -45})]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to false to disable rotation, which will cause the labels to word-wrap if possible.")]
+            public double[] AutoRotation
+            {
+                get
+                {
+                    return this.State.Get<double[]>("AutoRotation", new double[] { -45});
+                }
+                set
+                {
+                    this.State.Set("AutoRotation", value);
+                }
+            }
+
+            /// <summary>
+            /// When each category width is more than this many pixels, we don't apply auto rotation. Instead, we lay out the axis label with word wrap. A lower limit makes sense when the label contains multiple short words that don't extend the available horizontal space for each label.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(80)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"When each category width is more than this many pixels, we don't apply auto rotation. Instead, we lay out the axis label with word wrap. A lower limit makes sense when the label contains multiple short words that don't extend the available horizontal space for each label.")]
+            public double? AutoRotationLimit
+            {
+                get
+                {
+                    return this.State.Get<double?>("AutoRotationLimit", 80);
+                }
+                set
+                {
+                    this.State.Set("AutoRotationLimit", value);
+                }
+            }
+
+            /// <summary>
+            /// Polar charts only. The label's pixel distance from the perimeter of the plot area.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(15)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Polar charts only. The label's pixel distance from the perimeter of the plot area.")]
+            public double? Distance
+            {
+                get
+                {
+                    return this.State.Get<double?>("Distance", 15);
+                }
+                set
+                {
+                    this.State.Set("Distance", value);
+                }
+            }
+
+            /// <summary>
+            /// Enable or disable the axis labels.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(true)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Enable or disable the axis labels.")]
+            public bool? Enabled
+            {
+                get
+                {
+                    return this.State.Get<bool?>("Enabled", true);
+                }
+                set
+                {
+                    this.State.Set("Enabled", value);
+                }
+            }
+
+            /// <summary>
+            /// A format string for the axis label. 
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"{value}")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"A format string for the axis label. ")]
+            public string Format
+            {
+                get
+                {
+                    return this.State.Get<string>("Format", @"{value}");
+                }
+                set
+                {
+                    this.State.Set("Format", value);
+                }
+            }
+
+            /// <summary>
+            /// Callback JavaScript function to format the label. The value is  given by this.value. Additional properties for this are axis, chart, isFirst and isLast. Defaults to: function() {	return this.value;}
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Callback JavaScript function to format the label. The value is  given by this.value. Additional properties for this are axis, chart, isFirst and isLast. Defaults to: function() {	return this.value;}")]
+            public string Formatter
+            {
+                get
+                {
+                    return this.State.Get<string>("Formatter", "");
+                }
+                set
+                {
+                    this.State.Set("Formatter", value);
+                }
+            }
+
+            /// <summary>
+            /// Horizontal axis only. When staggerLines is not set, maxStaggerLines defines how many lines the axis is allowed to add to automatically avoid overlapping X labels. Set to 1 to disable overlap detection. 
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(5)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Horizontal axis only. When staggerLines is not set, maxStaggerLines defines how many lines the axis is allowed to add to automatically avoid overlapping X labels. Set to 1 to disable overlap detection. ")]
+            public double? MaxStaggerLines
+            {
+                get
+                {
+                    return this.State.Get<double?>("MaxStaggerLines", 5);
+                }
+                set
+                {
+                    this.State.Set("MaxStaggerLines", value);
+                }
+            }
+
+            /// <summary>
+            /// How to handle overflowing labels on horizontal axis. Can be undefined, false or ""justify"". By default it aligns inside the chart area. If ""justify"", labels will not render outside the plot area. If false, it will not be aligned at all. If there is room to move it, it will be aligned to the edge, else it will be removed.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"How to handle overflowing labels on horizontal axis. Can be undefined, false or ""justify"". By default it aligns inside the chart area. If ""justify"", labels will not render outside the plot area. If false, it will not be aligned at all. If there is room to move it, it will be aligned to the edge, else it will be removed.")]
+            public string Overflow
+            {
+                get
+                {
+                    return this.State.Get<string>("Overflow", "");
+                }
+                set
+                {
+                    this.State.Set("Overflow", value);
+                }
+            }
+
+            /// <summary>
+            /// The pixel padding for axis labels, to ensure white space between them.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(5)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The pixel padding for axis labels, to ensure white space between them.")]
+            public double? Padding
+            {
+                get
+                {
+                    return this.State.Get<double?>("Padding", 5);
+                }
+                set
+                {
+                    this.State.Set("Padding", value);
+                }
+            }
+
+            /// <summary>
+            /// Rotation of the labels in degrees.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Rotation of the labels in degrees.")]
+            public double? Rotation
+            {
+                get
+                {
+                    return this.State.Get<double?>("Rotation", 0);
+                }
+                set
+                {
+                    this.State.Set("Rotation", value);
+                }
+            }
+
+            /// <summary>
+            /// Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels.  .
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels.  .")]
+            public double? StaggerLines
+            {
+                get
+                {
+                    return this.State.Get<double?>("StaggerLines", null);
+                }
+                set
+                {
+                    this.State.Set("StaggerLines", value);
+                }
+            }
+
+            /// <summary>
+            /// To show only every n'th label on the axis, set the step to n. Setting the step to 2 shows every other label.By default, the step is calculated automatically to avoid overlap. To prevent this, set it to 1. This usually only happens on a category axis, and is often a sign that you have chosen the wrong axis type. Read more at Axis docs => What axis should I use? 
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"To show only every n'th label on the axis, set the step to n. Setting the step to 2 shows every other label.By default, the step is calculated automatically to avoid overlap. To prevent this, set it to 1. This usually only happens on a category axis, and is often a sign that you have chosen the wrong axis type. Read more at Axis docs => What axis should I use? ")]
+            public double? Step
+            {
+                get
+                {
+                    return this.State.Get<double?>("Step", null);
+                }
+                set
+                {
+                    this.State.Set("Step", value);
+                }
+            }
+
+            /// <summary>
+            /// CSS styles for the label. Use whiteSpace: 'nowrap' to prevent wrapping of category labels. Use textOverflow: 'none' to prevent ellipsis (dots).
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"{""color"":""#6D869F"",""fontWeight"":""bold""}")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"CSS styles for the label. Use whiteSpace: 'nowrap' to prevent wrapping of category labels. Use textOverflow: 'none' to prevent ellipsis (dots).")]
+            public string Style
+            {
+                get
+                {
+                    return this.State.Get<string>("Style", @"{""color"":""#6D869F"",""fontWeight"":""bold""}");
+                }
+                set
+                {
+                    this.State.Set("Style", value);
+                }
+            }
+
+            /// <summary>
+            /// Whether to use HTML to render the labels.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(false)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Whether to use HTML to render the labels.")]
+            public bool? UseHTML
+            {
+                get
+                {
+                    return this.State.Get<bool?>("UseHTML", false);
+                }
+                set
+                {
+                    this.State.Set("UseHTML", value);
+                }
+            }
+
+            /// <summary>
+            /// The x position offset of the label relative to the tick position on the axis.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The x position offset of the label relative to the tick position on the axis.")]
+            public double? x
+            {
+                get
+                {
+                    return this.State.Get<double?>("x", 0);
+                }
+                set
+                {
+                    this.State.Set("x", value);
+                }
+            }
+
+            /// <summary>
+            /// The y position offset of the label relative to the tick position on the axis. The default makes it adapt to the font size on bottom axis.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The y position offset of the label relative to the tick position on the axis. The default makes it adapt to the font size on bottom axis.")]
+            public double? y
+            {
+                get
+                {
+                    return this.State.Get<double?>("y", null);
+                }
+                set
+                {
+                    this.State.Set("y", value);
+                }
+            }
+
+            /// <summary>
+            /// The Z index for the axis labels.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(7)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The Z index for the axis labels.")]
+            public double? ZIndex
+            {
+                get
+                {
+                    return this.State.Get<double?>("ZIndex", 7);
+                }
+                set
+                {
+                    this.State.Set("ZIndex", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -1226,6 +1762,42 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("align", new ConfigOption("align", null, @"center", this.Align));
+
+                list.Add("autoRotation", new ConfigOption("autoRotation", null, new double[] { -45}, this.AutoRotation));
+
+                list.Add("autoRotationLimit", new ConfigOption("autoRotationLimit", null, 80, this.AutoRotationLimit));
+
+                list.Add("distance", new ConfigOption("distance", null, 15, this.Distance));
+
+                list.Add("enabled", new ConfigOption("enabled", null, true, this.Enabled));
+
+                list.Add("format", new ConfigOption("format", null, @"{value}", this.Format));
+
+                list.Add("formatter", new ConfigOption("formatter", null, "", this.Formatter));
+
+                list.Add("maxStaggerLines", new ConfigOption("maxStaggerLines", null, 5, this.MaxStaggerLines));
+
+                list.Add("overflow", new ConfigOption("overflow", null, "", this.Overflow));
+
+                list.Add("padding", new ConfigOption("padding", null, 5, this.Padding));
+
+                list.Add("rotation", new ConfigOption("rotation", null, 0, this.Rotation));
+
+                list.Add("staggerLines", new ConfigOption("staggerLines", null, null, this.StaggerLines));
+
+                list.Add("step", new ConfigOption("step", null, null, this.Step));
+
+                list.Add("style", new ConfigOption("style", null, @"{""color"":""#6D869F"",""fontWeight"":""bold""}", this.Style));
+
+                list.Add("useHTML", new ConfigOption("useHTML", null, false, this.UseHTML));
+
+                list.Add("x", new ConfigOption("x", null, 0, this.x));
+
+                list.Add("y", new ConfigOption("y", null, null, this.y));
+
+                list.Add("zIndex", new ConfigOption("zIndex", null, 7, this.ZIndex));
 
                 return list;
             }
@@ -1244,6 +1816,166 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// Border color for the plot band. Also requires borderWidth to be set.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"null")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Border color for the plot band. Also requires borderWidth to be set.")]
+            public string BorderColor
+            {
+                get
+                {
+                    return this.State.Get<string>("BorderColor", @"null");
+                }
+                set
+                {
+                    this.State.Set("BorderColor", value);
+                }
+            }
+
+            /// <summary>
+            /// Border width for the plot band.  Also requires borderColor to be set.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Border width for the plot band.  Also requires borderColor to be set.")]
+            public double? BorderWidth
+            {
+                get
+                {
+                    return this.State.Get<double?>("BorderWidth", 0);
+                }
+                set
+                {
+                    this.State.Set("BorderWidth", value);
+                }
+            }
+
+            /// <summary>
+            /// The color of the plot band.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color of the plot band.")]
+            public string Color
+            {
+                get
+                {
+                    return this.State.Get<string>("Color", "");
+                }
+                set
+                {
+                    this.State.Set("Color", value);
+                }
+            }
+
+            /// <summary>
+            /// An object defining mouse events for the plot band. Supported properties are click, mouseover, mouseout, mousemove.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"An object defining mouse events for the plot band. Supported properties are click, mouseover, mouseout, mousemove.")]
+            public object Events
+            {
+                get
+                {
+                    return this.State.Get<object>("Events", null);
+                }
+                set
+                {
+                    this.State.Set("Events", value);
+                }
+            }
+
+            /// <summary>
+            /// The start position of the plot band in axis units.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The start position of the plot band in axis units.")]
+            public double? From
+            {
+                get
+                {
+                    return this.State.Get<double?>("From", null);
+                }
+                set
+                {
+                    this.State.Set("From", value);
+                }
+            }
+
+            /// <summary>
+            /// An id used for identifying the plot band in Axis.removePlotBand.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"An id used for identifying the plot band in Axis.removePlotBand.")]
+            public string Id
+            {
+                get
+                {
+                    return this.State.Get<string>("Id", "");
+                }
+                set
+                {
+                    this.State.Set("Id", value);
+                }
+            }
+
+            /// <summary>
+            /// The end position of the plot band in axis units.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The end position of the plot band in axis units.")]
+            public double? To
+            {
+                get
+                {
+                    return this.State.Get<double?>("To", null);
+                }
+                set
+                {
+                    this.State.Set("To", value);
+                }
+            }
+
+            /// <summary>
+            /// The z index of the plot band within the chart, relative to other elements. Using the same z index as another element may give unpredictable results, as the last rendered element will be on top. Values from 0 to 20 make sense.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The z index of the plot band within the chart, relative to other elements. Using the same z index as another element may give unpredictable results, as the last rendered element will be on top. Values from 0 to 20 make sense.")]
+            public double? ZIndex
+            {
+                get
+                {
+                    return this.State.Get<double?>("ZIndex", null);
+                }
+                set
+                {
+                    this.State.Set("ZIndex", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -1258,12 +1990,257 @@ namespace Ext.ux.Highcharts.Chart
                 ConfigOptionsCollection list = base.ConfigOptions;
 
 
+                list.Add("borderColor", new ConfigOption("borderColor", null, @"null", this.BorderColor));
+
+                list.Add("borderWidth", new ConfigOption("borderWidth", null, 0, this.BorderWidth));
+
+                list.Add("color", new ConfigOption("color", null, "", this.Color));
+
+                list.Add("events", new ConfigOption("events", null, null, this.Events));
+
+                list.Add("from", new ConfigOption("from", null, null, this.From));
+
+                list.Add("id", new ConfigOption("id", null, "", this.Id));
+
+                list.Add("to", new ConfigOption("to", null, null, this.To));
+
+                list.Add("zIndex", new ConfigOption("zIndex", null, null, this.ZIndex));
+
                 return list;
             }
         }
 
 
     
+
+        /// <summary>
+        /// Text labels for the plot bands
+        /// </summary>
+        public partial class Label : Observable
+        {
+
+    
+            /// <summary>
+            /// Horizontal alignment of the label. Can be one of ""left"", ""center"" or ""right"".
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"center")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Horizontal alignment of the label. Can be one of ""left"", ""center"" or ""right"".")]
+            public string Align
+            {
+                get
+                {
+                    return this.State.Get<string>("Align", @"center");
+                }
+                set
+                {
+                    this.State.Set("Align", value);
+                }
+            }
+
+            /// <summary>
+            /// Rotation of the text label in degrees .
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Rotation of the text label in degrees .")]
+            public double? Rotation
+            {
+                get
+                {
+                    return this.State.Get<double?>("Rotation", 0);
+                }
+                set
+                {
+                    this.State.Set("Rotation", value);
+                }
+            }
+
+            /// <summary>
+            /// CSS styles for the text label.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"CSS styles for the text label.")]
+            public object Style
+            {
+                get
+                {
+                    return this.State.Get<object>("Style", null);
+                }
+                set
+                {
+                    this.State.Set("Style", value);
+                }
+            }
+
+            /// <summary>
+            /// The string text itself. A subset of HTML is supported.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The string text itself. A subset of HTML is supported.")]
+            public string Text
+            {
+                get
+                {
+                    return this.State.Get<string>("Text", "");
+                }
+                set
+                {
+                    this.State.Set("Text", value);
+                }
+            }
+
+            /// <summary>
+            /// The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". Defaults to the same as the align option.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". Defaults to the same as the align option.")]
+            public string TextAlign
+            {
+                get
+                {
+                    return this.State.Get<string>("TextAlign", "");
+                }
+                set
+                {
+                    this.State.Set("TextAlign", value);
+                }
+            }
+
+            /// <summary>
+            /// Whether to use HTML to render the labels.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(false)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Whether to use HTML to render the labels.")]
+            public bool? UseHTML
+            {
+                get
+                {
+                    return this.State.Get<bool?>("UseHTML", false);
+                }
+                set
+                {
+                    this.State.Set("UseHTML", value);
+                }
+            }
+
+            /// <summary>
+            /// Vertical alignment of the label relative to the plot band. Can be one of ""top"", ""middle"" or ""bottom"".
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"top")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Vertical alignment of the label relative to the plot band. Can be one of ""top"", ""middle"" or ""bottom"".")]
+            public string VerticalAlign
+            {
+                get
+                {
+                    return this.State.Get<string>("VerticalAlign", @"top");
+                }
+                set
+                {
+                    this.State.Set("VerticalAlign", value);
+                }
+            }
+
+            /// <summary>
+            /// Horizontal position relative the alignment. Default varies by orientation.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Horizontal position relative the alignment. Default varies by orientation.")]
+            public double? x
+            {
+                get
+                {
+                    return this.State.Get<double?>("x", null);
+                }
+                set
+                {
+                    this.State.Set("x", value);
+                }
+            }
+
+            /// <summary>
+            /// Vertical position of the text baseline relative to the alignment. Default varies by orientation.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Vertical position of the text baseline relative to the alignment. Default varies by orientation.")]
+            public double? y
+            {
+                get
+                {
+                    return this.State.Get<double?>("y", null);
+                }
+                set
+                {
+                    this.State.Set("y", value);
+                }
+            }
+
+
+    
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [XmlIgnore]
+        [JsonIgnore]
+        public override ConfigOptionsCollection ConfigOptions
+        {
+            get
+            {
+                ConfigOptionsCollection list = base.ConfigOptions;
+
+
+                list.Add("align", new ConfigOption("align", null, @"center", this.Align));
+
+                list.Add("rotation", new ConfigOption("rotation", null, 0, this.Rotation));
+
+                list.Add("style", new ConfigOption("style", null, null, this.Style));
+
+                list.Add("text", new ConfigOption("text", null, "", this.Text));
+
+                list.Add("textAlign", new ConfigOption("textAlign", null, "", this.TextAlign));
+
+                list.Add("useHTML", new ConfigOption("useHTML", null, false, this.UseHTML));
+
+                list.Add("verticalAlign", new ConfigOption("verticalAlign", null, @"top", this.VerticalAlign));
+
+                list.Add("x", new ConfigOption("x", null, null, this.x));
+
+                list.Add("y", new ConfigOption("y", null, null, this.y));
+
+                return list;
+            }
+        }
+
+
+    
+
+        }
+
 
         }
 
@@ -1275,6 +2252,146 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// The color of the line.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color of the line.")]
+            public string Color
+            {
+                get
+                {
+                    return this.State.Get<string>("Color", "");
+                }
+                set
+                {
+                    this.State.Set("Color", value);
+                }
+            }
+
+            /// <summary>
+            /// The dashing or dot style for the plot line. For possible values see this overview.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"Solid")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The dashing or dot style for the plot line. For possible values see this overview.")]
+            public string DashStyle
+            {
+                get
+                {
+                    return this.State.Get<string>("DashStyle", @"Solid");
+                }
+                set
+                {
+                    this.State.Set("DashStyle", value);
+                }
+            }
+
+            /// <summary>
+            /// An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove.")]
+            public object Events
+            {
+                get
+                {
+                    return this.State.Get<object>("Events", null);
+                }
+                set
+                {
+                    this.State.Set("Events", value);
+                }
+            }
+
+            /// <summary>
+            /// An id used for identifying the plot line in Axis.removePlotLine.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"An id used for identifying the plot line in Axis.removePlotLine.")]
+            public string Id
+            {
+                get
+                {
+                    return this.State.Get<string>("Id", "");
+                }
+                set
+                {
+                    this.State.Set("Id", value);
+                }
+            }
+
+            /// <summary>
+            /// The position of the line in axis units.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The position of the line in axis units.")]
+            public double? Value
+            {
+                get
+                {
+                    return this.State.Get<double?>("Value", null);
+                }
+                set
+                {
+                    this.State.Set("Value", value);
+                }
+            }
+
+            /// <summary>
+            /// The width or thickness of the plot line.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The width or thickness of the plot line.")]
+            public double? Width
+            {
+                get
+                {
+                    return this.State.Get<double?>("Width", null);
+                }
+                set
+                {
+                    this.State.Set("Width", value);
+                }
+            }
+
+            /// <summary>
+            /// The z index of the plot line within the chart.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The z index of the plot line within the chart.")]
+            public double? ZIndex
+            {
+                get
+                {
+                    return this.State.Get<double?>("ZIndex", null);
+                }
+                set
+                {
+                    this.State.Set("ZIndex", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -1289,12 +2406,255 @@ namespace Ext.ux.Highcharts.Chart
                 ConfigOptionsCollection list = base.ConfigOptions;
 
 
+                list.Add("color", new ConfigOption("color", null, "", this.Color));
+
+                list.Add("dashStyle", new ConfigOption("dashStyle", null, @"Solid", this.DashStyle));
+
+                list.Add("events", new ConfigOption("events", null, null, this.Events));
+
+                list.Add("id", new ConfigOption("id", null, "", this.Id));
+
+                list.Add("value", new ConfigOption("value", null, null, this.Value));
+
+                list.Add("width", new ConfigOption("width", null, null, this.Width));
+
+                list.Add("zIndex", new ConfigOption("zIndex", null, null, this.ZIndex));
+
                 return list;
             }
         }
 
 
     
+
+        /// <summary>
+        /// Text labels for the plot bands
+        /// </summary>
+        public partial class Label : Observable
+        {
+
+    
+            /// <summary>
+            /// Horizontal alignment of the label. Can be one of ""left"", ""center"" or ""right"".
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"left")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Horizontal alignment of the label. Can be one of ""left"", ""center"" or ""right"".")]
+            public string Align
+            {
+                get
+                {
+                    return this.State.Get<string>("Align", @"left");
+                }
+                set
+                {
+                    this.State.Set("Align", value);
+                }
+            }
+
+            /// <summary>
+            /// Rotation of the text label in degrees. Defaults to 0 for horizontal plot lines and 90 for vertical lines.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Rotation of the text label in degrees. Defaults to 0 for horizontal plot lines and 90 for vertical lines.")]
+            public double? Rotation
+            {
+                get
+                {
+                    return this.State.Get<double?>("Rotation", null);
+                }
+                set
+                {
+                    this.State.Set("Rotation", value);
+                }
+            }
+
+            /// <summary>
+            /// CSS styles for the text label.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"CSS styles for the text label.")]
+            public object Style
+            {
+                get
+                {
+                    return this.State.Get<object>("Style", null);
+                }
+                set
+                {
+                    this.State.Set("Style", value);
+                }
+            }
+
+            /// <summary>
+            /// The text itself. A subset of HTML is supported.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The text itself. A subset of HTML is supported.")]
+            public string Text
+            {
+                get
+                {
+                    return this.State.Get<string>("Text", "");
+                }
+                set
+                {
+                    this.State.Set("Text", value);
+                }
+            }
+
+            /// <summary>
+            /// The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". Defaults to the same as the align option.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". Defaults to the same as the align option.")]
+            public string TextAlign
+            {
+                get
+                {
+                    return this.State.Get<string>("TextAlign", "");
+                }
+                set
+                {
+                    this.State.Set("TextAlign", value);
+                }
+            }
+
+            /// <summary>
+            /// Whether to use HTML to render the labels.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(false)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Whether to use HTML to render the labels.")]
+            public bool? UseHTML
+            {
+                get
+                {
+                    return this.State.Get<bool?>("UseHTML", false);
+                }
+                set
+                {
+                    this.State.Set("UseHTML", value);
+                }
+            }
+
+            /// <summary>
+            /// Vertical alignment of the label relative to the plot band. Can be one of ""top"", ""middle"" or ""bottom"".
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"top")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Vertical alignment of the label relative to the plot band. Can be one of ""top"", ""middle"" or ""bottom"".")]
+            public string VerticalAlign
+            {
+                get
+                {
+                    return this.State.Get<string>("VerticalAlign", @"top");
+                }
+                set
+                {
+                    this.State.Set("VerticalAlign", value);
+                }
+            }
+
+            /// <summary>
+            /// Horizontal position relative the alignment. Default varies by orientation.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Horizontal position relative the alignment. Default varies by orientation.")]
+            public double? x
+            {
+                get
+                {
+                    return this.State.Get<double?>("x", null);
+                }
+                set
+                {
+                    this.State.Set("x", value);
+                }
+            }
+
+            /// <summary>
+            /// Vertical position of the text baseline relative to the alignment. Default varies by orientation.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Vertical position of the text baseline relative to the alignment. Default varies by orientation.")]
+            public double? y
+            {
+                get
+                {
+                    return this.State.Get<double?>("y", null);
+                }
+                set
+                {
+                    this.State.Set("y", value);
+                }
+            }
+
+
+    
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [XmlIgnore]
+        [JsonIgnore]
+        public override ConfigOptionsCollection ConfigOptions
+        {
+            get
+            {
+                ConfigOptionsCollection list = base.ConfigOptions;
+
+
+                list.Add("align", new ConfigOption("align", null, @"left", this.Align));
+
+                list.Add("rotation", new ConfigOption("rotation", null, null, this.Rotation));
+
+                list.Add("style", new ConfigOption("style", null, null, this.Style));
+
+                list.Add("text", new ConfigOption("text", null, "", this.Text));
+
+                list.Add("textAlign", new ConfigOption("textAlign", null, "", this.TextAlign));
+
+                list.Add("useHTML", new ConfigOption("useHTML", null, false, this.UseHTML));
+
+                list.Add("verticalAlign", new ConfigOption("verticalAlign", null, @"top", this.VerticalAlign));
+
+                list.Add("x", new ConfigOption("x", null, null, this.x));
+
+                list.Add("y", new ConfigOption("y", null, null, this.y));
+
+                return list;
+            }
+        }
+
+
+    
+
+        }
+
 
         }
 
@@ -1306,6 +2666,186 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// Alignment of the title relative to the axis values. Possible values are ""low"", ""middle"" or ""high"".
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"middle")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Alignment of the title relative to the axis values. Possible values are ""low"", ""middle"" or ""high"".")]
+            public string Align
+            {
+                get
+                {
+                    return this.State.Get<string>("Align", @"middle");
+                }
+                set
+                {
+                    this.State.Set("Align", value);
+                }
+            }
+
+            /// <summary>
+            /// Deprecated. Set the text to null to disable the title.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"middle")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Deprecated. Set the text to null to disable the title.")]
+            public string Enabled
+            {
+                get
+                {
+                    return this.State.Get<string>("Enabled", @"middle");
+                }
+                set
+                {
+                    this.State.Set("Enabled", value);
+                }
+            }
+
+            /// <summary>
+            /// The pixel distance between the axis labels or line and the title. Defaults to 0 for horizontal axes, 10 for vertical
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The pixel distance between the axis labels or line and the title. Defaults to 0 for horizontal axes, 10 for vertical")]
+            public double? Margin
+            {
+                get
+                {
+                    return this.State.Get<double?>("Margin", null);
+                }
+                set
+                {
+                    this.State.Set("Margin", value);
+                }
+            }
+
+            /// <summary>
+            /// The distance of the axis title from the axis line. By default, this distance is  computed from the offset width of the labels, the labels' distance from  the axis and the title's margin. However when the offset option is set, it overrides all this.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The distance of the axis title from the axis line. By default, this distance is  computed from the offset width of the labels, the labels' distance from  the axis and the title's margin. However when the offset option is set, it overrides all this.")]
+            public double? Offset
+            {
+                get
+                {
+                    return this.State.Get<double?>("Offset", null);
+                }
+                set
+                {
+                    this.State.Set("Offset", value);
+                }
+            }
+
+            /// <summary>
+            /// The rotation of the text in degrees. 0 is horizontal, 270 is vertical reading from bottom to top.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The rotation of the text in degrees. 0 is horizontal, 270 is vertical reading from bottom to top.")]
+            public double? Rotation
+            {
+                get
+                {
+                    return this.State.Get<double?>("Rotation", 0);
+                }
+                set
+                {
+                    this.State.Set("Rotation", value);
+                }
+            }
+
+            /// <summary>
+            /// CSS styles for the title. When titles are rotated they are rendered using vector graphic techniques and not all styles are applicable.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"{ ""color"": ""#707070"", ""fontWeight"": ""bold"" }")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"CSS styles for the title. When titles are rotated they are rendered using vector graphic techniques and not all styles are applicable.")]
+            public string Style
+            {
+                get
+                {
+                    return this.State.Get<string>("Style", @"{ ""color"": ""#707070"", ""fontWeight"": ""bold"" }");
+                }
+                set
+                {
+                    this.State.Set("Style", value);
+                }
+            }
+
+            /// <summary>
+            /// The actual text of the axis title. It can contain basic HTML text markup like &lt;b&gt;, &lt;i&gt; and spans with style.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The actual text of the axis title. It can contain basic HTML text markup like &lt;b&gt;, &lt;i&gt; and spans with style.")]
+            public string Text
+            {
+                get
+                {
+                    return this.State.Get<string>("Text", "");
+                }
+                set
+                {
+                    this.State.Set("Text", value);
+                }
+            }
+
+            /// <summary>
+            /// Horizontal pixel offset of the title position.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Horizontal pixel offset of the title position.")]
+            public double? x
+            {
+                get
+                {
+                    return this.State.Get<double?>("x", 0);
+                }
+                set
+                {
+                    this.State.Set("x", value);
+                }
+            }
+
+            /// <summary>
+            /// Vertical pixel offset of the title position.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Vertical pixel offset of the title position.")]
+            public double? y
+            {
+                get
+                {
+                    return this.State.Get<double?>("y", null);
+                }
+                set
+                {
+                    this.State.Set("y", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -1319,6 +2859,24 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("align", new ConfigOption("align", null, @"middle", this.Align));
+
+                list.Add("enabled", new ConfigOption("enabled", null, @"middle", this.Enabled));
+
+                list.Add("margin", new ConfigOption("margin", null, null, this.Margin));
+
+                list.Add("offset", new ConfigOption("offset", null, null, this.Offset));
+
+                list.Add("rotation", new ConfigOption("rotation", null, 0, this.Rotation));
+
+                list.Add("style", new ConfigOption("style", null, @"{ ""color"": ""#707070"", ""fontWeight"": ""bold"" }", this.Style));
+
+                list.Add("text", new ConfigOption("text", null, "", this.Text));
+
+                list.Add("x", new ConfigOption("x", null, 0, this.x));
+
+                list.Add("y", new ConfigOption("y", null, null, this.y));
 
                 return list;
             }

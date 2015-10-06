@@ -44,17 +44,17 @@ namespace Utils.HighChartClassGen
             List<MockClass> classes = new List<MockClass>();
             foreach (var cls in items.Where(i=>i.IsTopMostClass))
             {
-                var mockClass = new MockClass(cls);
+                var mockClass = new MockClass(cls, items);
 
-                // Find Properties
-                mockClass.Properties = items.Where(i => i.parent == cls.name && i.isParent == false)
-                    .Select(i => new MockProperty(i))
-                    .ToList();
+                //// Find Properties
+                //mockClass.Properties = items.Where(i => i.parent == cls.name && i.isParent == false)
+                //    .Select(i => new MockProperty(i))
+                //    .ToList();
 
-                // Find Sub Classes
-                mockClass.SubClasses = items.Where(i => i.isParent == true && i.parent == cls.name)
-                    .Select(i => new MockClass(i))
-                    .ToList();
+                //// Find Sub Classes
+                //mockClass.SubClasses = items.Where(i => i.isParent == true && i.parent == cls.name)
+                //    .Select(i => new MockClass(i, items))
+                //    .ToList();
 
                 classes.Add(mockClass);
             }
@@ -66,7 +66,7 @@ namespace Utils.HighChartClassGen
     public class MockClass
     {
 
-        public MockClass(HighChartDocItem item)
+        public MockClass(HighChartDocItem item, List<HighChartDocItem> items)
         {
 
             if (item.title.Contains("series<"))
@@ -80,8 +80,18 @@ namespace Utils.HighChartClassGen
 
             this.IsTopMost = item.IsTopMostClass;
 
-            this.Properties = new List<MockProperty>();
-            this.SubClasses = new List<MockClass>();
+            // Find Properties
+            this.Properties = items.Where(i => i.parent == item.name && i.isParent == false)
+                .Select(i => new MockProperty(i))
+                .ToList();
+
+            // Find sub classes
+            this.SubClasses = items.Where(i => i.isParent == true && i.parent == item.name)
+                    .Select(i => new MockClass(i, items))
+                    .ToList();
+
+            //this.Properties = new List<MockProperty>();
+            //this.SubClasses = new List<MockClass>();
 
             
         }

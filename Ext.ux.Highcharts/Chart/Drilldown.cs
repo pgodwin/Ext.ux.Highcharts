@@ -161,6 +161,66 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// Positioning options for the button within the relativeTo box. Available properties are x, y, align and verticalAlign.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Positioning options for the button within the relativeTo box. Available properties are x, y, align and verticalAlign.")]
+            public object Position
+            {
+                get
+                {
+                    return this.State.Get<object>("Position", null);
+                }
+                set
+                {
+                    this.State.Set("Position", value);
+                }
+            }
+
+            /// <summary>
+            /// What box to align the button to. Can be either ""plotBox"" or ""spacingBox"".
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"plotBox")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"What box to align the button to. Can be either ""plotBox"" or ""spacingBox"".")]
+            public string RelativeTo
+            {
+                get
+                {
+                    return this.State.Get<string>("RelativeTo", @"plotBox");
+                }
+                set
+                {
+                    this.State.Set("RelativeTo", value);
+                }
+            }
+
+            /// <summary>
+            /// A collection of attributes for the button. The object takes SVG attributes like  fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"A collection of attributes for the button. The object takes SVG attributes like  fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover.")]
+            public object Theme
+            {
+                get
+                {
+                    return this.State.Get<object>("Theme", null);
+                }
+                set
+                {
+                    this.State.Set("Theme", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -174,6 +234,12 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("position", new ConfigOption("position", null, null, this.Position));
+
+                list.Add("relativeTo", new ConfigOption("relativeTo", null, @"plotBox", this.RelativeTo));
+
+                list.Add("theme", new ConfigOption("theme", null, null, this.Theme));
 
                 return list;
             }

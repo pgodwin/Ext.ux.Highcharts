@@ -909,6 +909,186 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// Fires when a series is added to the chart after load time, using the addSeries method. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Through event.options you can access the series options that was passed to the addSeries  method. Returning false prevents the series from being added.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when a series is added to the chart after load time, using the addSeries method. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Through event.options you can access the series options that was passed to the addSeries  method. Returning false prevents the series from being added.")]
+            public string AddSeries
+            {
+                get
+                {
+                    return this.State.Get<string>("AddSeries", "");
+                }
+                set
+                {
+                    this.State.Set("AddSeries", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires after a chart is printed through the context menu item or the Chart.print method. Requires the exporting module.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires after a chart is printed through the context menu item or the Chart.print method. Requires the exporting module.")]
+            public string AfterPrint
+            {
+                get
+                {
+                    return this.State.Get<string>("AfterPrint", "");
+                }
+                set
+                {
+                    this.State.Set("AfterPrint", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires before a chart is printed through the context menu item or the Chart.print method. Requires the exporting module.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires before a chart is printed through the context menu item or the Chart.print method. Requires the exporting module.")]
+            public string BeforePrint
+            {
+                get
+                {
+                    return this.State.Get<string>("BeforePrint", "");
+                }
+                set
+                {
+                    this.State.Set("BeforePrint", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires when clicking on the plot background. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Information on the clicked spot can be found through event.xAxis and  event.yAxis, which are arrays containing the axes of each dimension and each axis' value at the clicked spot. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00.click: function(e) {	console.log(		Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', e.xAxis[0].value), 		e.yAxis[0].value	)}
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when clicking on the plot background. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Information on the clicked spot can be found through event.xAxis and  event.yAxis, which are arrays containing the axes of each dimension and each axis' value at the clicked spot. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00.click: function(e) {	console.log(		Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', e.xAxis[0].value), 		e.yAxis[0].value	)}")]
+            public string Click
+            {
+                get
+                {
+                    return this.State.Get<string>("Click", "");
+                }
+                set
+                {
+                    this.State.Set("Click", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires when a drilldown point is clicked, before the new series is added. Event arguments:  category  If a category label was clicked, which index.  point  The originating point.  points  If a category label was clicked, this array holds all points corresponing to the category.  seriesOptions  Options for the new seriesThis event is also utilized for async drilldown, where the seriesOptions are not added by option, but rather loaded async.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when a drilldown point is clicked, before the new series is added. Event arguments:  category  If a category label was clicked, which index.  point  The originating point.  points  If a category label was clicked, this array holds all points corresponing to the category.  seriesOptions  Options for the new seriesThis event is also utilized for async drilldown, where the seriesOptions are not added by option, but rather loaded async.")]
+            public string Drilldown
+            {
+                get
+                {
+                    return this.State.Get<string>("Drilldown", "");
+                }
+                set
+                {
+                    this.State.Set("Drilldown", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires when drilling up from a drilldown series.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when drilling up from a drilldown series.")]
+            public string Drillup
+            {
+                get
+                {
+                    return this.State.Get<string>("Drillup", "");
+                }
+                set
+                {
+                    this.State.Set("Drillup", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires when the chart is finished loading. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.From version 2.0.4, there is also a second parameter to Highcharts.Chart where a callback function can be passed to be executed on chart.load.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when the chart is finished loading. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.From version 2.0.4, there is also a second parameter to Highcharts.Chart where a callback function can be passed to be executed on chart.load.")]
+            public string Load
+            {
+                get
+                {
+                    return this.State.Get<string>("Load", "");
+                }
+                set
+                {
+                    this.State.Set("Load", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires when the chart is redrawn, either after a call to chart.redraw() or after an axis, series or point is modified with the redraw option set to true. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when the chart is redrawn, either after a call to chart.redraw() or after an axis, series or point is modified with the redraw option set to true. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
+            public string Redraw
+            {
+                get
+                {
+                    return this.State.Get<string>("Redraw", "");
+                }
+                set
+                {
+                    this.State.Set("Redraw", value);
+                }
+            }
+
+            /// <summary>
+            /// Fires when an area of the chart has been selected. Selection is enabled by setting the chart's zoomType. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. The default action for the  selection event is to zoom the  chart to the selected area. It can be prevented by calling  event.preventDefault(). Information on the selected area can be found through event.xAxis and  event.yAxis, which are arrays containing the axes of each dimension and each axis' min and max values. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. selection: function(event) {	// log the min and max of the primary, datetime x-axis	console.log(		Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].min),		Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].max)	);	// log the min and max of the y axis	console.log(event.yAxis[0].min, event.yAxis[0].max);}
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue("")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Fires when an area of the chart has been selected. Selection is enabled by setting the chart's zoomType. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. The default action for the  selection event is to zoom the  chart to the selected area. It can be prevented by calling  event.preventDefault(). Information on the selected area can be found through event.xAxis and  event.yAxis, which are arrays containing the axes of each dimension and each axis' min and max values. The primary axes are event.xAxis[0] and event.yAxis[0]. Remember the unit of a datetime axis is milliseconds since 1970-01-01 00:00:00. selection: function(event) {	// log the min and max of the primary, datetime x-axis	console.log(		Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].min),		Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', event.xAxis[0].max)	);	// log the min and max of the y axis	console.log(event.yAxis[0].min, event.yAxis[0].max);}")]
+            public string Selection
+            {
+                get
+                {
+                    return this.State.Get<string>("Selection", "");
+                }
+                set
+                {
+                    this.State.Set("Selection", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -922,6 +1102,24 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("addSeries", new ConfigOption("addSeries", null, "", this.AddSeries));
+
+                list.Add("afterPrint", new ConfigOption("afterPrint", null, "", this.AfterPrint));
+
+                list.Add("beforePrint", new ConfigOption("beforePrint", null, "", this.BeforePrint));
+
+                list.Add("click", new ConfigOption("click", null, "", this.Click));
+
+                list.Add("drilldown", new ConfigOption("drilldown", null, "", this.Drilldown));
+
+                list.Add("drillup", new ConfigOption("drillup", null, "", this.Drillup));
+
+                list.Add("load", new ConfigOption("load", null, "", this.Load));
+
+                list.Add("redraw", new ConfigOption("redraw", null, "", this.Redraw));
+
+                list.Add("selection", new ConfigOption("selection", null, "", this.Selection));
 
                 return list;
             }
@@ -940,6 +1138,144 @@ namespace Ext.ux.Highcharts.Chart
         {
 
     
+            /// <summary>
+            /// One of the two rotation angles for the chart.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"One of the two rotation angles for the chart.")]
+            public double? Alpha
+            {
+                get
+                {
+                    return this.State.Get<double?>("Alpha", 0);
+                }
+                set
+                {
+                    this.State.Set("Alpha", value);
+                }
+            }
+
+            /// <summary>
+            /// One of the two rotation angles for the chart.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"One of the two rotation angles for the chart.")]
+            public double? Beta
+            {
+                get
+                {
+                    return this.State.Get<double?>("Beta", 0);
+                }
+                set
+                {
+                    this.State.Set("Beta", value);
+                }
+            }
+
+            /// <summary>
+            /// The total depth of the chart.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(100)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The total depth of the chart.")]
+            public double? Depth
+            {
+                get
+                {
+                    return this.State.Get<double?>("Depth", 100);
+                }
+                set
+                {
+                    this.State.Set("Depth", value);
+                }
+            }
+
+            /// <summary>
+            /// Wether to render the chart using the 3D functionality.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(false)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Wether to render the chart using the 3D functionality.")]
+            public bool? Enabled
+            {
+                get
+                {
+                    return this.State.Get<bool?>("Enabled", false);
+                }
+                set
+                {
+                    this.State.Set("Enabled", value);
+                }
+            }
+
+            /// <summary>
+            /// Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts.It is not used for 3D pie charts.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(100)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts.It is not used for 3D pie charts.")]
+            public double? ViewDistance
+            {
+                get
+                {
+                    return this.State.Get<double?>("ViewDistance", 100);
+                }
+                set
+                {
+                    this.State.Set("ViewDistance", value);
+                }
+            }
+
+
+    
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [XmlIgnore]
+        [JsonIgnore]
+        public override ConfigOptionsCollection ConfigOptions
+        {
+            get
+            {
+                ConfigOptionsCollection list = base.ConfigOptions;
+
+
+                list.Add("alpha", new ConfigOption("alpha", null, 0, this.Alpha));
+
+                list.Add("beta", new ConfigOption("beta", null, 0, this.Beta));
+
+                list.Add("depth", new ConfigOption("depth", null, 100, this.Depth));
+
+                list.Add("enabled", new ConfigOption("enabled", null, false, this.Enabled));
+
+                list.Add("viewDistance", new ConfigOption("viewDistance", null, 100, this.ViewDistance));
+
+                return list;
+            }
+        }
+
+
+    
+
+        /// <summary>
+        /// Provides the option to draw a frame around the charts by defining a bottom, front and back panel. 
+        /// </summary>
+        public partial class Frame : Observable
+        {
+
+    
 
     
         [Browsable(false)]
@@ -961,16 +1297,53 @@ namespace Ext.ux.Highcharts.Chart
 
     
 
-        }
-
-
         /// <summary>
-        /// The button that appears after a selection zoom, allowing the user to reset zoom.
+        /// Defines the back panel of the frame around 3D charts.
         /// </summary>
-        public partial class ResetZoomButton : Observable
+        public partial class Back : Observable
         {
 
     
+            /// <summary>
+            /// The color of the panel.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"transparent")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color of the panel.")]
+            public string Color
+            {
+                get
+                {
+                    return this.State.Get<string>("Color", @"transparent");
+                }
+                set
+                {
+                    this.State.Set("Color", value);
+                }
+            }
+
+            /// <summary>
+            /// Thickness of the panel.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(1)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Thickness of the panel.")]
+            public double? Size
+            {
+                get
+                {
+                    return this.State.Get<double?>("Size", 1);
+                }
+                set
+                {
+                    this.State.Set("Size", value);
+                }
+            }
+
 
     
         [Browsable(false)]
@@ -984,6 +1357,263 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
+
+                list.Add("color", new ConfigOption("color", null, @"transparent", this.Color));
+
+                list.Add("size", new ConfigOption("size", null, 1, this.Size));
+
+                return list;
+            }
+        }
+
+
+    
+
+        }
+
+
+        /// <summary>
+        /// The bottom of the frame around a 3D chart.
+        /// </summary>
+        public partial class Bottom : Observable
+        {
+
+    
+            /// <summary>
+            /// The color of the panel.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"transparent")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color of the panel.")]
+            public string Color
+            {
+                get
+                {
+                    return this.State.Get<string>("Color", @"transparent");
+                }
+                set
+                {
+                    this.State.Set("Color", value);
+                }
+            }
+
+            /// <summary>
+            /// The thickness of the panel.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(1)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The thickness of the panel.")]
+            public double? Size
+            {
+                get
+                {
+                    return this.State.Get<double?>("Size", 1);
+                }
+                set
+                {
+                    this.State.Set("Size", value);
+                }
+            }
+
+
+    
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [XmlIgnore]
+        [JsonIgnore]
+        public override ConfigOptionsCollection ConfigOptions
+        {
+            get
+            {
+                ConfigOptionsCollection list = base.ConfigOptions;
+
+
+                list.Add("color", new ConfigOption("color", null, @"transparent", this.Color));
+
+                list.Add("size", new ConfigOption("size", null, 1, this.Size));
+
+                return list;
+            }
+        }
+
+
+    
+
+        }
+
+
+        /// <summary>
+        /// The side for the frame around a 3D chart.
+        /// </summary>
+        public partial class Side : Observable
+        {
+
+    
+            /// <summary>
+            /// The color of the panel.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"transparent")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color of the panel.")]
+            public string Color
+            {
+                get
+                {
+                    return this.State.Get<string>("Color", @"transparent");
+                }
+                set
+                {
+                    this.State.Set("Color", value);
+                }
+            }
+
+            /// <summary>
+            /// The thickness of the panel.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(1)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The thickness of the panel.")]
+            public double? Size
+            {
+                get
+                {
+                    return this.State.Get<double?>("Size", 1);
+                }
+                set
+                {
+                    this.State.Set("Size", value);
+                }
+            }
+
+
+    
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [XmlIgnore]
+        [JsonIgnore]
+        public override ConfigOptionsCollection ConfigOptions
+        {
+            get
+            {
+                ConfigOptionsCollection list = base.ConfigOptions;
+
+
+                list.Add("color", new ConfigOption("color", null, @"transparent", this.Color));
+
+                list.Add("size", new ConfigOption("size", null, 1, this.Size));
+
+                return list;
+            }
+        }
+
+
+    
+
+        }
+
+
+        }
+
+
+        }
+
+
+        /// <summary>
+        /// The button that appears after a selection zoom, allowing the user to reset zoom.
+        /// </summary>
+        public partial class ResetZoomButton : Observable
+        {
+
+    
+            /// <summary>
+            /// The position of the button. This is an object that can hold the properties align, verticalAlign, x and y.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The position of the button. This is an object that can hold the properties align, verticalAlign, x and y.")]
+            public object Position
+            {
+                get
+                {
+                    return this.State.Get<object>("Position", null);
+                }
+                set
+                {
+                    this.State.Set("Position", value);
+                }
+            }
+
+            /// <summary>
+            /// What frame the button should be placed related to. Can be either ""plot"" or ""chart"".
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(@"plot")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"What frame the button should be placed related to. Can be either ""plot"" or ""chart"".")]
+            public string RelativeTo
+            {
+                get
+                {
+                    return this.State.Get<string>("RelativeTo", @"plot");
+                }
+                set
+                {
+                    this.State.Set("RelativeTo", value);
+                }
+            }
+
+            /// <summary>
+            /// A collection of attributes for the button. The object takes SVG attributes like  fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover.
+            /// </summary>
+            [ConfigOption]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"A collection of attributes for the button. The object takes SVG attributes like  fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover.")]
+            public object Theme
+            {
+                get
+                {
+                    return this.State.Get<object>("Theme", null);
+                }
+                set
+                {
+                    this.State.Set("Theme", value);
+                }
+            }
+
+
+    
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [XmlIgnore]
+        [JsonIgnore]
+        public override ConfigOptionsCollection ConfigOptions
+        {
+            get
+            {
+                ConfigOptionsCollection list = base.ConfigOptions;
+
+
+                list.Add("position", new ConfigOption("position", null, null, this.Position));
+
+                list.Add("relativeTo", new ConfigOption("relativeTo", null, @"plot", this.RelativeTo));
+
+                list.Add("theme", new ConfigOption("theme", null, null, this.Theme));
 
                 return list;
             }
