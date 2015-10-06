@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Additional styles to apply to the X axis label for a point that has drilldown data. By default it is underlined and blue to invite to interaction. Defaults to:activeAxisLabelStyle: {	cursor: 'pointer',	color: '#0d233a',	fontWeight: 'bold',	textDecoration: 'underline'			}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("activeAxisLabelStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Additional styles to apply to the data label of a point that has drilldown data. By default it is underlined and blue to invite to interaction. Defaults to:activeAxisLabelStyle: {	cursor: 'pointer',	color: '#0d233a',	fontWeight: 'bold',	textDecoration: 'underline'			}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("activeDataLabelStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// When this option is false, clicking a single point will drill down all points in the same category, equivalent to clicking the X axis label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("allowPointDrilldown", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Set the animation for all drilldown animations. Animation of a drilldown occurs when drilling between a column point and a column series, or a pie slice and a full pie series. Drilldown can still be used between series and points of different types, but animation will not occur.  The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported:   	duration 	The duration of the animation in milliseconds. 	 	easing 	When using jQuery as the general framework, the easing can be set to linear or 	swing. More easing functions are available with the use of jQuery plug-ins, most notably 	the jQuery UI suite. See the jQuery docs. When using  	MooTools as the general framework, use the property name transition instead  	of easing. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("animation", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An array of series configurations for the drill down. Each series configuration uses the same syntax as the series option set. These drilldown series are hidden by default. The drilldown series is linked to the parent series' point by its id.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("series", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -145,11 +145,37 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("animation", new ConfigOption("animation", null, null, this.Animation));
 
-                list.Add("series", new ConfigOption("series", null, null, this.Series));
+                list.Add("series", new ConfigOption("series", new SerializationOptions("series", JsonMode.AlwaysArray), null, this.Series));
 
                 return list;
             }
         }
+
+
+    
+	        private DrilldownEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public DrilldownEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new DrilldownEvents();
+					}
+			
+					return this.events;
+				}
+			}
 
 
     
@@ -164,7 +190,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Positioning options for the button within the relativeTo box. Available properties are x, y, align and verticalAlign.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("position", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -184,7 +210,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// What box to align the button to. Can be either ""plotBox"" or ""spacingBox"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("relativeTo", null)]
             [DefaultValue(@"plotBox")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -204,7 +230,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A collection of attributes for the button. The object takes SVG attributes like  fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("theme", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -247,6 +273,96 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private DrillUpButtonEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public DrillUpButtonEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new DrillUpButtonEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class DrillUpButtonEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class DrilldownEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 

@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the hover state of the individual items within the popup menu appearing by  default when the export icon is clicked. The menu items are rendered in HTML. Defaults to menuItemHoverStyle: {	background: '#4572A5',	color: '#FFFFFF'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("menuItemHoverStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the individual items within the popup menu appearing by  default when the export icon is clicked. The menu items are rendered in HTML. Defaults to menuItemStyle: {	padding: '0 5px',	background: NONE,	color: '#303030'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("menuItemStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the popup menu appearing by default when the export icon is clicked. This menu is rendered in HTML. Defaults to menuStyle: {	border: '1px solid #A0A0A0',	background: '#FFFFFF'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("menuStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -109,6 +109,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private NavigationEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public NavigationEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new NavigationEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// A collection of options for buttons appearing in the exporting module.
@@ -120,7 +146,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Alignment for the buttons.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("align", null)]
             [DefaultValue(@"right")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -140,7 +166,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to enable buttons.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -160,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Pixel height of the buttons.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("height", null)]
             [DefaultValue(20)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -180,7 +206,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Fill color for the symbol within the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolFill", null)]
             [DefaultValue(@"#E0E0E0")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -200,7 +226,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel size of the symbol on the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolSize", null)]
             [DefaultValue(14)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -220,7 +246,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The color of the symbol's stroke or line.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolStroke", null)]
             [DefaultValue(@"#666")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -240,7 +266,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel stroke width of the symbol on the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolStrokeWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -260,7 +286,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The x position of the center of the symbol inside the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolX", null)]
             [DefaultValue(12.5)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -280,7 +306,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The y position of the center of the symbol inside the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolY", null)]
             [DefaultValue(10.5)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -300,7 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A text string to add to the individual button. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("text", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -320,7 +346,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A configuration object for the button theme. The object accepts SVG properties like stroke-width, stroke and fill. Tri-state button styles are supported by the states.hover and states.select objects.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("theme", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -340,7 +366,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The vertical alignment of the buttons. Can be one of ""top"", ""middle"" or ""bottom"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("verticalAlign", null)]
             [DefaultValue(@"top")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -360,7 +386,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel width of the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("width", null)]
             [DefaultValue(24)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -380,7 +406,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The vertical offset of the button's position relative to its verticalAlign.			 .
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -445,6 +471,96 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private ButtonOptionsEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public ButtonOptionsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new ButtonOptionsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class ButtonOptionsEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class NavigationEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 

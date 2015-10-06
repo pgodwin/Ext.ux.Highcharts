@@ -11,7 +11,7 @@ using Ext.Net;
 using Ext.Net.Utilities;
 using Newtonsoft.Json;
 
-namespace Ext.ux.Highcharts.Chart
+namespace Ext.ux.Highcharts.ChartSeries
 {
         
 
@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// This method is deprecated as of version 2.0. Instead, use options preprocessing as described in the docs.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dataParser", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// This method is deprecated as of version 2.0. Instead, load the data using jQuery.ajax and use options preprocessing as described in the docs.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dataURL", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An id for the series. This can be used after render time to get a pointer to the series object through chart.get().
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The index of the series in the chart, affecting the internal index in the chart.series array, the visible Z index as well as the order in the legend.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("index", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The sequential index of the series in the legend.  Try it:  	Legend in opposite order .
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("legendIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -126,7 +126,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The name of the series as shown in the legend, tooltip etc.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("name", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -146,7 +146,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// This option allows grouping series in a stacked chart. The stack option can be a string  or a number or anything else, as long as the grouped series' stack options match each other.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("stack", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -166,7 +166,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("type", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -186,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// When using dual or multiple x axes, this number defines which xAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the xAxis array, with 0 being the first.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("xAxis", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -206,7 +206,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the yAxis array, with 0 being the first.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("yAxis", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -226,7 +226,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Define the visual z index of the series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("zIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -285,6 +285,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private SeriesEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public SeriesEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new SeriesEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// An array of data points for the series. The points can be given in three ways:  	An array of numerical values. In this case, the numerical values will  	be interpreted as y values, and x values will be automatically calculated, 	either starting at 0 and incrementing by 1, or from pointStart  	and pointInterval given in the plotOptions. If the axis is 	has categories, these will be used. This option is not available for range series. Example:data: [0, 5, 3, 5] 	 	An array of arrays with two values. In this case, the first value is the 	x value and the second is the y value. If the first value is a string, it is 	applied as the name of the point, and the x value is incremented following 	the above rules.For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange. Example:data: [[5, 2], [6, 3], [8, 2]]An array of objects with named values. In this case the objects are 	point configuration objects as seen below.Range series values are given by low and high.Example:data: [{	name: 'Point 1',	color: '#00FF00',	y: 0}, {	name: 'Point 2',	color: '#FF00FF',	y: 5}] Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting.
@@ -313,6 +339,96 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private DataEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public DataEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new DataEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class DataEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class SeriesEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 

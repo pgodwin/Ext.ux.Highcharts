@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Experimental setting to allow HTML inside the chart (added through the useHTML options), directly in the exported image. This allows you to preserve complicated HTML structures like tables or bi-directional text in exported charts.Disclaimer: The HTML is rendered in a foreignObject tag in the generated SVG. The official export server is based on PhantomJS, which supports this, but other SVG clients, like Batik, does not support it. This also applies to downloaded SVG that you want to open in a desktop client.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("allowHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Additional chart options to be merged into an exported chart. For example, the exported chart can be given a specific width and height, or a printer-friendly color scheme.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("chartOptions", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to enable the exporting module. Disabling the module will hide the context button, but API methods will still be available.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether or not to fall back to the export server if the offline-exporting module is unable to export the chart on the client side.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("fallbackToExportServer", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The filename, without extension, to use for the exported chart.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("filename", null)]
             [DefaultValue(@"chart")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -126,7 +126,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An object containing additional attributes for the POST form that sends the SVG to the export server. For example, a target can be set to make sure the generated image is received in another frame, or a custom enctype or encoding can be set.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("formAttributes", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -146,7 +146,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Defines the scale or zoom factor for the exported image compared to the on-screen display. While for instance a 600px wide chart may look good on a website, it will look bad in print. The default scale of 2 makes this chart export to a 1200px PNG or JPG. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("scale", null)]
             [DefaultValue(2)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -166,7 +166,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Analogous to sourceWidth
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("sourceHeight", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -186,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The width of the original chart when exported, unless an explicit chart.width is set. The width exported raster image is then multiplied by scale.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("sourceWidth", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -206,7 +206,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Default MIME type for exporting if chart.exportChart() is called without specifying a type option. Possible values are image/png, image/jpeg, application/pdf and image/svg+xml.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("type", null)]
             [DefaultValue(@"image/png")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -226,7 +226,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The URL for the server module converting the SVG string to an image format. By default this points to Highslide Software's free web service.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("url", null)]
             [DefaultValue(@"http://export.highcharts.com")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -246,7 +246,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel width of charts exported to PNG or JPG. As of Highcharts 3.0, the default pixel width is a function of the chart.width or exporting.sourceWidth and the exporting.scale.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("width", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -307,6 +307,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private ExportingEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public ExportingEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new ExportingEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// Options for the export related buttons, print and export. In addition to the default buttons listed here, custom buttons can be added. See navigation.buttonOptions for general options.
@@ -335,6 +361,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private ButtonsEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public ButtonsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new ButtonsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// Options for the export button.
@@ -346,7 +398,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Alignment for the buttons.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("align", null)]
             [DefaultValue(@"right")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -366,7 +418,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to enable buttons.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -386,7 +438,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Pixel height of the buttons.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("height", null)]
             [DefaultValue(20)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -406,7 +458,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A collection of config options for the menu items. Each options object consists of a text option which is a string to show in the menu item, as well as an onclick parameter which is a callback function to run on click. By default, there is the ""Print"" menu item plus one menu item for each of the available export types. Menu items can be customized by defining a new array of items and assigning  null to unwanted positions (see override example below).
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("menuItems", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -426,7 +478,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A click handler callback to use on the button directly instead of the popup menu.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("onclick", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -446,7 +498,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The symbol for the button. Points to a definition function in the  Highcharts.Renderer.symbols collection. The default exportIcon function is part of the exporting module.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbol", null)]
             [DefaultValue(@"menu")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -466,7 +518,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// See navigation.buttonOptions =&gt; symbolFill.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolFill", null)]
             [DefaultValue(@"#A8BF77")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -486,7 +538,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel size of the symbol on the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolSize", null)]
             [DefaultValue(14)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -506,7 +558,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The color of the symbol's stroke or line.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolStroke", null)]
             [DefaultValue(@"#666")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -526,7 +578,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel stroke width of the symbol on the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolStrokeWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -546,7 +598,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The x position of the center of the symbol inside the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolX", null)]
             [DefaultValue(12.5)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -566,7 +618,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The y position of the center of the symbol inside the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbolY", null)]
             [DefaultValue(10.5)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -586,7 +638,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A text string to add to the individual button. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("text", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -606,7 +658,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A configuration object for the button theme. The object accepts SVG properties like stroke-width, stroke and fill. Tri-state button styles are supported by the states.hover and states.select objects.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("theme", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -626,7 +678,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The vertical alignment of the buttons. Can be one of ""top"", ""middle"" or ""bottom"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("verticalAlign", null)]
             [DefaultValue(@"top")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -646,7 +698,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel width of the button.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("width", null)]
             [DefaultValue(24)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -666,7 +718,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The horizontal position of the button relative to the align option.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("x", null)]
             [DefaultValue(-10)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -686,7 +738,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The vertical offset of the button's position relative to its verticalAlign.			 .
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -723,7 +775,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("height", new ConfigOption("height", null, 20, this.Height));
 
-                list.Add("menuItems", new ConfigOption("menuItems", null, null, this.MenuItems));
+                list.Add("menuItems", new ConfigOption("menuItems", new SerializationOptions("menuItems", JsonMode.AlwaysArray), null, this.MenuItems));
 
                 list.Add("onclick", new ConfigOption("onclick", null, "", this.Onclick));
 
@@ -759,9 +811,131 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private ContextButtonEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public ContextButtonEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new ContextButtonEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class ContextButtonEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class ButtonsEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class ExportingEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 

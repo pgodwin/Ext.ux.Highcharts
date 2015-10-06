@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Exporting module menu. The tooltip title for the context menu holding print and export menu items.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("contextButtonTitle", null)]
             [DefaultValue(@"Chart context menu")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The default decimal point used in the Highcharts.numberFormat method unless otherwise specified in the function arguments.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("decimalPoint", null)]
             [DefaultValue(@".")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Exporting module only. The text for the JPEG download menu item.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("downloadJPEG", null)]
             [DefaultValue(@"Download JPEG image")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Exporting module only. The text for the PDF download menu item.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("downloadPDF", null)]
             [DefaultValue(@"Download PDF document")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Exporting module only. The text for the PNG download menu item.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("downloadPNG", null)]
             [DefaultValue(@"Download PNG image")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -126,7 +126,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Exporting module only. The text for the SVG download menu item.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("downloadSVG", null)]
             [DefaultValue(@"Download SVG vector image")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -146,7 +146,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text for the button that appears when drilling down, linking back to the parent series. The parent series' name is inserted for {series.name}.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("drillUpText", null)]
             [DefaultValue(@"Back to {series.name}")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -166,7 +166,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// What to show in a date field for invalid dates. Defaults to an empty string.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("invalidDate", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -186,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The loading text that appears when the chart is set into the loading state following a call to chart.showLoading.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("loading", null)]
             [DefaultValue(@"Loading...")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -206,7 +206,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An array containing the months names. Corresponds to the  %B format in Highcharts.dateFormat().
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("months", JsonMode.AlwaysArray)]
             [DefaultValue(new string[] {  "January" , "February" , "March" , "April" , "May" , "June" , "July" , "August" , "September" , "October" , "November" , "December"})]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -226,7 +226,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text to display when the chart contains no data. Requires the no-data module, see noData.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("noData", null)]
             [DefaultValue(@"No data to display")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -246,7 +246,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Metric prefixes used to shorten high numbers in axis labels. Replacing any of the positions with null causes the full number to be written. Setting numericSymbols to null disables shortening altogether.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("numericSymbols", JsonMode.AlwaysArray)]
             [DefaultValue(new string[] {  "k" , "M" , "G" , "T" , "P" , "E"})]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -266,7 +266,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Exporting module only. The text for the menu item to print the chart.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("printChart", null)]
             [DefaultValue(@"Print chart")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -286,7 +286,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text for the label appearing when a chart is zoomed.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("resetZoom", null)]
             [DefaultValue(@"Reset zoom")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -306,7 +306,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The tooltip title for the label appearing when a chart is zoomed.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("resetZoomTitle", null)]
             [DefaultValue(@"Reset zoom level 1:1")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -326,7 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An array containing the months names in abbreviated form. Corresponds to the  %b format in Highcharts.dateFormat(). 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("shortMonths", JsonMode.AlwaysArray)]
             [DefaultValue(new string[] {  "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"})]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -346,7 +346,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The default thousands separator used in the Highcharts.numberFormat method unless otherwise specified in the function arguments. Since Highcharts 4.1 it defaults to a single space character, which is compatible with ISO and works across Anglo-American and continental European languages.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("thousandsSep", null)]
             [DefaultValue(@" ")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -366,7 +366,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An array containing the weekday names.		 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("weekdays", JsonMode.AlwaysArray)]
             [DefaultValue(new string[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"})]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -415,11 +415,11 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("loading", new ConfigOption("loading", null, @"Loading...", this.Loading));
 
-                list.Add("months", new ConfigOption("months", null, new string[] {  "January" , "February" , "March" , "April" , "May" , "June" , "July" , "August" , "September" , "October" , "November" , "December"}, this.Months));
+                list.Add("months", new ConfigOption("months", new SerializationOptions("months", JsonMode.AlwaysArray), new string[] {  "January" , "February" , "March" , "April" , "May" , "June" , "July" , "August" , "September" , "October" , "November" , "December"}, this.Months));
 
                 list.Add("noData", new ConfigOption("noData", null, @"No data to display", this.NoData));
 
-                list.Add("numericSymbols", new ConfigOption("numericSymbols", null, new string[] {  "k" , "M" , "G" , "T" , "P" , "E"}, this.NumericSymbols));
+                list.Add("numericSymbols", new ConfigOption("numericSymbols", new SerializationOptions("numericSymbols", JsonMode.AlwaysArray), new string[] {  "k" , "M" , "G" , "T" , "P" , "E"}, this.NumericSymbols));
 
                 list.Add("printChart", new ConfigOption("printChart", null, @"Print chart", this.PrintChart));
 
@@ -427,11 +427,11 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("resetZoomTitle", new ConfigOption("resetZoomTitle", null, @"Reset zoom level 1:1", this.ResetZoomTitle));
 
-                list.Add("shortMonths", new ConfigOption("shortMonths", null, new string[] {  "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"}, this.ShortMonths));
+                list.Add("shortMonths", new ConfigOption("shortMonths", new SerializationOptions("shortMonths", JsonMode.AlwaysArray), new string[] {  "Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"}, this.ShortMonths));
 
                 list.Add("thousandsSep", new ConfigOption("thousandsSep", null, @" ", this.ThousandsSep));
 
-                list.Add("weekdays", new ConfigOption("weekdays", null, new string[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}, this.Weekdays));
+                list.Add("weekdays", new ConfigOption("weekdays", new SerializationOptions("weekdays", JsonMode.AlwaysArray), new string[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}, this.Weekdays));
 
                 return list;
             }
@@ -439,6 +439,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private LangEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public LangEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new LangEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class LangEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 

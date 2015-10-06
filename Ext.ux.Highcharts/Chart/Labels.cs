@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Shared CSS styles for all labels. Defaults to:style: {	color: '#3E576F'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -65,6 +65,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private LabelsEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public LabelsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new LabelsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// A HTML label that can be positioned anywhere in the chart area.
@@ -76,7 +102,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Inner HTML or text for the label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("html", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -96,7 +122,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for each label. To position the label, use left and top like this:style: {	left: '100px',	top: '100px'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -137,6 +163,96 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private ItemsEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public ItemsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new ItemsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class ItemsEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class LabelsEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 

@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An object, or array of objects, for backgrounds. Sub options include backgroundColor (can be solid or gradient), shape (""solid"" or ""arc""), innerWidth, outerWidth, borderWidth, borderColor.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("background", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The center of a polar chart or angular gauge, given as an array of [x, y] positions. Positions can be given as integers that transform to pixels, or as percentages of the plot area size.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("center", JsonMode.AlwaysArray)]
             [DefaultValue(new object[] { "50%", "50%"})]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The end angle of the polar X axis or gauge value axis, given in degrees where 0 is north. Defaults to startAngle + 360.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("endAngle", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The size of the pane, either as a number defining pixels, or a percentage defining a percentage of the plot are.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("size", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The start angle of the polar X axis or gauge axis, given in degrees where 0 is north. Defaults to 0.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("startAngle", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -137,9 +137,9 @@ namespace Ext.ux.Highcharts.Chart
                 ConfigOptionsCollection list = base.ConfigOptions;
 
 
-                list.Add("background", new ConfigOption("background", null, null, this.Background));
+                list.Add("background", new ConfigOption("background", new SerializationOptions("background", JsonMode.AlwaysArray), null, this.Background));
 
-                list.Add("center", new ConfigOption("center", null, new object[] { "50%", "50%"}, this.Center));
+                list.Add("center", new ConfigOption("center", new SerializationOptions("center", JsonMode.AlwaysArray), new object[] { "50%", "50%"}, this.Center));
 
                 list.Add("endAngle", new ConfigOption("endAngle", null, null, this.EndAngle));
 
@@ -153,6 +153,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private PaneEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public PaneEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new PaneEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class PaneEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 

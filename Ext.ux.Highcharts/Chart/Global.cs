@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A custom Date class for advanced date handling. For example, JDate can be hooked in to handle Jalali dates.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("Date", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Path to the pattern image required by VML browsers in order to draw radial gradients.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("VMLRadialGradientURL", null)]
             [DefaultValue(@"http://code.highcharts.com/{version}/gfx/vml-radial-gradient.png")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The URL to the additional file to lazy load for Android 2.x devices. These devices don't  support SVG, so we download a helper file that contains canvg, its dependency rbcolor, and our own CanVG Renderer class. To avoid hotlinking to our site, you can install canvas-tools.js on your own server and change this option accordingly.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("canvasToolsURL", null)]
             [DefaultValue(@"http://code.highcharts.com/{version}/modules/canvas-tools.js")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A callback to return the time zone offset for a given datetime. It takes the timestamp in terms of milliseconds since January 1 1970, and returns the timezone offset in minutes. This provides a hook for drawing time based charts in specific time zones using their local DST crossover dates, with the help of external libraries. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("getTimezoneOffset", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The timezone offset in minutes. Positive values are west, negative values are east of UTC, as in the ECMAScript getTimezoneOffset method. Use this to display UTC based data in a predefined time zone. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("timezoneOffset", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -126,7 +126,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use UTC time for axis scaling, tickmark placement and time display in  Highcharts.dateFormat. Advantages of using UTC is that the time displays equally regardless of the user agent's time zone settings. Local time can be used when the data is loaded in real time or when correct Daylight Saving Time transitions are required.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("useUTC", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -175,6 +175,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private GlobalEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public GlobalEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new GlobalEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class GlobalEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 

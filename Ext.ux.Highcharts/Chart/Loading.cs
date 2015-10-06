@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The duration in milliseconds of the fade out effect.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("hideDuration", null)]
             [DefaultValue(100)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the loading label span.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("labelStyle", null)]
             [DefaultValue(@"{ ""fontWeight"": ""bold"", ""position"": ""relative"", ""top"": ""45%"" }")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The duration in milliseconds of the fade in effect.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("showDuration", null)]
             [DefaultValue(100)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the loading screen that covers the plot area. Defaults to:style: {	position: 'absolute',	backgroundColor: 'white',	opacity: 0.5,	textAlign: 'center'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -131,6 +131,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private LoadingEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public LoadingEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new LoadingEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class LoadingEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 

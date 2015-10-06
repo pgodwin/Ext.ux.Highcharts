@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to allow decimals in this axis' ticks. When counting integers, like persons or hits on a web page, decimals must be avoided in the axis tick labels.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("allowDecimals", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// When using an alternate grid color, a band is painted across the plot area between every other grid line.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("alternateGridColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// If categories are present for the xAxis, names are used instead of numbers for that axis. Since Highcharts 3.0, categories can also be extracted by giving each point a name and setting axis type to category. However, if you have multiple series, best practice remains defining the categories array.Example:categories: ['Apples', 'Bananas', 'Oranges']		 Defaults to null
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("categories", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The highest allowed value for automatically computed axis extremes.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("ceiling", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the default string representations used for each unit. For an overview of the replacement codes, see dateFormat. Defaults to:{	millisecond: '%H:%M:%S.%L',	second: '%H:%M:%S',	minute: '%H:%M',	hour: '%H:%M',	day: '%e. %b',	week: '%e. %b',	month: '%b \'%y',	year: '%Y'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dateTimeLabelFormats", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -126,7 +126,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to force the axis to end on a tick. Use this option with the maxPadding option to control the axis end.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("endOnTick", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -146,7 +146,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The lowest allowed value for automatically computed axis extremes.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("floor", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -166,7 +166,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Color of the grid lines extending the ticks across the plot area.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("gridLineColor", null)]
             [DefaultValue(@"#D8D8D8")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -186,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The dash or dot style of the grid lines. For possible values, see this demonstration.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("gridLineDashStyle", null)]
             [DefaultValue(@"Solid")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -206,7 +206,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The width of the grid lines extending the ticks across the plot area.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("gridLineWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -226,7 +226,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The Z index of the grid lines.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("gridZIndex", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -246,7 +246,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An id for the axis. This can be used after render time to get a pointer to the axis object through chart.get().
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -266,7 +266,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The color of the line marking the axis itself.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("lineColor", null)]
             [DefaultValue(@"#C0D0E0")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -286,7 +286,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The width of the line marking the axis itself.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("lineWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -306,7 +306,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to ease reading the chart by duplicating the scales.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("linkedTo", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -326,7 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The maximum value of the axis. If null, the max value is automatically calculated. If the endOnTick option is true, the max value might be rounded up. The actual maximum value is also influenced by  chart.alignTicks.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("max", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -346,7 +346,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("maxPadding", null)]
             [DefaultValue(0.01)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -366,7 +366,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Deprecated. Renamed to minRange as of Highcharts 2.2.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("maxZoom", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -386,7 +386,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The minimum value of the axis. If null the min value is automatically calculated. If the startOnTick option is true, the min value might be rounded down.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("min", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -406,7 +406,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. When the axis' min option is set or a min extreme is set using axis.setExtremes(), the minPadding will be ignored.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minPadding", null)]
             [DefaultValue(0.01)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -426,7 +426,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The minimum range to display on this axis. The entire axis will not be allowed to span over a smaller interval than this. For example, for a datetime axis the main unit is milliseconds. If minRange is set to 3600000, you can't zoom in more than to one hour. The default minRange for the x axis is five times the smallest interval between any of the data points. On a logarithmic axis, the unit for the minimum range is the power. So a minRange of 	1 means that the axis can be zoomed to 10-100, 100-1000, 1000-10000 etc.Note that the minPadding, maxPadding, startOnTick and endOnTick settings also affect how the extremes of the axis are computed.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minRange", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -446,7 +446,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minTickInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -466,7 +466,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Color of the minor, secondary grid lines.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorGridLineColor", null)]
             [DefaultValue(@"#E0E0E0")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -486,7 +486,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The dash or dot style of the minor grid lines. For possible values, see this demonstration.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorGridLineDashStyle", null)]
             [DefaultValue(@"Solid")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -506,7 +506,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Width of the minor, secondary grid lines.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorGridLineWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -526,7 +526,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Color for the minor tick marks.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorTickColor", null)]
             [DefaultValue(@"#A0A0A0")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -546,7 +546,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Tick interval in scale units for the minor ticks. On a linear axis, if ""auto"",  the minor tick interval is calculated as a fifth of the tickInterval. If null, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting 	the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting 	the minorTickInterval to 0.1 produces 9 ticks between 1 and 10,  	10 and 100 etc. A minorTickInterval of ""auto"" on a log axis results in a best guess, 	attempting to enter approximately 5 minor ticks between each major tick.If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems.On axes using categories, minor ticks are not supported.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorTickInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -566,7 +566,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel length of the minor tick marks.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorTickLength", null)]
             [DefaultValue(2)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -586,7 +586,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The position of the minor tick marks relative to the axis line. Can be one of inside and outside.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorTickPosition", null)]
             [DefaultValue(@"outside")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -606,7 +606,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel width of the minor tick mark.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("minorTickWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -626,7 +626,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The distance in pixels from the plot area to the axis line. A positive offset moves the axis with it's line, labels and ticks away from the plot area. This is typically used when two or more axes are displayed on the same side of the plot.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("offset", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -646,7 +646,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to display the axis on the opposite side of the normal. The normal is on the left side for vertical axes and bottom for horizontal, so the opposite sides will be right and top respectively. This is typically used with dual or multiple axes.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("opposite", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -666,7 +666,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to reverse the axis so that the highest number is closest to the origin. If the chart is inverted, the x axis is reversed by default.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("reversed", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -686,7 +686,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to show the axis line and title when the axis has no data.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("showEmpty", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -706,7 +706,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to show the first tick label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("showFirstLabel", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -726,7 +726,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to show the last tick label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("showLastLabel", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -746,7 +746,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// For datetime axes, this decides where to put the tick between weeks. 0 = Sunday, 1 = Monday.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("startOfWeek", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -766,7 +766,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to force the axis to start on a tick. Use this option with the minPadding option to control the axis start.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("startOnTick", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -786,7 +786,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The amount of ticks to draw on the axis. This opens up for aligning the ticks of multiple charts or panes within a chart. This option overrides the tickPixelInterval option.This option only has an effect on linear axes. Datetime, logarithmic or category axes are not affected.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickAmount", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -806,7 +806,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Color for the main tick marks.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickColor", null)]
             [DefaultValue(@"#C0D0E0")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -826,7 +826,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The interval of the tick marks in axis units. When null, the tick interval is computed to approximately follow the tickPixelInterval on linear and datetime axes. On categorized axes, a null tickInterval will default to 1, one category.  Note that datetime axes are based on milliseconds, so for  example an interval of one day is expressed as 24 * 3600 * 1000. On logarithmic axes, the tickInterval is based on powers, so a tickInterval of 1 means 	one tick on each of 0.1, 1, 10, 100 etc. A tickInterval of 2 means a tick of 0.1, 10, 1000 etc. 	A tickInterval of 0.2 puts a tick on 0.1, 0.2, 0.4, 0.6, 0.8, 1, 2, 4, 6, 8, 10, 20, 40 etc.If the tickInterval is too dense for labels to be drawn, Highcharts may remove ticks.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -846,7 +846,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel length of the main tick marks.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickLength", null)]
             [DefaultValue(10)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -866,7 +866,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// If tickInterval is null this option sets the approximate pixel interval of the tick marks. Not applicable to categorized axis. Defaults to 72  for the Y axis and 100 for	the X axis.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickPixelInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -886,7 +886,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The position of the major tick marks relative to the axis line. Can be one of inside and outside.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickPosition", null)]
             [DefaultValue(@"outside")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -906,7 +906,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A callback function returning array defining where the ticks are laid out on the axis. This overrides the default behaviour of tickPixelInterval and tickInterval. The automatic tick positions are accessible through this.tickPositions and can be modified by the callback.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickPositioner", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -926,7 +926,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An array defining where the ticks are laid out on the axis. This overrides the default behaviour of tickPixelInterval and tickInterval.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickPositions", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -946,7 +946,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel width of the major tick marks.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -966,7 +966,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// For categorized axes only. If on the tick mark is placed in the center of  the category, if between the tick mark is placed between categories. The default is between if the tickInterval is 1, else on.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("tickmarkPlacement", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -986,7 +986,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The type of axis. Can be one of ""linear"", ""logarithmic"", ""datetime"" or ""category"". In a datetime axis, the numbers are given in milliseconds, and tick marks are placed 		on appropriate values like full hours or days. In a category axis, the point names of the chart's series are used for categories, if not a categories array is defined.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("type", null)]
             [DefaultValue(@"linear")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1006,7 +1006,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the  second value another array of allowed multiples. Defaults to:units: [[	'millisecond', // unit name	[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples], [	'second',	[1, 2, 5, 10, 15, 30]], [	'minute',	[1, 2, 5, 10, 15, 30]], [	'hour',	[1, 2, 3, 4, 6, 8, 12]], [	'day',	[1]], [	'week',	[1]], [	'month',	[1, 3, 6]], [	'year',	null]]
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("units", JsonMode.AlwaysArray)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1041,7 +1041,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("alternateGridColor", new ConfigOption("alternateGridColor", null, "", this.AlternateGridColor));
 
-                list.Add("categories", new ConfigOption("categories", null, null, this.Categories));
+                list.Add("categories", new ConfigOption("categories", new SerializationOptions("categories", JsonMode.AlwaysArray), null, this.Categories));
 
                 list.Add("ceiling", new ConfigOption("ceiling", null, null, this.Ceiling));
 
@@ -1127,7 +1127,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("tickPositioner", new ConfigOption("tickPositioner", null, "", this.TickPositioner));
 
-                list.Add("tickPositions", new ConfigOption("tickPositions", null, null, this.TickPositions));
+                list.Add("tickPositions", new ConfigOption("tickPositions", new SerializationOptions("tickPositions", JsonMode.AlwaysArray), null, this.TickPositions));
 
                 list.Add("tickWidth", new ConfigOption("tickWidth", null, 1, this.TickWidth));
 
@@ -1135,11 +1135,37 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("type", new ConfigOption("type", null, @"linear", this.Type));
 
-                list.Add("units", new ConfigOption("units", null, "", this.Units));
-
+                list.Add("units", new ConfigOption("units", new SerializationOptions("units", JsonMode.AlwaysArray), "", this.Units));
+list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }
         }
+
+
+    
+	        private XAxisEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public XAxisEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new XAxisEvents();
+					}
+			
+					return this.events;
+				}
+			}
 
 
     
@@ -1154,7 +1180,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A number indicating how much space should be left between the start and the end of the break. The break size is given in axis units, so for instance on a datetime axis, a break size of 3600000 would indicate the equivalent of an hour.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("breakSize", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1174,7 +1200,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The point where the break starts.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("from", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1194,7 +1220,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Defines an interval after which the break appears again. By default the breaks do not repeat.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("repeat", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1214,7 +1240,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The point where the break ends.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("to", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1259,125 +1285,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private BreaksEvents events;
 
-        }
-
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public BreaksEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new BreaksEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
 
         /// <summary>
-        /// Event handlers for the axis.
+        /// Client Side Events#
         /// </summary>
-        public partial class Events : Observable
+        public partial class BreaksEvents : ComponentListeners
         {
 
-    
+
+
+
             /// <summary>
-            /// An event fired after the breaks have rendered.
+            /// 
             /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"An event fired after the breaks have rendered.")]
-            public string AfterBreaks
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
             {
                 get
                 {
-                    return this.State.Get<string>("AfterBreaks", "");
-                }
-                set
-                {
-                    this.State.Set("AfterBreaks", value);
-                }
-            }
-
-            /// <summary>
-            /// As opposed to the setExtremes event, this event fires after the final min and max values are computed and corrected for minRange.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"As opposed to the setExtremes event, this event fires after the final min and max values are computed and corrected for minRange.")]
-            public string AfterSetExtremes
-            {
-                get
-                {
-                    return this.State.Get<string>("AfterSetExtremes", "");
-                }
-                set
-                {
-                    this.State.Set("AfterSetExtremes", value);
-                }
-            }
-
-            /// <summary>
-            /// An event fired when a break from this axis occurs on a point.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"An event fired when a break from this axis occurs on a point.")]
-            public string PointBreak
-            {
-                get
-                {
-                    return this.State.Get<string>("PointBreak", "");
-                }
-                set
-                {
-                    this.State.Set("PointBreak", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the minimum and maximum is set for the axis, either by calling the .setExtremes() method or by selecting an area in the chart. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on which library is used as the base for Highcharts.The new user set minimum and maximum values can be found by event.min and event.max. When an axis is zoomed all the way out from the ""Reset zoom"" button, event.min and event.max are null, and the new extremes are set based on this.dataMin and this.dataMax.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the minimum and maximum is set for the axis, either by calling the .setExtremes() method or by selecting an area in the chart. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on which library is used as the base for Highcharts.The new user set minimum and maximum values can be found by event.min and event.max. When an axis is zoomed all the way out from the ""Reset zoom"" button, event.min and event.max are null, and the new extremes are set based on this.dataMin and this.dataMax.")]
-            public string SetExtremes
-            {
-                get
-                {
-                    return this.State.Get<string>("SetExtremes", "");
-                }
-                set
-                {
-                    this.State.Set("SetExtremes", value);
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
                 }
             }
 
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("afterBreaks", new ConfigOption("afterBreaks", null, "", this.AfterBreaks));
-
-                list.Add("afterSetExtremes", new ConfigOption("afterSetExtremes", null, "", this.AfterSetExtremes));
-
-                list.Add("pointBreak", new ConfigOption("pointBreak", null, "", this.PointBreak));
-
-                list.Add("setExtremes", new ConfigOption("setExtremes", null, "", this.SetExtremes));
-
-                return list;
-            }
         }
 
-
-    
 
         }
 
@@ -1392,7 +1357,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// What part of the string the given position is anchored to. Can be one of ""left"", ""center"" or ""right"". Defaults to an intelligent guess based on which side of the chart the axis is on and the rotation of the label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("align", null)]
             [DefaultValue(@"center")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1412,7 +1377,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// For horizontal axes, the allowed degrees of label rotation to prevent overlapping labels. If there is enough space, labels are not rotated. As the chart gets narrower, it will start rotating the labels -45 degrees, then remove every second label and try again with rotations 0 and -45 etc. Set it to false to disable rotation, which will cause the labels to word-wrap if possible.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("autoRotation", JsonMode.AlwaysArray)]
             [DefaultValue(new double[] { -45})]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1432,7 +1397,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// When each category width is more than this many pixels, we don't apply auto rotation. Instead, we lay out the axis label with word wrap. A lower limit makes sense when the label contains multiple short words that don't extend the available horizontal space for each label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("autoRotationLimit", null)]
             [DefaultValue(80)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1452,7 +1417,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Polar charts only. The label's pixel distance from the perimeter of the plot area.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("distance", null)]
             [DefaultValue(15)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1472,7 +1437,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Enable or disable the axis labels.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1492,7 +1457,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A format string for the axis label. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("format", null)]
             [DefaultValue(@"{value}")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1512,7 +1477,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Callback JavaScript function to format the label. The value is  given by this.value. Additional properties for this are axis, chart, isFirst and isLast. Defaults to: function() {	return this.value;}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("formatter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1532,7 +1497,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Horizontal axis only. When staggerLines is not set, maxStaggerLines defines how many lines the axis is allowed to add to automatically avoid overlapping X labels. Set to 1 to disable overlap detection. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("maxStaggerLines", null)]
             [DefaultValue(5)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1552,7 +1517,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// How to handle overflowing labels on horizontal axis. Can be undefined, false or ""justify"". By default it aligns inside the chart area. If ""justify"", labels will not render outside the plot area. If false, it will not be aligned at all. If there is room to move it, it will be aligned to the edge, else it will be removed.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("overflow", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1572,7 +1537,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel padding for axis labels, to ensure white space between them.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("padding", null)]
             [DefaultValue(5)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1592,7 +1557,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Rotation of the labels in degrees.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("rotation", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1612,7 +1577,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Horizontal axes only. The number of lines to spread the labels over to make room or tighter labels.  .
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("staggerLines", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1632,7 +1597,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// To show only every n'th label on the axis, set the step to n. Setting the step to 2 shows every other label.By default, the step is calculated automatically to avoid overlap. To prevent this, set it to 1. This usually only happens on a category axis, and is often a sign that you have chosen the wrong axis type. Read more at Axis docs => What axis should I use? 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("step", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1652,7 +1617,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the label. Use whiteSpace: 'nowrap' to prevent wrapping of category labels. Use textOverflow: 'none' to prevent ellipsis (dots).
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue(@"{""color"":""#6D869F"",""fontWeight"":""bold""}")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1672,7 +1637,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use HTML to render the labels.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1692,7 +1657,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The x position offset of the label relative to the tick position on the axis.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("x", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1712,7 +1677,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The y position offset of the label relative to the tick position on the axis. The default makes it adapt to the font size on bottom axis.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1732,7 +1697,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The Z index for the axis labels.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("zIndex", null)]
             [DefaultValue(7)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1765,7 +1730,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("align", new ConfigOption("align", null, @"center", this.Align));
 
-                list.Add("autoRotation", new ConfigOption("autoRotation", null, new double[] { -45}, this.AutoRotation));
+                list.Add("autoRotation", new ConfigOption("autoRotation", new SerializationOptions("autoRotation", JsonMode.AlwaysArray), new double[] { -45}, this.AutoRotation));
 
                 list.Add("autoRotationLimit", new ConfigOption("autoRotationLimit", null, 80, this.AutoRotationLimit));
 
@@ -1805,6 +1770,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private LabelsEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public LabelsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new LabelsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class LabelsEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 
@@ -1819,7 +1842,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Border color for the plot band. Also requires borderWidth to be set.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("borderColor", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1839,7 +1862,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Border width for the plot band.  Also requires borderColor to be set.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("borderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1859,7 +1882,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The color of the plot band.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("color", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1879,7 +1902,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An object defining mouse events for the plot band. Supported properties are click, mouseover, mouseout, mousemove.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("events", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1899,7 +1922,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The start position of the plot band in axis units.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("from", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1919,7 +1942,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An id used for identifying the plot band in Axis.removePlotBand.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1939,7 +1962,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The end position of the plot band in axis units.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("to", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1959,7 +1982,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The z index of the plot band within the chart, relative to other elements. Using the same z index as another element may give unpredictable results, as the last rendered element will be on top. Values from 0 to 20 make sense.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("zIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2012,6 +2035,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private PlotBandsEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public PlotBandsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new PlotBandsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// Text labels for the plot bands
@@ -2023,7 +2072,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Horizontal alignment of the label. Can be one of ""left"", ""center"" or ""right"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("align", null)]
             [DefaultValue(@"center")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2043,7 +2092,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Rotation of the text label in degrees .
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("rotation", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2063,7 +2112,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the text label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2083,7 +2132,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The string text itself. A subset of HTML is supported.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("text", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2103,7 +2152,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". Defaults to the same as the align option.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("textAlign", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2123,7 +2172,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use HTML to render the labels.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2143,7 +2192,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Vertical alignment of the label relative to the plot band. Can be one of ""top"", ""middle"" or ""bottom"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("verticalAlign", null)]
             [DefaultValue(@"top")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2163,7 +2212,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Horizontal position relative the alignment. Default varies by orientation.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("x", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2183,7 +2232,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Vertical position of the text baseline relative to the alignment. Default varies by orientation.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2238,6 +2287,96 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private LabelEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public LabelEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new LabelEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class LabelEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class PlotBandsEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 
@@ -2255,7 +2394,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The color of the line.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("color", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2275,7 +2414,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The dashing or dot style for the plot line. For possible values see this overview.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dashStyle", null)]
             [DefaultValue(@"Solid")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2295,7 +2434,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An object defining mouse events for the plot line. Supported properties are click, mouseover, mouseout, mousemove.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("events", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2315,7 +2454,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An id used for identifying the plot line in Axis.removePlotLine.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2335,7 +2474,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The position of the line in axis units.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("value", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2355,7 +2494,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The width or thickness of the plot line.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("width", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2375,7 +2514,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The z index of the plot line within the chart.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("zIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2426,6 +2565,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private PlotLinesEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public PlotLinesEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new PlotLinesEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// Text labels for the plot bands
@@ -2437,7 +2602,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Horizontal alignment of the label. Can be one of ""left"", ""center"" or ""right"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("align", null)]
             [DefaultValue(@"left")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2457,7 +2622,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Rotation of the text label in degrees. Defaults to 0 for horizontal plot lines and 90 for vertical lines.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("rotation", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2477,7 +2642,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the text label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2497,7 +2662,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text itself. A subset of HTML is supported.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("text", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2517,7 +2682,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". Defaults to the same as the align option.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("textAlign", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2537,7 +2702,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use HTML to render the labels.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2557,7 +2722,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Vertical alignment of the label relative to the plot band. Can be one of ""top"", ""middle"" or ""bottom"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("verticalAlign", null)]
             [DefaultValue(@"top")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2577,7 +2742,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Horizontal position relative the alignment. Default varies by orientation.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("x", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2597,7 +2762,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Vertical position of the text baseline relative to the alignment. Default varies by orientation.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2652,6 +2817,96 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private LabelEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public LabelEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new LabelEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class LabelEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class PlotLinesEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 
@@ -2669,7 +2924,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Alignment of the title relative to the axis values. Possible values are ""low"", ""middle"" or ""high"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("align", null)]
             [DefaultValue(@"middle")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2689,7 +2944,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Deprecated. Set the text to null to disable the title.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(@"middle")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2709,7 +2964,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel distance between the axis labels or line and the title. Defaults to 0 for horizontal axes, 10 for vertical
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("margin", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2729,7 +2984,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The distance of the axis title from the axis line. By default, this distance is  computed from the offset width of the labels, the labels' distance from  the axis and the title's margin. However when the offset option is set, it overrides all this.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("offset", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2749,7 +3004,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The rotation of the text in degrees. 0 is horizontal, 270 is vertical reading from bottom to top.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("rotation", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2769,7 +3024,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the title. When titles are rotated they are rendered using vector graphic techniques and not all styles are applicable.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue(@"{ ""color"": ""#707070"", ""fontWeight"": ""bold"" }")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2789,7 +3044,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The actual text of the axis title. It can contain basic HTML text markup like &lt;b&gt;, &lt;i&gt; and spans with style.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("text", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2809,7 +3064,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Horizontal pixel offset of the title position.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("x", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2829,7 +3084,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Vertical pixel offset of the title position.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2884,6 +3139,180 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private TitleEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public TitleEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new TitleEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class TitleEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class XAxisEvents : ComponentListeners
+        {
+
+
+        private JFunction afterBreaks;
+
+        /// <summary>
+        /// An event fired after the breaks have rendered.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("afterBreaks", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"An event fired after the breaks have rendered.")]
+        public virtual JFunction AfterBreaks
+        {
+            get
+            {
+                return this.afterBreaks ?? (this.afterBreaks = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction afterSetExtremes;
+
+        /// <summary>
+        /// As opposed to the setExtremes event, this event fires after the final min and max values are computed and corrected for minRange.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("afterSetExtremes", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"As opposed to the setExtremes event, this event fires after the final min and max values are computed and corrected for minRange.")]
+        public virtual JFunction AfterSetExtremes
+        {
+            get
+            {
+                return this.afterSetExtremes ?? (this.afterSetExtremes = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction pointBreak;
+
+        /// <summary>
+        /// An event fired when a break from this axis occurs on a point.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("pointBreak", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"An event fired when a break from this axis occurs on a point.")]
+        public virtual JFunction PointBreak
+        {
+            get
+            {
+                return this.pointBreak ?? (this.pointBreak = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction setExtremes;
+
+        /// <summary>
+        /// Fires when the minimum and maximum is set for the axis, either by calling the .setExtremes() method or by selecting an area in the chart. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on which library is used as the base for Highcharts.The new user set minimum and maximum values can be found by event.min and event.max. When an axis is zoomed all the way out from the ""Reset zoom"" button, event.min and event.max are null, and the new extremes are set based on this.dataMin and this.dataMax.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("setExtremes", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the minimum and maximum is set for the axis, either by calling the .setExtremes() method or by selecting an area in the chart. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on which library is used as the base for Highcharts.The new user set minimum and maximum values can be found by event.min and event.max. When an axis is zoomed all the way out from the ""Reset zoom"" button, event.min and event.max are null, and the new extremes are set based on this.dataMin and this.dataMax.")]
+        public virtual JFunction SetExtremes
+        {
+            get
+            {
+                return this.setExtremes ?? (this.setExtremes = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    list.Add("afterBreaks", new ConfigOption("afterBreaks", new SerializationOptions("afterBreaks", typeof(JFunctionJsonConverter)), null, this.AfterBreaks));list.Add("afterSetExtremes", new ConfigOption("afterSetExtremes", new SerializationOptions("afterSetExtremes", typeof(JFunctionJsonConverter)), null, this.AfterSetExtremes));list.Add("pointBreak", new ConfigOption("pointBreak", new SerializationOptions("pointBreak", typeof(JFunctionJsonConverter)), null, this.PointBreak));list.Add("setExtremes", new ConfigOption("setExtremes", new SerializationOptions("setExtremes", typeof(JFunctionJsonConverter)), null, this.SetExtremes));
+                    return list;
+                }
+            }
 
         }
 

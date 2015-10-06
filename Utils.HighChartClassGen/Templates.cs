@@ -21,7 +21,7 @@ using Ext.Net;
 using Ext.Net.Utilities;
 using Newtonsoft.Json;
 
-namespace Ext.ux.Highcharts.Chart
+namespace Ext.ux.Highcharts.Chart#SUBNAMESPACE#
 {
         
 #CLASSBODY#
@@ -33,14 +33,18 @@ namespace Ext.ux.Highcharts.Chart
         /// <summary>
         /// #DESCRIPTION#
         /// </summary>
-        public partial class #NAME# : Observable
+        public partial class #NAME# : #SUBTYPE#
         {
 
     #PROPERTIES#
 
     #CONFIGOPTIONS#
 
+    #LISTENERCONFIG#
+
     #CLASSES#
+
+    #LISTENERCLASS#
 
         }
 ";
@@ -49,7 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// #DESCRIPTION#
             /// </summary>
-            [ConfigOption]
+            [ConfigOption(""#JSNAME#"", #SERIALISER#)]
             [DefaultValue(#DEFAULTVALUE#)]
             [NotifyParentProperty(true)]
             [Category(""HighChart"")]
@@ -68,7 +72,7 @@ namespace Ext.ux.Highcharts.Chart
 ";
 
         public const string ConfigOptionTemplate = @"
-                list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", null, #DEFAULTVALUE#, this.#NAME#));
+                list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", #SERIALISER#, #DEFAULTVALUE#, this.#NAME#));
 ";
 
         public const string ConfigPropertyTemplate = @"
@@ -88,6 +92,92 @@ namespace Ext.ux.Highcharts.Chart
             }
         }
 ";
+
+
+
+        public const string ListenerPropertyTemplate = @"
+	        private #NAME#Events events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption(""events"", JsonMode.Object)]
+            [Category(""2. Observable"")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public #NAME#Events Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new #NAME#Events();
+					}
+			
+					return this.events;
+				}
+			}
+";
+
+        public const string ListenerClassTemplate = @"
+
+        /// <summary>
+        /// #DESCRIPTION#
+        /// </summary>
+        public partial class #NAME#Events : ComponentListeners
+        {
+
+#LISTENERS#
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    #LISTENERCONFIGS#
+                    return list;
+                }
+            }
+
+        }
+";
+
+        public const string ListenerItem = @"
+        private JFunction #JAVASCRIPTNAME#;
+
+        /// <summary>
+        /// #DESCRIPTION#
+        /// </summary>
+        #ARGS#
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption(""#JAVASCRIPTNAME#"", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@""#DESCRIPTION#"")]
+        public virtual JFunction #NAME#
+        {
+            get
+            {
+                return this.#JAVASCRIPTNAME# ?? (this.#JAVASCRIPTNAME# = new JFunction(){
+                    Args = new string[] {""event""}
+                });
+            }
+        }
+";
+
+        public const string ListenerConfigItem = @"list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", new SerializationOptions(""#JSNAME#"", typeof(JFunctionJsonConverter)), null, this.#NAME#));";
+
 
     }
 }

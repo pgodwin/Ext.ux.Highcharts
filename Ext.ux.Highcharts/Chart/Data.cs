@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A two-dimensional array representing the input data on tabular form. This input can be used when the data is already parsed, for example from a grid view component. Each cell can be a string or number. If not switchRowsAndColumns is set, the columns are interpreted as series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("columns", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The callback that is evaluated when the data is finished loading, optionally from an external source, and parsed. The first argument passed is a finished chart options object, containing the series. These options can be extended with additional options and passed directly to the chart constructor.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("complete", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A comma delimited string to be parsed. Related options are startRow, endRow, startColumn and endColumn to delimit what part of the table is used. The lineDelimiter and itemDelimiter options define the CSV delimiter formats.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("csv", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Which of the predefined date formats in Date.prototype.dateFormats to use to parse date values. Defaults to a best guess based on what format gives valid and ordered dates.Valid options include:YYYY-mm-dddd/mm/YYYYmm/dd/YYYYdd/mm/YYmm/dd/YY
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dateFormat", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The decimal point used for parsing numbers in the CSV.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("decimalPoint", null)]
             [DefaultValue(@".")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -126,7 +126,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// In tabular input data, the last column (indexed by 0) to use. Defaults to the last column containing data.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("endColumn", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -146,7 +146,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// In tabular input data, the last row (indexed by 0) to use. Defaults to the last row containing data.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("endRow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -166,7 +166,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use the first row in the data set as series names. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("firstRowAsNames", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -186,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The key for a Google Spreadsheet to load. See general information on GS.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("googleSpreadsheetKey", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -206,7 +206,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The Google Spreadsheet worksheet to use in combination with googleSpreadsheetKey. The available id's from your sheet can be read from https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("googleSpreadsheetWorksheet", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -226,7 +226,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Item or cell delimiter for parsing CSV. Defaults to the tab character \t if a tab character is found in the CSV string, if not it defaults to ,.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("itemDelimiter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -246,7 +246,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Line delimiter for parsing CSV.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("lineDelimiter", null)]
             [DefaultValue(@"\n")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -266,7 +266,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A callback function to parse string representations of dates into JavaScript timestamps. Should return an integer timestamp on success.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("parseDate", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -286,7 +286,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A callback function to access the parsed columns, the two-dimentional input data array directly, before they are interpreted into series data and categories. Return false to stop completion, or call this.complete() to continue async.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("parsed", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -306,7 +306,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The same as the columns input option, but defining rows intead of columns.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("rows", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -326,7 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An array containing object with Point property names along with what column id the property should be taken from.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("seriesMapping", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -346,7 +346,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// In tabular input data, the first column (indexed by 0) to use.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("startColumn", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -366,7 +366,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// In tabular input data, the first row (indexed by 0) to use.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("startRow", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -386,7 +386,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Switch rows and columns of the input data, so that this.columns effectively becomes the rows of the data set, and the rows are interpreted as series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("switchRowsAndColumns", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -406,7 +406,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A HTML table or the id of such to be parsed as input data. Related options are startRow, endRow, startColumn and endColumn to delimit what part of the table is used.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("table", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -437,7 +437,7 @@ namespace Ext.ux.Highcharts.Chart
                 ConfigOptionsCollection list = base.ConfigOptions;
 
 
-                list.Add("columns", new ConfigOption("columns", null, null, this.Columns));
+                list.Add("columns", new ConfigOption("columns", new SerializationOptions("columns", JsonMode.AlwaysArray), null, this.Columns));
 
                 list.Add("complete", new ConfigOption("complete", null, "", this.Complete));
 
@@ -465,9 +465,9 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("parsed", new ConfigOption("parsed", null, "", this.Parsed));
 
-                list.Add("rows", new ConfigOption("rows", null, null, this.Rows));
+                list.Add("rows", new ConfigOption("rows", new SerializationOptions("rows", JsonMode.AlwaysArray), null, this.Rows));
 
-                list.Add("seriesMapping", new ConfigOption("seriesMapping", null, null, this.SeriesMapping));
+                list.Add("seriesMapping", new ConfigOption("seriesMapping", new SerializationOptions("seriesMapping", JsonMode.AlwaysArray), null, this.SeriesMapping));
 
                 list.Add("startColumn", new ConfigOption("startColumn", null, 0, this.StartColumn));
 
@@ -483,6 +483,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private DataEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public DataEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new DataEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class DataEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 

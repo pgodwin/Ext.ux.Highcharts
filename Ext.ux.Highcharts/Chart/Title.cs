@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The horizontal alignment of the title. Can be one of ""left"", ""center"" and ""right"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("align", null)]
             [DefaultValue(@"center")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// When the title is floating, the plot area will not move to make space for it.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("floating", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The margin between the title and the plot area, or if a subtitle is present, the margin between the subtitle and the plot area.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("margin", null)]
             [DefaultValue(15)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the title. Use this for font styling, but use align, x and y for text alignment.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue(@"{ ""color"": ""#333333"", ""fontSize"": ""18px"" }")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The title of the chart. To disable the title, set the text to null.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("text", null)]
             [DefaultValue(@"Chart title")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -126,7 +126,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use HTML to render the text.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -146,7 +146,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The vertical alignment of the title. Can be one of ""top"", ""middle"" and ""bottom"". When a value is given, the title behaves as floating.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("verticalAlign", null)]
             [DefaultValue(@" ")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -166,7 +166,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The x position of the title relative to the alignment within chart.spacingLeft and chart.spacingRight.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("x", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -186,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The y position of the title relative to the alignment within chart.spacingTop and chart.spacingBottom. By default it depends on the font size.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -241,6 +241,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private TitleEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public TitleEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new TitleEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class TitleEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 

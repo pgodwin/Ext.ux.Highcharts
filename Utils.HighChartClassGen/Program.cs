@@ -28,7 +28,16 @@ namespace Utils.HighChartClassGen
 
                 foreach (var cls in outClasses)
                 {
-                    File.WriteAllText(@".\Output\" + cls.Name + ".cs", cls.GetOutput());
+                    string path = @".\Output\";
+                    if (!string.IsNullOrEmpty(cls.NameSpace))
+                    {
+                        path = path + Path.DirectorySeparatorChar + cls.NameSpace;
+                    }
+
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+
+                    File.WriteAllText(path + Path.DirectorySeparatorChar + cls.Name + ".cs", cls.GetOutput());
                 }
 
                 Console.WriteLine();
@@ -46,15 +55,6 @@ namespace Utils.HighChartClassGen
             {
                 var mockClass = new MockClass(cls, items);
 
-                //// Find Properties
-                //mockClass.Properties = items.Where(i => i.parent == cls.name && i.isParent == false)
-                //    .Select(i => new MockProperty(i))
-                //    .ToList();
-
-                //// Find Sub Classes
-                //mockClass.SubClasses = items.Where(i => i.isParent == true && i.parent == cls.name)
-                //    .Select(i => new MockClass(i, items))
-                //    .ToList();
 
                 classes.Add(mockClass);
             }
@@ -68,14 +68,19 @@ namespace Utils.HighChartClassGen
 
         public MockClass(HighChartDocItem item, List<HighChartDocItem> items)
         {
+            this.SubType = "Observable";
 
             if (item.title.Contains("series<"))
             {
                 item.title = item.title.Replace("series<", "").Replace(">", "");
+                this.SubType = "Series";
+                this.NameSpace = "Series";
             }
+            if (item.title == "series")
+                this.NameSpace = "Series";
 
             this.Name = item.title.ToCamelCase();
-            this.JavascriptName = item.name;
+            this.JavascriptName = item.title;
             this.Description = string.IsNullOrEmpty(item.description) ? "" : Regex.Replace(item.description, @"<(.|n)*?>", string.Empty).Replace("&nbsp", "");
 
             this.IsTopMost = item.IsTopMostClass;
@@ -86,9 +91,17 @@ namespace Utils.HighChartClassGen
                 .ToList();
 
             // Find sub classes
-            this.SubClasses = items.Where(i => i.isParent == true && i.parent == item.name)
+            this.SubClasses = items.Where(i => i.isParent == true && i.parent == item.name && i.title != "events")
                     .Select(i => new MockClass(i, items))
                     .ToList();
+
+            var eventsItem = items.FirstOrDefault(i => i.isParent == true && i.parent == item.name && i.title == "events");
+            if (eventsItem != null)
+                this.Listeners = items.Where(i => i.parent == eventsItem.name)
+                        .Select(i => new MockEvent(i, items))
+                        .ToList();
+            else
+                this.Listeners = new List<MockEvent>();
 
             //this.Properties = new List<MockProperty>();
             //this.SubClasses = new List<MockClass>();
@@ -115,23 +128,54 @@ namespace Utils.HighChartClassGen
         {
             var properties = string.Join("\r", this.Properties.Select(p => p.GetOutput()));
             var configOptions = string.Join("\r", this.Properties.Select(p => p.GetConfigItem()));
-            var subClasses = string.Join("\r", this.SubClasses.Select(p => p.GetOutput()));
 
+            if (this.Listeners.Count > 0)
+                configOptions += "list.Add(\"events\", new ConfigOption(\"events\", new SerializationOptions(\"events\", JsonMode.Object), null, this.Listeners));";
+
+            var subClasses = string.Join("\r", this.SubClasses.Select(p => p.GetOutput()));
+            
             var configProperty = Templates.ConfigPropertyTemplate.Replace("#CONFIGS#", configOptions);
+
+            var listenerProperty = Templates.ListenerPropertyTemplate
+                                    .Replace("#NAME#", this.Name);
+
+
+            var listeners = string.Join("\r", this.Listeners.Select(s=>s.GetOutput()));
+            var listenerConfigs = string.Join("\r", this.Listeners.Select(s => s.GetConfigItem()));
+            var listenerClass = Templates.ListenerClassTemplate
+                                    .Replace("#DESCRIPTION", "Client Side Events")
+                                    .Replace("#NAME#", this.Name)
+                                    .Replace("#LISTENERCONFIGS#", listenerConfigs)
+                                    .Replace("#LISTENERS#", listeners);
+
+            
+
+            
 
             var output = Templates.ClassTemplate
                 .Replace("#DESCRIPTION#", Regex.Replace(this.Description, @"\r\n?|\n", ""))
                 .Replace("#NAME#", this.Name)
+                .Replace("#SUBTYPE#", this.SubType)
                 .Replace("#PROPERTIES#", properties)
                 .Replace("#CLASSES#", subClasses)
-                .Replace("#CONFIGOPTIONS#", configProperty);
+                .Replace("#LISTENERCONFIG#", listenerProperty)
+                .Replace("#CONFIGOPTIONS#", configProperty)
+                .Replace("#LISTENERCLASS#", listenerClass);
 
             if (this.IsTopMost)
-                output = Templates.NameSpaceTemplate.Replace("#CLASSBODY#", output);
+                output = Templates.NameSpaceTemplate
+                    .Replace("#SUBNAMESPACE#", string.IsNullOrEmpty(this.NameSpace) ? "" : this.NameSpace)
+                    .Replace("#CLASSBODY#", output);
             
             return output;
         }
 
+
+        public string SubType { get; set; }
+
+        public string NameSpace { get; set; }
+
+        public List<MockEvent> Listeners { get; set; }
     }
 
     public class MockProperty
@@ -139,6 +183,7 @@ namespace Utils.HighChartClassGen
 
         public MockProperty(HighChartDocItem item)
         {
+            this.OriginalItem = item;
             this.Name = item.title.ToCamelCase();
             this.JavascriptName = item.title;
             this.Type = item.returnType.ToDotNetType();
@@ -161,6 +206,8 @@ namespace Utils.HighChartClassGen
             return Templates.PropertyTemplate
                 .Replace("#DESCRIPTION#", Regex.Replace(this.Description, @"\r\n?|\n", "").Replace("\"", @""""""))
                 .Replace("#DEFAULTVALUE#", this.DefaultValue)
+                .Replace("#SERIALISER#", this.OriginalItem.GetAttributeSerialisationOptions())
+                .Replace("#JSNAME#", this.JavascriptName)
                 .Replace("#TYPE#", this.Type)
                 .Replace("#NAME#", this.Name);
         }
@@ -170,12 +217,82 @@ namespace Utils.HighChartClassGen
             return Templates.ConfigOptionTemplate
                 .Replace("#JSNAME#", this.JavascriptName)
                 .Replace("#NAME#", this.Name)
+                .Replace("#SERIALISER#", this.OriginalItem.GetSerialisationOptions())
                 .Replace("#DEFAULTVALUE#", this.DefaultValue);
 
         }
+
+        public HighChartDocItem OriginalItem { get; set; }
     }
 
+    public class MockEvent     
+    {
+        public MockEvent(HighChartDocItem item, List<HighChartDocItem> items)
+        {
+            
+            if (item.parent.StartsWith("series"))
+                this.NameSpace = "Series";
 
+            this.Name = item.title.ToCamelCase();
+            this.JavascriptName = item.title;
+            this.Description = string.IsNullOrEmpty(item.description) ? "" : Regex.Replace(item.description, @"<(.|n)*?>", string.Empty).Replace("&nbsp", "");
+
+            this.Parent = items.FirstOrDefault(i=>i.parent == item.name);
+
+            this.Arguments = new List<Argument>() {
+                new Argument(0, "event") // almost all have a jquery event item
+            };
+        }
+
+        public  string Description { get; set; }
+        public  string JavascriptName { get; set; }
+        public  string NameSpace { get; set; }
+        public  string Name { get; set; }
+
+        public List<Argument> Arguments { get; set; }
+
+        public string GetOutput()
+        {
+            var arguments = string.Join("\r", this.Arguments.Select(a => a.GetOutput()));
+
+            var output = Templates.ListenerItem
+                            .Replace("#JAVASCRIPTNAME#", this.JavascriptName)
+                            .Replace("#NAME#", this.Name)
+                            .Replace("#DESCRIPTION#", Regex.Replace(this.Description, @"\r\n?|\n", "").Replace("\"", @""""""))
+                            .Replace("#ARGS#", arguments);
+
+            return output;
+        }
+
+        public string GetConfigItem()
+        {
+            return Templates.ListenerConfigItem
+                .Replace("#JSNAME#", this.JavascriptName)
+                .Replace("#NAME#", this.Name);
+
+        }
+
+        public class Argument
+        {
+            public Argument(int index, string name)
+            {
+                this.Index = index;
+                this.Name = name;
+            }
+        
+            public string Name { get; set; }
+            public int Index { get; set; }
+
+            public string GetOutput()
+            {
+                return "[ListenerArgument(" + this.Index + ", \"" + this.Name + "\")]";
+            }
+        }
+
+
+
+        public HighChartDocItem Parent { get; set; }
+    }
 
 
 
@@ -275,10 +392,21 @@ namespace Utils.HighChartClassGen
 
         public string GetSerialisationOptions()
         {
-            if (this.returnType.Contain("Array"))
+            if (this.returnType.Contains("Array"))
             {
-                "new SerializationOptions(\"" + this.name + "\", JsonMode.AlwaysArray)";
+                return "new SerializationOptions(\"" + this.title + "\", JsonMode.AlwaysArray)";
             }
+
+            return "null";
+        }
+
+        public string GetAttributeSerialisationOptions()
+        {
+             if (this.returnType.Contains("Array"))
+            {
+                return "JsonMode.AlwaysArray";
+            }
+
             return "null";
         }
 

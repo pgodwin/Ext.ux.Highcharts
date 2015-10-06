@@ -11,22 +11,22 @@ using Ext.Net;
 using Ext.Net.Utilities;
 using Newtonsoft.Json;
 
-namespace Ext.ux.Highcharts.Chart
+namespace Ext.ux.Highcharts.ChartSeries
 {
         
 
 
         /// <summary>
-        /// A heatmap series. If the .type">type option is not specified, it is inherited from chart.type.For options that apply to multiple series, it is recommended to add them to the pointOptions.series options structure. To apply to all series of this specific type, apply it to plotOptions.heatmap.
+        /// A funnel series. If the .type">type option is not specified, it is inherited from chart.type.For options that apply to multiple series, it is recommended to add them to the pointOptions.series options structure. To apply to all series of this specific type, apply it to plotOptions.funnel.
         /// </summary>
-        public partial class Heatmap : Observable
+        public partial class Funnel : Series
         {
 
     
             /// <summary>
             /// Allow this series' points to be selected by clicking on the markers, bars or pie slices.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("allowPointSelect", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -44,33 +44,13 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods.		The following properties are supported:  duration  The duration of the animation in milliseconds.easingWhen using jQuery as the general framework, the easing can be set to linear or	swing. More easing functions are available with the use of jQuery plug-ins, most notably				the jQuery UI suite. See the jQuery docs. When using MooTools as the general framework, use the property name transition instead of easing.Due to poor performance, animation is disabled in old IE browsers for column charts and polar charts.
+            /// The color of the border surrounding each slice.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(true)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods.		The following properties are supported:  duration  The duration of the animation in milliseconds.easingWhen using jQuery as the general framework, the easing can be set to linear or	swing. More easing functions are available with the use of jQuery plug-ins, most notably				the jQuery UI suite. See the jQuery docs. When using MooTools as the general framework, use the property name transition instead of easing.Due to poor performance, animation is disabled in old IE browsers for column charts and polar charts.")]
-            public bool? Animation
-            {
-                get
-                {
-                    return this.State.Get<bool?>("Animation", true);
-                }
-                set
-                {
-                    this.State.Set("Animation", value);
-                }
-            }
-
-            /// <summary>
-            /// The color of the border surrounding each column or bar.
-            /// </summary>
-            [ConfigOption]
+            [ConfigOption("borderColor", null)]
             [DefaultValue(@"#FFFFFF")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"The color of the border surrounding each column or bar.")]
+            [Description(@"The color of the border surrounding each slice.")]
             public string BorderColor
             {
                 get
@@ -84,33 +64,13 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// The corner radius of the border surrounding each column or bar.
+            /// The width of the border surrounding each slice.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(0)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The corner radius of the border surrounding each column or bar.")]
-            public double? BorderRadius
-            {
-                get
-                {
-                    return this.State.Get<double?>("BorderRadius", 0);
-                }
-                set
-                {
-                    this.State.Set("BorderRadius", value);
-                }
-            }
-
-            /// <summary>
-            /// The width of the border surrounding each column or bar.
-            /// </summary>
-            [ConfigOption]
+            [ConfigOption("borderWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"The width of the border surrounding each column or bar.")]
+            [Description(@"The width of the border surrounding each slice.")]
             public double? BorderWidth
             {
                 get
@@ -124,53 +84,33 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// The main color of the series. In heat maps this color is rarely used, as we mostly use the color to denote the value of each point. Unless options are set in the colorAxis, the default value is pulled from the options.colors array.
+            /// The center of the series. By default, it is centered in the middle of the plot area, so it fills the plot area height.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(@"null")]
+            [ConfigOption("center", JsonMode.AlwaysArray)]
+            [DefaultValue(new object[] { "50%", "50%"})]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"The main color of the series. In heat maps this color is rarely used, as we mostly use the color to denote the value of each point. Unless options are set in the colorAxis, the default value is pulled from the options.colors array.")]
-            public string Color
+            [Description(@"The center of the series. By default, it is centered in the middle of the plot area, so it fills the plot area height.")]
+            public object[] Center
             {
                 get
                 {
-                    return this.State.Get<string>("Color", @"null");
+                    return this.State.Get<object[]>("Center", new object[] { "50%", "50%"});
                 }
                 set
                 {
-                    this.State.Set("Color", value);
+                    this.State.Set("Center", value);
                 }
             }
 
             /// <summary>
-            /// When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive  one color per series or one color per point.
+            /// A series specific or series type specific color set to use instead of the global colors.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(false)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive  one color per series or one color per point.")]
-            public bool? ColorByPoint
-            {
-                get
-                {
-                    return this.State.Get<bool?>("ColorByPoint", false);
-                }
-                set
-                {
-                    this.State.Set("ColorByPoint", value);
-                }
-            }
-
-            /// <summary>
-            /// A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true.
-            /// </summary>
-            [ConfigOption]
+            [ConfigOption("colors", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true.")]
+            [Description(@"A series specific or series type specific color set to use instead of the global colors.")]
             public string[] Colors
             {
                 get
@@ -184,49 +124,9 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// The column size - how many X axis units each column in the heatmap should span.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(1)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The column size - how many X axis units each column in the heatmap should span.")]
-            public double? Colsize
-            {
-                get
-                {
-                    return this.State.Get<double?>("Colsize", 1);
-                }
-                set
-                {
-                    this.State.Set("Colsize", value);
-                }
-            }
-
-            /// <summary>
-            /// When the series contains less points than the crop threshold, all points are drawn,  event if the points fall outside the visible plot area at the current zoom. The advantage of drawing all points (including markers and columns), is that animation is performed on updates. On the other hand, when the series contains more points than the crop threshold, the series data is cropped to only contain points that fall within the plot area. The advantage of cropping away invisible points is to increase performance on large series.  .
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(50)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"When the series contains less points than the crop threshold, all points are drawn,  event if the points fall outside the visible plot area at the current zoom. The advantage of drawing all points (including markers and columns), is that animation is performed on updates. On the other hand, when the series contains more points than the crop threshold, the series data is cropped to only contain points that fall within the plot area. The advantage of cropping away invisible points is to increase performance on large series.  .")]
-            public double? CropThreshold
-            {
-                get
-                {
-                    return this.State.Get<double?>("CropThreshold", 50);
-                }
-                set
-                {
-                    this.State.Set("CropThreshold", value);
-                }
-            }
-
-            /// <summary>
             /// You can set the cursor to ""pointer"" if you have click events attached to  the series, to signal to the user that the points and lines can be clicked.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("cursor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -244,9 +144,29 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// The thickness of a 3D pie. Requires highcharts-3d.js
+            /// </summary>
+            [ConfigOption("depth", null)]
+            [DefaultValue(0)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The thickness of a 3D pie. Requires highcharts-3d.js")]
+            public double? Depth
+            {
+                get
+                {
+                    return this.State.Get<double?>("Depth", 0);
+                }
+                set
+                {
+                    this.State.Set("Depth", value);
+                }
+            }
+
+            /// <summary>
             /// Enable or disable the mouse tracking for a specific series. This includes point tooltips and click events on graphs and points. For large datasets it improves performance.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enableMouseTracking", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -266,7 +186,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use the Y extremes of the total chart width or only the zoomed area when zooming in on parts of the X axis. By default, the Y axis adjusts to the min and max of the visible data. Cartesian series only.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("getExtremesFromAll", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -284,9 +204,29 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height.
+            /// </summary>
+            [ConfigOption("height", null)]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height.")]
+            public object Height
+            {
+                get
+                {
+                    return this.State.Get<object>("Height", null);
+                }
+                set
+                {
+                    this.State.Set("Height", value);
+                }
+            }
+
+            /// <summary>
             /// An id for the series. This can be used after render time to get a pointer to the series object through chart.get().
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -306,7 +246,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The index of the series in the chart, affecting the internal index in the chart.series array, the visible Z index as well as the order in the legend.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("index", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -326,7 +266,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An array specifying which option maps to which key in the data point array. This makes it convenient to work with unstructured data arrays from different sources.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("keys", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -346,7 +286,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The sequential index of the series in the legend.  Try it:  	Legend in opposite order .
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("legendIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -366,7 +306,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The id of another series to link to. Additionally, the value can be "":previous"" to link to the previous series. When two series are linked, only the first one appears in the legend. Toggling the visibility of this also toggles the linked series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("linkedTo", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -384,29 +324,29 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart.
+            /// The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(null)]
+            [ConfigOption("minSize", null)]
+            [DefaultValue(80)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart.")]
-            public double? MaxPointWidth
+            [Description(@"The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size.")]
+            public double? MinSize
             {
                 get
                 {
-                    return this.State.Get<double?>("MaxPointWidth", null);
+                    return this.State.Get<double?>("MinSize", 80);
                 }
                 set
                 {
-                    this.State.Set("MaxPointWidth", value);
+                    this.State.Set("MinSize", value);
                 }
             }
 
             /// <summary>
             /// The name of the series as shown in the legend, tooltip etc.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("name", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -424,29 +364,69 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// The row size - how many Y axis units each heatmap row should span.
+            /// The height of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area height.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(1)]
+            [ConfigOption("neckHeight", null)]
+            [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"The row size - how many Y axis units each heatmap row should span.")]
-            public double? Rowsize
+            [Description(@"The height of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area height.")]
+            public object NeckHeight
             {
                 get
                 {
-                    return this.State.Get<double?>("Rowsize", 1);
+                    return this.State.Get<object>("NeckHeight", null);
                 }
                 set
                 {
-                    this.State.Set("Rowsize", value);
+                    this.State.Set("NeckHeight", value);
+                }
+            }
+
+            /// <summary>
+            /// The width of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area width.
+            /// </summary>
+            [ConfigOption("neckWidth", null)]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The width of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area width.")]
+            public object NeckWidth
+            {
+                get
+                {
+                    return this.State.Get<object>("NeckWidth", null);
+                }
+                set
+                {
+                    this.State.Set("NeckWidth", value);
+                }
+            }
+
+            /// <summary>
+            /// A reversed funnel has the widest area down. A reversed funnel with no neck width and neck height is a pyramid.
+            /// </summary>
+            [ConfigOption("reversed", null)]
+            [DefaultValue(false)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"A reversed funnel has the widest area down. A reversed funnel with no neck width and neck height is a pyramid.")]
+            public bool? Reversed
+            {
+                get
+                {
+                    return this.State.Get<bool?>("Reversed", false);
+                }
+                set
+                {
+                    this.State.Set("Reversed", value);
                 }
             }
 
             /// <summary>
             /// Whether to select the series initially. If showCheckbox is true, the checkbox next to the series name will be checked for a selected series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("selected", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -466,7 +446,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to apply a drop shadow to the graph line. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("shadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -484,38 +464,18 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// If true, a checkbox is displayed next to the legend item to allow selecting the series. The state of the checkbox is determined by the selected option.
+            /// Whether to display this particular series or series type in the legend. Since 2.1, pies are not shown in the legend by default.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("showInLegend", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"If true, a checkbox is displayed next to the legend item to allow selecting the series. The state of the checkbox is determined by the selected option.")]
-            public bool? ShowCheckbox
-            {
-                get
-                {
-                    return this.State.Get<bool?>("ShowCheckbox", false);
-                }
-                set
-                {
-                    this.State.Set("ShowCheckbox", value);
-                }
-            }
-
-            /// <summary>
-            /// Whether to display this particular series or series type in the legend. The default value is true for standalone series, false for linked series.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(true)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Whether to display this particular series or series type in the legend. The default value is true for standalone series, false for linked series.")]
+            [Description(@"Whether to display this particular series or series type in the legend. Since 2.1, pies are not shown in the legend by default.")]
             public bool? ShowInLegend
             {
                 get
                 {
-                    return this.State.Get<bool?>("ShowInLegend", true);
+                    return this.State.Get<bool?>("ShowInLegend", false);
                 }
                 set
                 {
@@ -524,18 +484,38 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc.
+            /// If a point is sliced, moved out from the center, how many pixels should  it be moved?.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(true)]
+            [ConfigOption("slicedOffset", null)]
+            [DefaultValue(10)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc.")]
+            [Description(@"If a point is sliced, moved out from the center, how many pixels should  it be moved?.")]
+            public double? SlicedOffset
+            {
+                get
+                {
+                    return this.State.Get<double?>("SlicedOffset", 10);
+                }
+                set
+                {
+                    this.State.Set("SlicedOffset", value);
+                }
+            }
+
+            /// <summary>
+            /// Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series.
+            /// </summary>
+            [ConfigOption("stickyTracking", null)]
+            [DefaultValue(false)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series.")]
             public bool? StickyTracking
             {
                 get
                 {
-                    return this.State.Get<bool?>("StickyTracking", true);
+                    return this.State.Get<bool?>("StickyTracking", false);
                 }
                 set
                 {
@@ -544,29 +524,9 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(1000)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable.")]
-            public double? TurboThreshold
-            {
-                get
-                {
-                    return this.State.Get<double?>("TurboThreshold", 1000);
-                }
-                set
-                {
-                    this.State.Set("TurboThreshold", value);
-                }
-            }
-
-            /// <summary>
             /// The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("type", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -586,7 +546,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Set the initial visibility of the series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("visible", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -604,49 +564,29 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// When using dual or multiple x axes, this number defines which xAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the xAxis array, with 0 being the first.
+            /// The width of the funnel compared to the width of the plot area, or the pixel width if it is a number.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("width", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"When using dual or multiple x axes, this number defines which xAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the xAxis array, with 0 being the first.")]
-            public object XAxis
+            [Description(@"The width of the funnel compared to the width of the plot area, or the pixel width if it is a number.")]
+            public object Width
             {
                 get
                 {
-                    return this.State.Get<object>("XAxis", null);
+                    return this.State.Get<object>("Width", null);
                 }
                 set
                 {
-                    this.State.Set("XAxis", value);
-                }
-            }
-
-            /// <summary>
-            /// When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the yAxis array, with 0 being the first.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the yAxis array, with 0 being the first.")]
-            public object YAxis
-            {
-                get
-                {
-                    return this.State.Get<object>("YAxis", null);
-                }
-                set
-                {
-                    this.State.Set("YAxis", value);
+                    this.State.Set("Width", value);
                 }
             }
 
             /// <summary>
             /// Define the visual z index of the series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("zIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -666,7 +606,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Defines the Axis on which the zones are applied.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("zoneAxis", null)]
             [DefaultValue(@"y")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -699,97 +639,117 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("allowPointSelect", new ConfigOption("allowPointSelect", null, false, this.AllowPointSelect));
 
-                list.Add("animation", new ConfigOption("animation", null, true, this.Animation));
-
                 list.Add("borderColor", new ConfigOption("borderColor", null, @"#FFFFFF", this.BorderColor));
-
-                list.Add("borderRadius", new ConfigOption("borderRadius", null, 0, this.BorderRadius));
 
                 list.Add("borderWidth", new ConfigOption("borderWidth", null, 1, this.BorderWidth));
 
-                list.Add("color", new ConfigOption("color", null, @"null", this.Color));
+                list.Add("center", new ConfigOption("center", new SerializationOptions("center", JsonMode.AlwaysArray), new object[] { "50%", "50%"}, this.Center));
 
-                list.Add("colorByPoint", new ConfigOption("colorByPoint", null, false, this.ColorByPoint));
-
-                list.Add("colors", new ConfigOption("colors", null, null, this.Colors));
-
-                list.Add("colsize", new ConfigOption("colsize", null, 1, this.Colsize));
-
-                list.Add("cropThreshold", new ConfigOption("cropThreshold", null, 50, this.CropThreshold));
+                list.Add("colors", new ConfigOption("colors", new SerializationOptions("colors", JsonMode.AlwaysArray), null, this.Colors));
 
                 list.Add("cursor", new ConfigOption("cursor", null, "", this.Cursor));
+
+                list.Add("depth", new ConfigOption("depth", null, 0, this.Depth));
 
                 list.Add("enableMouseTracking", new ConfigOption("enableMouseTracking", null, true, this.EnableMouseTracking));
 
                 list.Add("getExtremesFromAll", new ConfigOption("getExtremesFromAll", null, false, this.GetExtremesFromAll));
 
+                list.Add("height", new ConfigOption("height", null, null, this.Height));
+
                 list.Add("id", new ConfigOption("id", null, "", this.Id));
 
                 list.Add("index", new ConfigOption("index", null, null, this.Index));
 
-                list.Add("keys", new ConfigOption("keys", null, null, this.Keys));
+                list.Add("keys", new ConfigOption("keys", new SerializationOptions("keys", JsonMode.AlwaysArray), null, this.Keys));
 
                 list.Add("legendIndex", new ConfigOption("legendIndex", null, null, this.LegendIndex));
 
                 list.Add("linkedTo", new ConfigOption("linkedTo", null, "", this.LinkedTo));
 
-                list.Add("maxPointWidth", new ConfigOption("maxPointWidth", null, null, this.MaxPointWidth));
+                list.Add("minSize", new ConfigOption("minSize", null, 80, this.MinSize));
 
                 list.Add("name", new ConfigOption("name", null, "", this.Name));
 
-                list.Add("rowsize", new ConfigOption("rowsize", null, 1, this.Rowsize));
+                list.Add("neckHeight", new ConfigOption("neckHeight", null, null, this.NeckHeight));
+
+                list.Add("neckWidth", new ConfigOption("neckWidth", null, null, this.NeckWidth));
+
+                list.Add("reversed", new ConfigOption("reversed", null, false, this.Reversed));
 
                 list.Add("selected", new ConfigOption("selected", null, false, this.Selected));
 
                 list.Add("shadow", new ConfigOption("shadow", null, null, this.Shadow));
 
-                list.Add("showCheckbox", new ConfigOption("showCheckbox", null, false, this.ShowCheckbox));
+                list.Add("showInLegend", new ConfigOption("showInLegend", null, false, this.ShowInLegend));
 
-                list.Add("showInLegend", new ConfigOption("showInLegend", null, true, this.ShowInLegend));
+                list.Add("slicedOffset", new ConfigOption("slicedOffset", null, 10, this.SlicedOffset));
 
-                list.Add("stickyTracking", new ConfigOption("stickyTracking", null, true, this.StickyTracking));
-
-                list.Add("turboThreshold", new ConfigOption("turboThreshold", null, 1000, this.TurboThreshold));
+                list.Add("stickyTracking", new ConfigOption("stickyTracking", null, false, this.StickyTracking));
 
                 list.Add("type", new ConfigOption("type", null, "", this.Type));
 
                 list.Add("visible", new ConfigOption("visible", null, true, this.Visible));
 
-                list.Add("xAxis", new ConfigOption("xAxis", null, null, this.XAxis));
-
-                list.Add("yAxis", new ConfigOption("yAxis", null, null, this.YAxis));
+                list.Add("width", new ConfigOption("width", null, null, this.Width));
 
                 list.Add("zIndex", new ConfigOption("zIndex", null, null, this.ZIndex));
 
                 list.Add("zoneAxis", new ConfigOption("zoneAxis", null, @"y", this.ZoneAxis));
-
+list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }
         }
 
 
     
+	        private FunnelEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public FunnelEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new FunnelEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
-        /// An array of data points for the series. For the heatmap series type, points can be given in the following ways:  	An array of arrays with 3 or 2 values. In this case, the values correspond to x,y,value. If the first value is a string, it is 	applied as the name of the point, and the x value is inferred. The x value can also be omitted, in which case the inner arrays should be of length 2. Then the x value is automatically calculated, either starting at 0 and incremented by 1, or from pointStart  	and pointInterval given in the series options.data: [    [0, 9, 7],     [1, 10, 4],     [2, 6, 3]]An array of objects with named values. The objects are 	point configuration objects as seen below. If the total number of data points exceeds the series' .turboThreshold'>turboThreshold, this option is not available.data: [{    x: 1,    y: 3,    value: 10,    name: "Point2",    color: "#00FF00"}, {    x: 1,    y: 7,    value: 10,    name: "Point1",    color: "#FF00FF"}] 
+        /// An array of data points for the series. For the funnel series type, points can be given in the following ways:  	An array of numerical values. In this case, the numerical values will  	be interpreted as y options.  Example:data: [0, 5, 3, 5] 	 An array of objects with named values. The objects are 	point configuration objects as seen below. If the total number of data points exceeds the series' .turboThreshold'>turboThreshold, this option is not available.data: [{    y: 3,    name: "Point2",    color: "#00FF00"}, {    y: 1,    name: "Point1",    color: "#FF00FF"}] 
         /// </summary>
         public partial class Data : Observable
         {
 
     
             /// <summary>
-            /// The color of the point. In heat maps the point color is rarely set explicitly, as we use the color to denote the value. Options for this are set in the colorAxis configuration.
+            /// Individual color for the point. By default the color is pulled from the global colors array.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
+            [ConfigOption("color", null)]
+            [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"The color of the point. In heat maps the point color is rarely set explicitly, as we use the color to denote the value. Options for this are set in the colorAxis configuration.")]
+            [Description(@"Individual color for the point. By default the color is pulled from the global colors array.")]
             public string Color
             {
                 get
                 {
-                    return this.State.Get<string>("Color", "");
+                    return this.State.Get<string>("Color", null);
                 }
                 set
                 {
@@ -800,7 +760,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Individual data label for each point. The options are the same as the ones for  plotOptions.series.dataLabels
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dataLabels", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -820,7 +780,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The id of a series in the drilldown.series array to use for a drilldown for this point.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("drilldown", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -840,7 +800,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// An id for the point. This can be used after render time to get a pointer to the point object through chart.get().
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -858,9 +818,29 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// The sequential index of the data point in the legend.
+            /// </summary>
+            [ConfigOption("legendIndex", null)]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The sequential index of the data point in the legend.")]
+            public double? LegendIndex
+            {
+                get
+                {
+                    return this.State.Get<double?>("LegendIndex", null);
+                }
+                set
+                {
+                    this.State.Set("LegendIndex", value);
+                }
+            }
+
+            /// <summary>
             /// The name of the point as shown in the legend, tooltip, dataLabel etc.If the xAxis.type is set to category, and no categories option exists, the category will be pulled from the point.name of the last series defined. For multiple series, best practice however is to define xAxis.categories.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("name", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -880,7 +860,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether the data point is selected initially.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("selected", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -898,49 +878,9 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// The value of the point, resulting in a color controled by options as set in the colorAxis configuration.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The value of the point, resulting in a color controled by options as set in the colorAxis configuration.")]
-            public double? Value
-            {
-                get
-                {
-                    return this.State.Get<double?>("Value", null);
-                }
-                set
-                {
-                    this.State.Set("Value", value);
-                }
-            }
-
-            /// <summary>
-            /// The x value of the point. For datetime axes, the X value is the timestamp in milliseconds since 1970.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The x value of the point. For datetime axes, the X value is the timestamp in milliseconds since 1970.")]
-            public double? x
-            {
-                get
-                {
-                    return this.State.Get<double?>("x", null);
-                }
-                set
-                {
-                    this.State.Set("x", value);
-                }
-            }
-
-            /// <summary>
             /// The y value of the point.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -971,7 +911,7 @@ namespace Ext.ux.Highcharts.Chart
                 ConfigOptionsCollection list = base.ConfigOptions;
 
 
-                list.Add("color", new ConfigOption("color", null, "", this.Color));
+                list.Add("color", new ConfigOption("color", null, null, this.Color));
 
                 list.Add("dataLabels", new ConfigOption("dataLabels", null, null, this.DataLabels));
 
@@ -979,204 +919,222 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("id", new ConfigOption("id", null, "", this.Id));
 
+                list.Add("legendIndex", new ConfigOption("legendIndex", null, null, this.LegendIndex));
+
                 list.Add("name", new ConfigOption("name", null, "", this.Name));
 
                 list.Add("selected", new ConfigOption("selected", null, false, this.Selected));
 
-                list.Add("value", new ConfigOption("value", null, null, this.Value));
-
-                list.Add("x", new ConfigOption("x", null, null, this.x));
-
                 list.Add("y", new ConfigOption("y", null, null, this.y));
-
+list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }
         }
 
+
+    
+	        private DataEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public DataEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new DataEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
     
 
         /// <summary>
-        /// Individual point events
+        /// Client Side Events#
         /// </summary>
-        public partial class Events : Observable
+        public partial class DataEvents : ComponentListeners
         {
 
-    
-            /// <summary>
-            /// Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.")]
-            public string Click
-            {
-                get
-                {
-                    return this.State.Get<string>("Click", "");
-                }
-                set
-                {
-                    this.State.Set("Click", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
-            public string MouseOut
-            {
-                get
-                {
-                    return this.State.Get<string>("MouseOut", "");
-                }
-                set
-                {
-                    this.State.Set("MouseOut", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
-            public string MouseOver
-            {
-                get
-                {
-                    return this.State.Get<string>("MouseOver", "");
-                }
-                set
-                {
-                    this.State.Set("MouseOver", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.")]
-            public string Remove
-            {
-                get
-                {
-                    return this.State.Get<string>("Remove", "");
-                }
-                set
-                {
-                    this.State.Set("Remove", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
-            public string Select
-            {
-                get
-                {
-                    return this.State.Get<string>("Select", "");
-                }
-                set
-                {
-                    this.State.Set("Select", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
-            public string Unselect
-            {
-                get
-                {
-                    return this.State.Get<string>("Unselect", "");
-                }
-                set
-                {
-                    this.State.Set("Unselect", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.")]
-            public string Update
-            {
-                get
-                {
-                    return this.State.Get<string>("Update", "");
-                }
-                set
-                {
-                    this.State.Set("Update", value);
-                }
-            }
 
+        private JFunction click;
 
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
+        /// <summary>
+        /// Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("click", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.")]
+        public virtual JFunction Click
         {
             get
             {
-                ConfigOptionsCollection list = base.ConfigOptions;
+                return this.click ?? (this.click = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction mouseOut;
 
+        /// <summary>
+        /// Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("mouseOut", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
+        public virtual JFunction MouseOut
+        {
+            get
+            {
+                return this.mouseOut ?? (this.mouseOut = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction mouseOver;
 
-                list.Add("click", new ConfigOption("click", null, "", this.Click));
+        /// <summary>
+        /// Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("mouseOver", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
+        public virtual JFunction MouseOver
+        {
+            get
+            {
+                return this.mouseOver ?? (this.mouseOver = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
 
-                list.Add("mouseOut", new ConfigOption("mouseOut", null, "", this.MouseOut));
-
-                list.Add("mouseOver", new ConfigOption("mouseOver", null, "", this.MouseOver));
-
-                list.Add("remove", new ConfigOption("remove", null, "", this.Remove));
-
-                list.Add("select", new ConfigOption("select", null, "", this.Select));
-
-                list.Add("unselect", new ConfigOption("unselect", null, "", this.Unselect));
-
-                list.Add("update", new ConfigOption("update", null, "", this.Update));
+        private JFunction remove;
 
-                return list;
+        /// <summary>
+        /// Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("remove", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.")]
+        public virtual JFunction Remove
+        {
+            get
+            {
+                return this.remove ?? (this.remove = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction select;
+
+        /// <summary>
+        /// Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("select", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
+        public virtual JFunction Select
+        {
+            get
+            {
+                return this.select ?? (this.select = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction unselect;
+
+        /// <summary>
+        /// Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("unselect", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
+        public virtual JFunction Unselect
+        {
+            get
+            {
+                return this.unselect ?? (this.unselect = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction update;
+
+        /// <summary>
+        /// Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("update", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.")]
+        public virtual JFunction Update
+        {
+            get
+            {
+                return this.update ?? (this.update = new JFunction(){
+                    Args = new string[] {"event"}
+                });
             }
         }
 
 
-    
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    list.Add("click", new ConfigOption("click", new SerializationOptions("click", typeof(JFunctionJsonConverter)), null, this.Click));list.Add("mouseOut", new ConfigOption("mouseOut", new SerializationOptions("mouseOut", typeof(JFunctionJsonConverter)), null, this.MouseOut));list.Add("mouseOver", new ConfigOption("mouseOver", new SerializationOptions("mouseOver", typeof(JFunctionJsonConverter)), null, this.MouseOver));list.Add("remove", new ConfigOption("remove", new SerializationOptions("remove", typeof(JFunctionJsonConverter)), null, this.Remove));list.Add("select", new ConfigOption("select", new SerializationOptions("select", typeof(JFunctionJsonConverter)), null, this.Select));list.Add("unselect", new ConfigOption("unselect", new SerializationOptions("unselect", typeof(JFunctionJsonConverter)), null, this.Unselect));list.Add("update", new ConfigOption("update", new SerializationOptions("update", typeof(JFunctionJsonConverter)), null, this.Update));
+                    return list;
+                }
+            }
 
         }
 
@@ -1192,49 +1150,9 @@ namespace Ext.ux.Highcharts.Chart
 
     
             /// <summary>
-            /// The alignment of the data label compared to the point.  If right, the right side of the label should be touching the point. For points with an extent, like columns, the alignments also dictates how to align it inside the box, as given with the inside option. Can be one of ""left"", ""center"" or ""right"".
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(@"center")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The alignment of the data label compared to the point.  If right, the right side of the label should be touching the point. For points with an extent, like columns, the alignments also dictates how to align it inside the box, as given with the inside option. Can be one of ""left"", ""center"" or ""right"".")]
-            public string Align
-            {
-                get
-                {
-                    return this.State.Get<string>("Align", @"center");
-                }
-                set
-                {
-                    this.State.Set("Align", value);
-                }
-            }
-
-            /// <summary>
-            /// Whether to allow data labels to overlap. To make the labels less sensitive for overlapping, the dataLabels.padding can be set to 0.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(false)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Whether to allow data labels to overlap. To make the labels less sensitive for overlapping, the dataLabels.padding can be set to 0.")]
-            public bool? AllowOverlap
-            {
-                get
-                {
-                    return this.State.Get<bool?>("AllowOverlap", false);
-                }
-                set
-                {
-                    this.State.Set("AllowOverlap", value);
-                }
-            }
-
-            /// <summary>
             /// The background color or gradient for the data label. Defaults to undefined.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("backgroundColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1254,7 +1172,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The border color for the data label. Defaults to undefined.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("borderColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1274,7 +1192,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The border radius in pixels for the data label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("borderRadius", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1294,7 +1212,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The border width in pixels for the data label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("borderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1314,7 +1232,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text color for the data labels. Defaults to null.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("color", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1332,9 +1250,69 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// The color of the line connecting the data label to the pie slice. The default color is the same as the point's color.
+            /// </summary>
+            [ConfigOption("connectorColor", null)]
+            [DefaultValue(@"{point.color}")]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The color of the line connecting the data label to the pie slice. The default color is the same as the point's color.")]
+            public string ConnectorColor
+            {
+                get
+                {
+                    return this.State.Get<string>("ConnectorColor", @"{point.color}");
+                }
+                set
+                {
+                    this.State.Set("ConnectorColor", value);
+                }
+            }
+
+            /// <summary>
+            /// The distance from the data label to the connector.
+            /// </summary>
+            [ConfigOption("connectorPadding", null)]
+            [DefaultValue(5)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The distance from the data label to the connector.")]
+            public double? ConnectorPadding
+            {
+                get
+                {
+                    return this.State.Get<double?>("ConnectorPadding", 5);
+                }
+                set
+                {
+                    this.State.Set("ConnectorPadding", value);
+                }
+            }
+
+            /// <summary>
+            /// The width of the line connecting the data label to the pie slice.
+            /// </summary>
+            [ConfigOption("connectorWidth", null)]
+            [DefaultValue(1)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The width of the line connecting the data label to the pie slice.")]
+            public double? ConnectorWidth
+            {
+                get
+                {
+                    return this.State.Get<double?>("ConnectorWidth", 1);
+                }
+                set
+                {
+                    this.State.Set("ConnectorWidth", value);
+                }
+            }
+
+            /// <summary>
             /// Whether to hide data labels that are outside the plot area. By default, the data label is moved inside the plot area according to the overflow option.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("crop", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1354,7 +1332,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to defer displaying the data labels until the initial series animation has finished.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("defer", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1372,10 +1350,30 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// The distance of the data label from the pie's edge. Negative numbers put the data label on top of the pie slices. Connectors are only shown for data labels outside the pie.
+            /// </summary>
+            [ConfigOption("distance", null)]
+            [DefaultValue(30)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"The distance of the data label from the pie's edge. Negative numbers put the data label on top of the pie slices. Connectors are only shown for data labels outside the pie.")]
+            public double? Distance
+            {
+                get
+                {
+                    return this.State.Get<double?>("Distance", 30);
+                }
+                set
+                {
+                    this.State.Set("Distance", value);
+                }
+            }
+
+            /// <summary>
             /// Enable or disable the data labels.
             /// </summary>
-            [ConfigOption]
-            [DefaultValue(false)]
+            [ConfigOption("enabled", null)]
+            [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
             [Description(@"Enable or disable the data labels.")]
@@ -1383,7 +1381,7 @@ namespace Ext.ux.Highcharts.Chart
             {
                 get
                 {
-                    return this.State.Get<bool?>("Enabled", false);
+                    return this.State.Get<bool?>("Enabled", true);
                 }
                 set
                 {
@@ -1394,7 +1392,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A format string for the data label. Available variables are the same as for formatter.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("format", null)]
             [DefaultValue(@"{y}")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1414,7 +1412,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Callback JavaScript function to format the data label. Note that if a format is defined, the format takes precedence and the formatter is ignored. Available data are:  this.percentage  Stacked series and pies only. The point's percentage of the total.  this.point  The point object. The point name, if defined, is available through this.point.name.  this.series:  The series object. The series name is available through this.series.name.  this.total  Stacked series only. The total value at this point's x value.				  this.x:  The x value.  this.y:  The y value.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("formatter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1434,7 +1432,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// For points with an extent, like columns, whether to align the data label inside the box or to the actual value point. Defaults to false in most cases, true in stacked columns.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("inside", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1454,7 +1452,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// How to handle data labels that flow outside the plot area. The default is justify, which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display data labels outside the plot area, set crop to false and overflow to ""none"".
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("overflow", null)]
             [DefaultValue(@"justify")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1474,7 +1472,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// When either the borderWidth or the backgroundColor is set, this		is the padding within the box.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("padding", null)]
             [DefaultValue(5)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1494,7 +1492,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("rotation", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1514,7 +1512,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The shadow of the box. Works best with borderWidth or backgroundColor. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("shadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1534,7 +1532,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("shape", null)]
             [DefaultValue(@"square")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1552,9 +1550,29 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// Whether to render the connector as a soft arc or a line with sharp break.
+            /// </summary>
+            [ConfigOption("softConnector", null)]
+            [DefaultValue(true)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Whether to render the connector as a soft arc or a line with sharp break.")]
+            public bool? SoftConnector
+            {
+                get
+                {
+                    return this.State.Get<bool?>("SoftConnector", true);
+                }
+                set
+                {
+                    this.State.Set("SoftConnector", value);
+                }
+            }
+
+            /// <summary>
             /// Styles for the label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue(@"{""color"": ""contrast"", ""fontSize"": ""11px"", ""fontWeight"": ""bold"", ""textShadow"": ""0 0 6px contrast, 0 0 3px contrast"" }")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1574,7 +1592,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to use HTML to render the labels.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1594,7 +1612,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The vertical alignment of a data label. Can be one of top, middle or bottom. The default value depends on the data, for instance in a column chart, the label is above positive values and below negative values.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("verticalAlign", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1614,7 +1632,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The x position offset of the label relative to the point. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("x", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1634,7 +1652,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The y position offset of the label relative to the point. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("y", null)]
             [DefaultValue(-6)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1654,7 +1672,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The Z index of the data labels. The default Z index puts it above the series. Use a Z index of 2 to display it behind the series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("zIndex", null)]
             [DefaultValue(6)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -1685,10 +1703,6 @@ namespace Ext.ux.Highcharts.Chart
                 ConfigOptionsCollection list = base.ConfigOptions;
 
 
-                list.Add("align", new ConfigOption("align", null, @"center", this.Align));
-
-                list.Add("allowOverlap", new ConfigOption("allowOverlap", null, false, this.AllowOverlap));
-
                 list.Add("backgroundColor", new ConfigOption("backgroundColor", null, "", this.BackgroundColor));
 
                 list.Add("borderColor", new ConfigOption("borderColor", null, "", this.BorderColor));
@@ -1699,11 +1713,19 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("color", new ConfigOption("color", null, "", this.Color));
 
+                list.Add("connectorColor", new ConfigOption("connectorColor", null, @"{point.color}", this.ConnectorColor));
+
+                list.Add("connectorPadding", new ConfigOption("connectorPadding", null, 5, this.ConnectorPadding));
+
+                list.Add("connectorWidth", new ConfigOption("connectorWidth", null, 1, this.ConnectorWidth));
+
                 list.Add("crop", new ConfigOption("crop", null, true, this.Crop));
 
                 list.Add("defer", new ConfigOption("defer", null, true, this.Defer));
 
-                list.Add("enabled", new ConfigOption("enabled", null, false, this.Enabled));
+                list.Add("distance", new ConfigOption("distance", null, 30, this.Distance));
+
+                list.Add("enabled", new ConfigOption("enabled", null, true, this.Enabled));
 
                 list.Add("format", new ConfigOption("format", null, @"{y}", this.Format));
 
@@ -1720,6 +1742,8 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("shadow", new ConfigOption("shadow", null, null, this.Shadow));
 
                 list.Add("shape", new ConfigOption("shape", null, @"square", this.Shape));
+
+                list.Add("softConnector", new ConfigOption("softConnector", null, true, this.SoftConnector));
 
                 list.Add("style", new ConfigOption("style", null, @"{""color"": ""contrast"", ""fontSize"": ""11px"", ""fontWeight"": ""bold"", ""textShadow"": ""0 0 6px contrast, 0 0 3px contrast"" }", this.Style));
 
@@ -1739,213 +1763,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private DataLabelsEvents events;
 
-        }
-
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public DataLabelsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new DataLabelsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
 
         /// <summary>
-        /// 
+        /// Client Side Events#
         /// </summary>
-        public partial class Events : Observable
+        public partial class DataLabelsEvents : ComponentListeners
         {
 
-    
+
+
+
             /// <summary>
-            /// Fires after the series has finished its initial animation, or in case animation is disabled, immediately as the series is displayed.
+            /// 
             /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires after the series has finished its initial animation, or in case animation is disabled, immediately as the series is displayed.")]
-            public string AfterAnimate
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
             {
                 get
                 {
-                    return this.State.Get<string>("AfterAnimate", "");
-                }
-                set
-                {
-                    this.State.Set("AfterAnimate", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the checkbox next to the series' name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the default action which is to toggle the select state of the series.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the checkbox next to the series' name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the default action which is to toggle the select state of the series.")]
-            public string CheckboxClick
-            {
-                get
-                {
-                    return this.State.Get<string>("CheckboxClick", "");
-                }
-                set
-                {
-                    this.State.Set("CheckboxClick", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the series is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Additionally, event.point holds a pointer to the nearest point on the graph.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the series is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Additionally, event.point holds a pointer to the nearest point on the graph.")]
-            public string Click
-            {
-                get
-                {
-                    return this.State.Get<string>("Click", "");
-                }
-                set
-                {
-                    this.State.Set("Click", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling .hide().
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling .hide().")]
-            public string Hide
-            {
-                get
-                {
-                    return this.State.Get<string>("Hide", "");
-                }
-                set
-                {
-                    this.State.Set("Hide", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the legend item belonging to the series is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. The default action is to toggle the visibility of the series. This can be prevented by returning false or calling event.preventDefault().
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the legend item belonging to the series is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. The default action is to toggle the visibility of the series. This can be prevented by returning false or calling event.preventDefault().")]
-            public string LegendItemClick
-            {
-                get
-                {
-                    return this.State.Get<string>("LegendItemClick", "");
-                }
-                set
-                {
-                    this.State.Set("LegendItemClick", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the mouse leaves the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the  stickyTracking option is true, mouseOut doesn't happen before the mouse enters another graph or leaves the plot area.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the mouse leaves the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the  stickyTracking option is true, mouseOut doesn't happen before the mouse enters another graph or leaves the plot area.")]
-            public string MouseOut
-            {
-                get
-                {
-                    return this.State.Get<string>("MouseOut", "");
-                }
-                set
-                {
-                    this.State.Set("MouseOut", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the mouse enters the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the mouse enters the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
-            public string MouseOver
-            {
-                get
-                {
-                    return this.State.Get<string>("MouseOver", "");
-                }
-                set
-                {
-                    this.State.Set("MouseOver", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the series is shown after chart generation time, either by clicking the legend item or by calling .show().
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the series is shown after chart generation time, either by clicking the legend item or by calling .show().")]
-            public string Show
-            {
-                get
-                {
-                    return this.State.Get<string>("Show", "");
-                }
-                set
-                {
-                    this.State.Set("Show", value);
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
                 }
             }
 
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("afterAnimate", new ConfigOption("afterAnimate", null, "", this.AfterAnimate));
-
-                list.Add("checkboxClick", new ConfigOption("checkboxClick", null, "", this.CheckboxClick));
-
-                list.Add("click", new ConfigOption("click", null, "", this.Click));
-
-                list.Add("hide", new ConfigOption("hide", null, "", this.Hide));
-
-                list.Add("legendItemClick", new ConfigOption("legendItemClick", null, "", this.LegendItemClick));
-
-                list.Add("mouseOut", new ConfigOption("mouseOut", null, "", this.MouseOut));
-
-                list.Add("mouseOver", new ConfigOption("mouseOver", null, "", this.MouseOver));
-
-                list.Add("show", new ConfigOption("show", null, "", this.Show));
-
-                return list;
-            }
         }
 
-
-    
 
         }
 
@@ -1970,195 +1845,215 @@ namespace Ext.ux.Highcharts.Chart
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
-
+list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }
         }
 
+
+    
+	        private PointEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public PointEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new PointEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
     
 
         /// <summary>
-        /// Events for each single point
+        /// Client Side Events#
         /// </summary>
-        public partial class Events : Observable
+        public partial class PointEvents : ComponentListeners
         {
 
-    
-            /// <summary>
-            /// Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.")]
-            public string Click
-            {
-                get
-                {
-                    return this.State.Get<string>("Click", "");
-                }
-                set
-                {
-                    this.State.Set("Click", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
-            public string MouseOut
-            {
-                get
-                {
-                    return this.State.Get<string>("MouseOut", "");
-                }
-                set
-                {
-                    this.State.Set("MouseOut", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
-            public string MouseOver
-            {
-                get
-                {
-                    return this.State.Get<string>("MouseOver", "");
-                }
-                set
-                {
-                    this.State.Set("MouseOver", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.")]
-            public string Remove
-            {
-                get
-                {
-                    return this.State.Get<string>("Remove", "");
-                }
-                set
-                {
-                    this.State.Set("Remove", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
-            public string Select
-            {
-                get
-                {
-                    return this.State.Get<string>("Select", "");
-                }
-                set
-                {
-                    this.State.Set("Select", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
-            public string Unselect
-            {
-                get
-                {
-                    return this.State.Get<string>("Unselect", "");
-                }
-                set
-                {
-                    this.State.Set("Unselect", value);
-                }
-            }
-
-            /// <summary>
-            /// Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.")]
-            public string Update
-            {
-                get
-                {
-                    return this.State.Get<string>("Update", "");
-                }
-                set
-                {
-                    this.State.Set("Update", value);
-                }
-            }
 
+        private JFunction click;
 
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
+        /// <summary>
+        /// Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("click", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when a point is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the series.allowPointSelect option is true, the default action for the point's click event is to toggle the point's select state. Returning false cancels this action.")]
+        public virtual JFunction Click
         {
             get
             {
-                ConfigOptionsCollection list = base.ConfigOptions;
+                return this.click ?? (this.click = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction mouseOut;
 
+        /// <summary>
+        /// Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("mouseOut", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the mouse leaves the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
+        public virtual JFunction MouseOut
+        {
+            get
+            {
+                return this.mouseOut ?? (this.mouseOut = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction mouseOver;
 
-                list.Add("click", new ConfigOption("click", null, "", this.Click));
+        /// <summary>
+        /// Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("mouseOver", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the mouse enters the area close to the point. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
+        public virtual JFunction MouseOver
+        {
+            get
+            {
+                return this.mouseOver ?? (this.mouseOver = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
 
-                list.Add("mouseOut", new ConfigOption("mouseOut", null, "", this.MouseOut));
-
-                list.Add("mouseOver", new ConfigOption("mouseOver", null, "", this.MouseOver));
-
-                list.Add("remove", new ConfigOption("remove", null, "", this.Remove));
-
-                list.Add("select", new ConfigOption("select", null, "", this.Select));
-
-                list.Add("unselect", new ConfigOption("unselect", null, "", this.Unselect));
-
-                list.Add("update", new ConfigOption("update", null, "", this.Update));
+        private JFunction remove;
 
-                return list;
+        /// <summary>
+        /// Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("remove", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is removed using the .remove() method. One parameter, event, is passed to the function. Returning false cancels the operation.")]
+        public virtual JFunction Remove
+        {
+            get
+            {
+                return this.remove ?? (this.remove = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction select;
+
+        /// <summary>
+        /// Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("select", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is selected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
+        public virtual JFunction Select
+        {
+            get
+            {
+                return this.select ?? (this.select = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction unselect;
+
+        /// <summary>
+        /// Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("unselect", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is unselected either programmatically or following a click on the point. One parameter, event, is passed to the function. Returning false cancels the operation.")]
+        public virtual JFunction Unselect
+        {
+            get
+            {
+                return this.unselect ?? (this.unselect = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction update;
+
+        /// <summary>
+        /// Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("update", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the point is updated programmatically through the .update() method. One parameter, event, is passed to the function. The  new point options can be accessed through event.options. Returning false cancels the operation.")]
+        public virtual JFunction Update
+        {
+            get
+            {
+                return this.update ?? (this.update = new JFunction(){
+                    Args = new string[] {"event"}
+                });
             }
         }
 
 
-    
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    list.Add("click", new ConfigOption("click", new SerializationOptions("click", typeof(JFunctionJsonConverter)), null, this.Click));list.Add("mouseOut", new ConfigOption("mouseOut", new SerializationOptions("mouseOut", typeof(JFunctionJsonConverter)), null, this.MouseOut));list.Add("mouseOver", new ConfigOption("mouseOver", new SerializationOptions("mouseOver", typeof(JFunctionJsonConverter)), null, this.MouseOver));list.Add("remove", new ConfigOption("remove", new SerializationOptions("remove", typeof(JFunctionJsonConverter)), null, this.Remove));list.Add("select", new ConfigOption("select", new SerializationOptions("select", typeof(JFunctionJsonConverter)), null, this.Select));list.Add("unselect", new ConfigOption("unselect", new SerializationOptions("unselect", typeof(JFunctionJsonConverter)), null, this.Unselect));list.Add("update", new ConfigOption("update", new SerializationOptions("update", typeof(JFunctionJsonConverter)), null, this.Update));
+                    return list;
+                }
+            }
 
         }
 
@@ -2193,6 +2088,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private StatesEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public StatesEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new StatesEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// Options for the hovered series
@@ -2204,7 +2125,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Enable separate styles for the hovered series to visualize that the user hovers either the series itself or the legend.			.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2224,7 +2145,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Pixel with of the graph line.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("lineWidth", null)]
             [DefaultValue(2)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2244,7 +2165,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The additional line width for the graph of a hovered series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("lineWidthPlus", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2287,6 +2208,32 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private HoverEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public HoverEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new HoverEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
 
         /// <summary>
         /// Options for the halo appearing around the hovered point in line-type series as well as outside the hovered slice in pie charts. By default the halo is filled by the current point or series color with an opacity of 0.25. The halo can be disabled by setting the halo option to false.
@@ -2298,7 +2245,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A collection of SVG attributes to override the appearance of the halo, for example fill, stroke and stroke-width.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("attributes", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2318,7 +2265,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Opacity for the halo unless a specific fill is overridden using the attributes setting. Note that Highcharts is only able to apply opacity to colors of hex or rgb(a) formats.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("opacity", null)]
             [DefaultValue(0.25)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2338,7 +2285,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The pixel size of the halo. For point markers this is the radius of the halo. For pie slices it is the width of the halo outside the slice. For bubbles it defaults to 5 and is the width of the halo outside the bubble.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("size", null)]
             [DefaultValue(10)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2381,6 +2328,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private HaloEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public HaloEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new HaloEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class HaloEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 
@@ -2395,7 +2400,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Enable or disable the point marker. If null, the markers are hidden when the data is dense, and shown for more widespread data points.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2415,7 +2420,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The fill color of the point marker. When null, the series' or point's color is used.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("fillColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2435,7 +2440,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Image markers only. Set the image width explicitly. When using this option, a width must also be set.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("height", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2455,7 +2460,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The color of the point marker's outline. When null, the series' or point's color is used.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("lineColor", null)]
             [DefaultValue(@"#FFFFFF")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2475,7 +2480,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The width of the point marker's outline.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("lineWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2495,7 +2500,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The radius of the point marker.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("radius", null)]
             [DefaultValue(4)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2515,7 +2520,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("states", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2535,7 +2540,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A predefined shape or symbol for the marker. When null, the symbol is pulled from options.symbols. Other possible values are ""circle"", ""square"", ""diamond"", ""triangle"" and ""triangle-down"".Additionally, the URL to a graphic can be given on this form:  ""url(graphic.png)"". Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server.Custom callbacks for symbol path generation can also be added to Highcharts.SVGRenderer.prototype.symbols. The callback is then used by its method name, as shown in the demo.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("symbol", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2555,7 +2560,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Image markers only. Set the image width explicitly. When using this option, a height must also be set.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("width", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2610,9 +2615,131 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private MarkerEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public MarkerEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new MarkerEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class MarkerEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class HoverEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class StatesEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
 
         }
 
@@ -2630,7 +2757,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// For series on a datetime axes, the date format in the tooltip's header will by default be guessed based on the closest data points. This member gives the default string representations used for each unit. For an overview of the replacement codes, see dateFormat.Defaults to:{    millisecond:""%A, %b %e, %H:%M:%S.%L"",    second:""%A, %b %e, %H:%M:%S"",    minute:""%A, %b %e, %H:%M"",    hour:""%A, %b %e, %H:%M"",    day:""%A, %b %e, %Y"",    week:""Week from %A, %b %e, %Y"",    month:""%B %Y"",    year:""%Y""}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dateTimeLabelFormats", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2650,7 +2777,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether the tooltip should follow the mouse as it moves across columns, pie slices and other point types with an extent. By default it behaves this way for scatter, bubble and pie series by override in the plotOptions for those series types. For touch moves to behave the same way, followTouchMove must be true also.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("followPointer", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2670,7 +2797,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether the tooltip should follow the finger as it moves on a touch device. If chart.zoomType is set, it will override followTouchMove.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("followTouchMove", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2690,7 +2817,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A string to append to the tooltip format.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("footerFormat", null)]
             [DefaultValue(@"false")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2710,7 +2837,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The HTML of the tooltip header line. Variables are enclosed by curly brackets. Available variables			are point.key, series.name, series.color and other members from the point and series objects. The point.key variable contains the category name, x value or datetime string depending on the type of axis. For datetime axes, the point.key date format can be set using tooltip.xDateFormat. Defaults to &lt;span style=""font-size: 10px""&gt;{point.key}&lt;/span&gt;&lt;br/&gt;
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("headerFormat", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2730,7 +2857,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The number of milliseconds to wait until the tooltip is hidden when mouse out from a point or chart. 
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("hideDelay", null)]
             [DefaultValue(500)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2750,7 +2877,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The HTML of the point's line in the tooltip. Variables are enclosed by curly brackets. Available variables are point.x, point.y, series.name and series.color and other properties on the same form. Furthermore,  point.y can be extended by the tooltip.valuePrefix and tooltip.valueSuffix variables. This can also be overridden for each series, which makes it a good hook for displaying units.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("pointFormat", null)]
             [DefaultValue(@"<span style=""color:{point.color}"">\u25CF</span> {series.name}: <b>{point.y}</b><br/>")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2770,7 +2897,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A callback function for formatting the HTML output for a single point in the tooltip. Like the pointFormat string, but with more flexibility.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("pointFormatter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2790,7 +2917,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// How many decimals to show in each series' y value. This is overridable in each series' tooltip options object. The default is to preserve all decimals.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("valueDecimals", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2810,7 +2937,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A string to prepend to each series' y value. Overridable in each series' tooltip options object.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("valuePrefix", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2830,7 +2957,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A string to append to each series' y value. Overridable in each series' tooltip options object.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("valueSuffix", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2850,7 +2977,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The format for the date in the tooltip header if the X axis is a datetime axis. The default is a best guess based on the smallest distance between points in the chart.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("xDateFormat", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2911,6 +3038,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private TooltipEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public TooltipEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new TooltipEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class TooltipEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 
@@ -2925,7 +3110,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Defines the color of the series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("color", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2945,7 +3130,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// A name for the dash style to use for the graph.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("dashStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2965,7 +3150,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Defines the fill color for the series (in area type series)
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("fillColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -2985,7 +3170,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The value up to where the zone extends, if undefined the zones stretches to the last value in the series.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("value", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -3030,6 +3215,264 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private ZonesEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public ZonesEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new ZonesEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class ZonesEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
+
+        }
+
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class FunnelEvents : ComponentListeners
+        {
+
+
+        private JFunction afterAnimate;
+
+        /// <summary>
+        /// Fires after the series has finished its initial animation, or in case animation is disabled, immediately as the series is displayed.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("afterAnimate", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires after the series has finished its initial animation, or in case animation is disabled, immediately as the series is displayed.")]
+        public virtual JFunction AfterAnimate
+        {
+            get
+            {
+                return this.afterAnimate ?? (this.afterAnimate = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction checkboxClick;
+
+        /// <summary>
+        /// Fires when the checkbox next to the point name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the default action which is to toggle the select state of the series.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("checkboxClick", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the checkbox next to the point name in the legend is clicked. One parameter, event, is passed to the function. The state of the checkbox is found by event.checked. The checked item is found by event.item. Return false to prevent the default action which is to toggle the select state of the series.")]
+        public virtual JFunction CheckboxClick
+        {
+            get
+            {
+                return this.checkboxClick ?? (this.checkboxClick = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction click;
+
+        /// <summary>
+        /// Fires when the series is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Additionally, event.point holds a pointer to the nearest point on the graph.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("click", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the series is clicked. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. Additionally, event.point holds a pointer to the nearest point on the graph.")]
+        public virtual JFunction Click
+        {
+            get
+            {
+                return this.click ?? (this.click = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction hide;
+
+        /// <summary>
+        /// Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling .hide().
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("hide", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the series is hidden after chart generation time, either by clicking the legend item or by calling .hide().")]
+        public virtual JFunction Hide
+        {
+            get
+            {
+                return this.hide ?? (this.hide = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction legendItemClick;
+
+        /// <summary>
+        /// Not applicable to pies, as the legend item is per point. See point.events.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("legendItemClick", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Not applicable to pies, as the legend item is per point. See point.events.")]
+        public virtual JFunction LegendItemClick
+        {
+            get
+            {
+                return this.legendItemClick ?? (this.legendItemClick = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction mouseOut;
+
+        /// <summary>
+        /// Fires when the mouse leaves the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the  stickyTracking option is true, mouseOut doesn't happen before the mouse enters another graph or leaves the plot area.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("mouseOut", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the mouse leaves the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts. If the  stickyTracking option is true, mouseOut doesn't happen before the mouse enters another graph or leaves the plot area.")]
+        public virtual JFunction MouseOut
+        {
+            get
+            {
+                return this.mouseOut ?? (this.mouseOut = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction mouseOver;
+
+        /// <summary>
+        /// Fires when the mouse enters the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("mouseOver", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the mouse enters the graph. One parameter, event, is passed to the function. This contains common event information based on jQuery or MooTools depending on  which library is used as the base for Highcharts.")]
+        public virtual JFunction MouseOver
+        {
+            get
+            {
+                return this.mouseOver ?? (this.mouseOver = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+        private JFunction show;
+
+        /// <summary>
+        /// Fires when the series is shown after chart generation time, either by clicking the legend item or by calling .show().
+        /// </summary>
+        [ListenerArgument(0, "event")]
+        [TypeConverter(typeof(ExpandableObjectConverter))]
+        [ConfigOption("show", typeof(JFunctionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [NotifyParentProperty(true)]
+        [Description(@"Fires when the series is shown after chart generation time, either by clicking the legend item or by calling .show().")]
+        public virtual JFunction Show
+        {
+            get
+            {
+                return this.show ?? (this.show = new JFunction(){
+                    Args = new string[] {"event"}
+                });
+            }
+        }
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    list.Add("afterAnimate", new ConfigOption("afterAnimate", new SerializationOptions("afterAnimate", typeof(JFunctionJsonConverter)), null, this.AfterAnimate));list.Add("checkboxClick", new ConfigOption("checkboxClick", new SerializationOptions("checkboxClick", typeof(JFunctionJsonConverter)), null, this.CheckboxClick));list.Add("click", new ConfigOption("click", new SerializationOptions("click", typeof(JFunctionJsonConverter)), null, this.Click));list.Add("hide", new ConfigOption("hide", new SerializationOptions("hide", typeof(JFunctionJsonConverter)), null, this.Hide));list.Add("legendItemClick", new ConfigOption("legendItemClick", new SerializationOptions("legendItemClick", typeof(JFunctionJsonConverter)), null, this.LegendItemClick));list.Add("mouseOut", new ConfigOption("mouseOut", new SerializationOptions("mouseOut", typeof(JFunctionJsonConverter)), null, this.MouseOut));list.Add("mouseOver", new ConfigOption("mouseOver", new SerializationOptions("mouseOver", typeof(JFunctionJsonConverter)), null, this.MouseOver));list.Add("show", new ConfigOption("show", new SerializationOptions("show", typeof(JFunctionJsonConverter)), null, this.Show));
+                    return list;
+                }
+            }
 
         }
 

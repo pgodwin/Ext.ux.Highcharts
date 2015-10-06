@@ -26,7 +26,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Whether to show the credits text.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -46,7 +46,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The URL for the credits label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("href", null)]
             [DefaultValue(@"http://www.highcharts.com")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -66,7 +66,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// Position configuration for the credits label. Supported properties are  align, verticalAlign, x and y. Defaults to position: {	align: 'right',	x: -10,	verticalAlign: 'bottom',	y: -5}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("position", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -86,7 +86,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// CSS styles for the credits label. Defaults to:style: {	cursor: 'pointer',	color: '#909090',	fontSize: '10px'}
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("style", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -106,7 +106,7 @@ namespace Ext.ux.Highcharts.Chart
             /// <summary>
             /// The text for the credits label.
             /// </summary>
-            [ConfigOption]
+            [ConfigOption("text", null)]
             [DefaultValue(@"Highcharts.com")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
@@ -153,6 +153,64 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
+	        private CreditsEvents events;
+
+			/// <summary>
+			/// Client-side JavaScript Event Handlers
+			/// </summary>
+			[Meta]
+            [ConfigOption("events", JsonMode.Object)]
+            [Category("2. Observable")]
+            [NotifyParentProperty(true)]
+            [PersistenceMode(PersistenceMode.InnerProperty)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+            public CreditsEvents Listeners
+			{
+				get
+				{
+					if (this.events == null)
+					{
+						this.events = new CreditsEvents();
+					}
+			
+					return this.events;
+				}
+			}
+
+
+    
+
+    
+
+        /// <summary>
+        /// Client Side Events#
+        /// </summary>
+        public partial class CreditsEvents : ComponentListeners
+        {
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+		    [Browsable(false)]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+		    [XmlIgnore]
+            [JsonIgnore]
+            public override ConfigOptionsCollection ConfigOptions
+            {
+                get
+                {
+                    ConfigOptionsCollection list = base.ConfigOptions;
+                    
+                    return list;
+                }
+            }
+
+        }
+
 
         }
 

@@ -40,7 +40,11 @@
                         <a:ColumnSerie runat="server" DataIndex="Value" />
                     </Series>
                     <ChartConfig runat="server">
-                        <Chart runat="server" ShowAxes="true" Type="column"  />
+                        <Chart runat="server" ShowAxes="true" Type="column" >
+                            <Listeners>
+                                <Click Handler="console.log(event);" />
+                            </Listeners>
+                        </Chart>
                         <Title runat="server" Text="Test Chart Test" />
                     </ChartConfig>
                 </a:HighChart>
