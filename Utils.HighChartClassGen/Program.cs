@@ -218,5 +218,69 @@ namespace Utils.HighChartClassGen
             get { return isParent && string.IsNullOrEmpty(this.parent); }
         }
 
+
+        /// <summary>
+        /// Attemps to get the .NET type from the current item.
+        /// </summary>
+        /// <returns></returns>
+        public string GetDotNetType()
+        {
+            var value = this.returnType;
+
+            // Handle multiple return types
+            if (value != null && value.Contains("|") && !value.StartsWith("Array"))
+                return "object";
+            switch (value)
+            {
+                case null:
+                case "":
+                case "null":
+                case "Color":
+                case "String":
+                    return "string";
+
+                case "Mixed":
+                case "Object":
+                    return "object";
+
+                case "Number":
+                    return "double?";
+
+                case "Boolean":
+                    return "bool?";
+                case "Array<Object|Array>":
+                case "Array<Object|Array|Number>":
+                case "Array<Object|Number>":
+                case "Array<String|Number>":
+                case "Array<Object>":
+                    return "object[]";
+
+                case "Array<Color>":
+                case "Array<String>":
+                    return "string[]";
+
+                case "Array<Number>":
+                    return "double[]";
+
+                case "Array<Array<Mixed>>":
+                    return "object[,]";
+
+                case "plotOptions.series.states":
+                    return "PlotOptions.Series.States";
+                default:
+                    return "string";
+            }
+            
+        }
+
+        public string GetSerialisationOptions()
+        {
+            if (this.returnType.Contain("Array"))
+            {
+                "new SerializationOptions(\"" + this.name + "\", JsonMode.AlwaysArray)";
+            }
+            return "null";
+        }
+
     }
 }
