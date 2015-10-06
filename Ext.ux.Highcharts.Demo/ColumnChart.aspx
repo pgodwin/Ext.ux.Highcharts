@@ -20,21 +20,24 @@
             </ResourceItems>
         </ext:ResourceManager>
         
-        <ext:Store runat="server" ID="storeTest">
-            <Model>
-                <ext:Model runat="server">
-                    <Fields>
-                        <ext:ModelField Name="Name" />
-                        <ext:ModelField Name="Value" Type="Float" />
-                    </Fields>
-                </ext:Model>
-            </Model>
-        </ext:Store>
+      
         <ext:Panel runat="server" Height="500" Width="800" Layout="FitLayout">
             <Items>
-                <a:HighChart runat="server" ID="Test" StoreID="storeTest" XField="Name">
+                <a:HighChart runat="server" ID="Test" XField="Name">
+                    <Store>
+                        <ext:Store runat="server" ID="storeTest">
+                            <Model>
+                                <ext:Model runat="server">
+                                    <Fields>
+                                        <ext:ModelField Name="Name" />
+                                        <ext:ModelField Name="Value" Type="Float" />
+                                    </Fields>
+                                </ext:Model>
+                            </Model>
+                        </ext:Store>
+                    </Store>
                     <Series>
-                        <a:ColumnSerie runat="server" ID="testItem" DataIndex="Value" />
+                        <a:ColumnSerie runat="server" DataIndex="Value" />
                     </Series>
                     <ChartConfig runat="server">
                         <Chart runat="server" ShowAxes="true" Type="column"  />
