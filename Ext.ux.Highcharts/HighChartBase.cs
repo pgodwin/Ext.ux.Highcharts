@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
@@ -15,8 +16,8 @@ using Component = Ext.Net.Component;
 
 namespace Ext.ux.Highcharts
 {
-   
-    public abstract partial class HighChartBase : Component, IStore<Store>
+    [Meta]
+    public abstract partial class HighChartBase : ComponentBase, IStore<Store>, INoneContentable
     {
 
 
@@ -101,22 +102,31 @@ namespace Ext.ux.Highcharts
 
         private HighChartSeriesCollection series;
 
-        [ConfigOption("series", JsonMode.AlwaysArray)]
+        [ConfigOption("series", typeof(ItemCollectionJsonConverter))]
         [Category("HighChart")]
-        [DefaultValue(null)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
-        //[ViewStateMember]
-        public virtual HighChartSeriesCollection Series
+        [Meta]
+        public HighChartSeriesCollection Series
         {
             get
             {
                 if (this.series == null)
                 {
                     this.series = new HighChartSeriesCollection();
-                    //this.series.TrackViewState();
+                    this.series.AfterItemAdd += this.series_AfterItemAdd;
+                    this.series.AfterItemRemove += this.AfterItemRemove;
+                    
                 }
                 return this.series;
             }
+        }
+
+        void series_AfterItemAdd(Serie component)
+        {
+            component.RegisterResources();
+            //ResourceManager.RegisterControlResources<Serie>();
+            this.AfterItemAdd(component);
+
         }
 
 
@@ -157,37 +167,39 @@ namespace Ext.ux.Highcharts
         }
 
 
-        private ChartConfigurationCollection<ChartConfig> chartConfig;
+        ChartConfig chartConfig;
 
 
         [Meta]
         [Category("HighCharts")]
-        [ConfigOption("chartConfig>Config")]
+        [ConfigOption("chartConfig", typeof(LazyControlJsonConverter))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [Description("Options regarding the chart area and plot area as well as general chart options.")]
-        public ChartConfigurationCollection<ChartConfig> ChartConfig
+        public virtual ChartConfig ChartConfig
         {
             get
             {
-                if (this.chartConfig == null)
+                return this.chartConfig;
+            }
+            set
+            {
+                if (this.chartConfig != null)
                 {
-                    this.chartConfig = new ChartConfigurationCollection<ChartConfig>();
-                    //this.chartConfig.AfterItemAdd += this.AfterItemAdd;
-                    //this.chartConfig.AfterItemRemove += this.AfterItemRemove;
+                    this.Controls.Remove(this.chartConfig);
+                    this.LazyItems.Remove(this.chartConfig);
                 }
 
-                return this.chartConfig;
+                this.chartConfig = value;
+
+                if (this.chartConfig != null)
+                {
+                    this.LazyItems.Add(this.chartConfig);
+                    this.Controls.Add(this.chartConfig);
+                }
             }
         }
 
-        /// <summary>
-        /// Returns a the charts Configuration
-        /// </summary>
-        public ChartConfig GetView()
-        {
-            return this.ChartConfig.Config;
-        }
-       
+
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -200,15 +212,35 @@ namespace Ext.ux.Highcharts
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
-                list.Add("series", new ConfigOption("series", new SerializationOptions("series", JsonMode.AlwaysArray), null, this.Series));
-                list.Add("store", new ConfigOption("store", new SerializationOptions("store>Primary", 1), null, this.Store));
+                list.Add("storeID", new ConfigOption("storeID", new SerializationOptions("store", JsonMode.ToClientID), "", this.StoreID));
+                list.Add("store", new ConfigOption("store", new SerializationOptions("store>Primary"), null, this.Store));
+
+                list.Add("series", new ConfigOption("series", new SerializationOptions("series", typeof(ItemCollectionJsonConverter)), null, this.Series));
                 list.Add("xField", new ConfigOption("xField", null, "", this.XField));
-                list.Add("yField", new ConfigOption("yField", null, "", this.XField));
-                list.Add("chartConfig", new ConfigOption("chartConfig", new SerializationOptions("chartConfig", typeof(LazyControlJsonConverter)), "", this.ChartConfig));
+                list.Add("yField", new ConfigOption("yField", null, "", this.YField));
+                list.Add("chartConfig", new ConfigOption("chartConfig", new SerializationOptions("chartConfig", typeof(LazyControlJsonConverter)), null, this.ChartConfig));
 
                 return list;
             }
         }
+
+        new public abstract partial class Builder<THighChartBase, TBuilder> :
+            ComponentBase.Builder<THighChartBase, TBuilder>
+            where THighChartBase : HighChartBase
+            where TBuilder : Builder<THighChartBase, TBuilder>
+        {
+            public Builder(THighChartBase component) : base(component) { }
+
+            public virtual TBuilder Series(Action<HighChartSeriesCollection> action)
+            {
+                action(this.ToComponent().Series);
+                return this as TBuilder;
+            }
+
+			 
+
+        }
+
 
     }
 }

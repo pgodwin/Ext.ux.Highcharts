@@ -14,6 +14,7 @@ namespace Ext.ux.Highcharts
     public abstract class ChartConfigBase : Observable
     {
 
+        private Chart.Chart _chart;
 
         [Meta]
         [DefaultValue(null)]
@@ -21,15 +22,28 @@ namespace Ext.ux.Highcharts
         [ConfigOption("chart", typeof(LazyControlJsonConverter))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [Description("Options regarding the chart area and plot area as well as general chart options.")]
+        [NotifyParentProperty(true)]
         public virtual Chart.Chart Chart
         {
             get
             {
-                return this.State.Get<Chart.Chart>("Chart", null);
+                return this._chart;
             }
             set
             {
-                this.State.Set("Chart", value);
+                if (this._chart != null)
+                {
+                    this.Controls.Remove(this._chart);
+                    this.LazyItems.Remove(this._chart);
+                }
+
+                this._chart = value;
+
+                if (this._chart != null)
+                {
+                    this.LazyItems.Add(this._chart);
+                    this.Controls.Add(this._chart);
+                }
             }
         }
 
@@ -52,6 +66,8 @@ namespace Ext.ux.Highcharts
             }
         }
 
+        private Chart.Title _title;
+
         [Meta]
         [DefaultValue(null)]
         [Category("HighCharts")]
@@ -62,11 +78,23 @@ namespace Ext.ux.Highcharts
         {
             get
             {
-                return this.State.Get<Chart.Title>("Title", null);
+                return this._title;
             }
             set
             {
-                this.State.Set("Title", value);
+                if (this._title != null)
+                {
+                    this.Controls.Remove(this._title);
+                    this.LazyItems.Remove(this._title);
+                }
+
+                this._title = value;
+
+                if (this._title != null)
+                {
+                    this.LazyItems.Add(this._title);
+                    this.Controls.Add(this._title);
+                }
             }
         }
 

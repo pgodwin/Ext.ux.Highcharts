@@ -623,25 +623,25 @@ namespace Ext.ux.Highcharts.Chart
                 }
             }
 
-            /// <summary>
-            /// The distance between the outer edge of the chart and the content, like title, legend, axis title or labels. The numbers in the array designate top, right, bottom and left respectively. Use the options spacingTop, spacingRight, spacingBottom and spacingLeft options for shorthand setting of one option.
-            /// </summary>
-            [ConfigOption]
-            [DefaultValue(new double[] { 10, 10, 15, 10})]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The distance between the outer edge of the chart and the content, like title, legend, axis title or labels. The numbers in the array designate top, right, bottom and left respectively. Use the options spacingTop, spacingRight, spacingBottom and spacingLeft options for shorthand setting of one option.")]
-            public double[] Spacing
-            {
-                get
-                {
-                    return this.State.Get<double[]>("Spacing", new double[] { 10, 10, 15, 10});
-                }
-                set
-                {
-                    this.State.Set("Spacing", value);
-                }
-            }
+            ///// <summary>
+            ///// The distance between the outer edge of the chart and the content, like title, legend, axis title or labels. The numbers in the array designate top, right, bottom and left respectively. Use the options spacingTop, spacingRight, spacingBottom and spacingLeft options for shorthand setting of one option.
+            ///// </summary>
+            //[ConfigOption]
+            //[DefaultValue(new double[] { 10, 10, 15, 10})]
+            //[NotifyParentProperty(true)]
+            //[Category("HighChart")]
+            //[Description(@"The distance between the outer edge of the chart and the content, like title, legend, axis title or labels. The numbers in the array designate top, right, bottom and left respectively. Use the options spacingTop, spacingRight, spacingBottom and spacingLeft options for shorthand setting of one option.")]
+            //public double[] Spacing
+            //{
+            //    get
+            //    {
+            //        return this.State.Get<double[]>("Spacing", new double[] { 10, 10, 15, 10});
+            //    }
+            //    set
+            //    {
+            //        this.State.Set("Spacing", value);
+            //    }
+            //}
 
             /// <summary>
             /// The space between the bottom edge of the chart and the content (plot area, axis title and labels, title, subtitle or  legend in top position).
@@ -877,7 +877,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("showAxes", new ConfigOption("showAxes", null, false, this.ShowAxes));
 
-                list.Add("spacing", new ConfigOption("spacing", null, new double[] { 10, 10, 15, 10}, this.Spacing));
+                //list.Add("spacing", new ConfigOption("spacing", null, new double[] { 10, 10, 15, 10}, this.Spacing));
 
                 list.Add("spacingBottom", new ConfigOption("spacingBottom", null, 15, this.SpacingBottom));
 

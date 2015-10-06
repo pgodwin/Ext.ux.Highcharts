@@ -13,12 +13,18 @@ namespace Ext.ux.Highcharts
 {
 
     [Designer(typeof(EmptyDesigner))]
-    [DefaultProperty("")]
+    //[DefaultProperty("")]
     [ToolboxData("<{0}:HighChart runat=\"server\"></{0}:HighChart>")]
     [Description("High Chart")]
-
-    public class HighChart : HighChartBase
+    [ParseChildren(true)]
+    [PersistChildren(false)]
+    public partial class HighChart : HighChartBase
     {
+        public HighChart()
+        {
+            
+        }
+
         protected override List<ResourceItem> Resources
         {
             get
@@ -41,7 +47,7 @@ namespace Ext.ux.Highcharts
         {
             get
             {
-                return "widget.highchart";
+                return "highchart";
             }
         }
 
@@ -53,5 +59,6 @@ namespace Ext.ux.Highcharts
             }
         }
 
+         
     }
 }

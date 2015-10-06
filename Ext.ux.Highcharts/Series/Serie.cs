@@ -15,9 +15,14 @@ namespace Ext.ux.Highcharts.Series
     [DefaultProperty("")]
     [ToolboxData("<{0}:Serie runat=\"server\"></{0}:Serie>")]
     [Description("Serie")]
+    [Meta]
 
     public partial class Serie : SerieBase
     {
+        public Serie()
+        {
+            
+        }
 
         protected override List<ResourceItem> Resources
         {
@@ -27,7 +32,7 @@ namespace Ext.ux.Highcharts.Series
                 baseList.Capacity += 1;
 
                 // Sencha Wrapper
-                baseList.Add(new ClientScriptItem(typeof(HighChart), "Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.Serie.js", "Resources/Chart/ux/Highcharts/Serie.js"));
+                baseList.Add(new ClientScriptItem(typeof(Serie), "Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.Serie.js", "Resources/Chart/ux/Highcharts/Serie.js"));
 
                 return baseList;
             }
@@ -42,9 +47,11 @@ namespace Ext.ux.Highcharts.Series
             }
         }
 
+     
+
     }
 
-    public partial class HighChartSeriesCollection : ItemsCollection<Serie>
+    public partial class HighChartSeriesCollection : ItemsCollection<Serie> //ItemsCollection<Serie>
     {
         
     }

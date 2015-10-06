@@ -1,11 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Reflection;
 using System.Xml.Serialization;
 using Ext.Net;
 using Newtonsoft.Json;
+using SysType = System.Type;
 
 namespace Ext.ux.Highcharts.Series
 {
-    public abstract partial class SerieBase : Observable
+    public abstract partial class SerieBase : ComponentBase
     {
 
         [ConfigOption]
@@ -137,6 +140,25 @@ namespace Ext.ux.Highcharts.Series
             {
                 this.ViewState["YField"] = value;
             }
+        }
+
+
+        public void RegisterResources()
+        {
+            var baseType = this.GetType();
+
+            this.RegisterAllResources = true;
+            baseType
+                .GetMethod("RegisterScripts", BindingFlags.NonPublic | BindingFlags.Instance, SysType.DefaultBinder, SysType.EmptyTypes, null)
+                .Invoke(this, new object[0]);
+            baseType
+                .GetMethod("RegisterStyles", BindingFlags.NonPublic | BindingFlags.Instance, SysType.DefaultBinder, SysType.EmptyTypes, null)
+                .Invoke(this, new object[0]);
+
+            //component.RegisterScripts();
+            //component.RegisterStyles();
+            this.PreventRenderTo = true;
+
         }
 
         [Browsable(false)]

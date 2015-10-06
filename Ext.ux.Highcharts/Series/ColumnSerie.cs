@@ -6,6 +6,7 @@ using Ext.Net;
 [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.ColumnSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.Series
 {
+    
     /// <summary>
     /// Serie class is the base class for all the series types. Users shouldn't use any of the series classes directly, 
     /// they are created internally from Chart.ux.Highcharts depending on the series configuration.
@@ -15,8 +16,15 @@ namespace Ext.ux.Highcharts.Series
     [DefaultProperty("")]
     [ToolboxData("<{0}:ColumnSerie runat=\"server\"></{0}:ColumnSerie>")]
     [Description("Column Serie")]
+    [Meta]
     public partial class ColumnSerie : ColumnSerieBase
     {
+        public ColumnSerie()
+        {
+            
+        }
+
+
         protected override List<ResourceItem> Resources
         {
             get
@@ -25,12 +33,13 @@ namespace Ext.ux.Highcharts.Series
                 baseList.Capacity += 1;
 
                 // Sencha Wrapper
-                baseList.Add(new ClientScriptItem(typeof(HighChart), "Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.ColumnSerie.js", "Resources/Chart/ux/Highcharts/ColumnSerie.js"));
+                baseList.Add(new ClientScriptItem(typeof(ColumnSerie), "Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.ColumnSerie.js", "Resources/Chart/ux/Highcharts/ColumnSerie.js"));
 
                 return baseList;
             }
         }
 
+       
 
         public override string InstanceOf
         {
@@ -39,5 +48,7 @@ namespace Ext.ux.Highcharts.Series
                 return "Chart.ux.Highcharts.ColumnSerie";
             }
         }
+
+      
     }
 }

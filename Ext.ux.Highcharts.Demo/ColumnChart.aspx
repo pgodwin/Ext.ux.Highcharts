@@ -5,30 +5,22 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+    
 <head runat="server">
+    
     <title></title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <ext:ResourceManager runat="server" SourceFormatting="true" />
-        <ext:Panel runat="server" Height="500" Width="800" Layout="FitLayout">
-            <Items>
-                <a:HighChart runat="server" ID="Test" StateID="storeTest" YField="Value">
-                    <Series>
-                        <a:ColumnSerie runat="server" DataIndex="Name" />
-                    </Series>
-                    <ChartConfig>
-                        <a:ChartConfig runat="server">
-                            <Chart runat="server" Type="bar" />
-                            <Title runat="server" Text="Test" />
-                        </a:ChartConfig>
-                    </ChartConfig>
-                </a:HighChart>
-            </Items>
-        </ext:Panel>
-         <ext:Store runat="server" ID="storeTest">
+        <ext:ResourceManager runat="server" SourceFormatting="true" ScriptMode="Debug">
+            <ResourceItems>
+                <ext:ClientResourceItem Path="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" />
+            </ResourceItems>
+        </ext:ResourceManager>
+        
+        <ext:Store runat="server" ID="storeTest">
             <Model>
                 <ext:Model runat="server">
                     <Fields>
@@ -38,6 +30,20 @@
                 </ext:Model>
             </Model>
         </ext:Store>
+        <ext:Panel runat="server" Height="500" Width="800" Layout="FitLayout">
+            <Items>
+                <a:HighChart runat="server" ID="Test" StoreID="storeTest" XField="Name">
+                    <Series>
+                        <a:ColumnSerie runat="server" ID="testItem" DataIndex="Value" />
+                    </Series>
+                    <ChartConfig runat="server">
+                        <Chart runat="server" ShowAxes="true" Type="column"  />
+                        <Title runat="server" Text="Test Chart Test" />
+                    </ChartConfig>
+                </a:HighChart>
+            </Items>
+        </ext:Panel>
+         
     </div>
     </form>
 </body>
