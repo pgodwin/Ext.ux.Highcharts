@@ -5,7 +5,7 @@ using Ext.Net;
 namespace Ext.ux.Highcharts.ChartSeries
 {
     [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.PyramidSerie.js", "text/javascript")]
-    public partial class BasePyramidSerie : Funnel
+    public partial class BasePyramidSerie : FunnelSeries
     {
         protected override List<ResourceItem> Resources
         {

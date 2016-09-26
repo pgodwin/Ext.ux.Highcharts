@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
 using Newtonsoft.Json;
+using Ext.ux.Highcharts.Chart;
 
 namespace Ext.ux.Highcharts.ChartSeries
 {
@@ -19,7 +20,7 @@ namespace Ext.ux.Highcharts.ChartSeries
         /// <summary>
         /// The actual series to append to the chart. In addition to 	the members listed below, any member of the plotOptions for that specific	type of plot can be added to a series individually. For example, even though a general	lineWidth is specified in plotOptions.series, an individual	lineWidth can be specified for each series.
         /// </summary>
-        public partial class Series : BaseSerie //Observable
+        public partial class Series : BaseSerie
         {
 
     
@@ -242,7 +243,37 @@ namespace Ext.ux.Highcharts.ChartSeries
                     this.State.Set("ZIndex", value);
                 }
             }
+
+        private Data _Data;
+        [Meta]
+        [DefaultValue(null)]
+        [Category("HighCharts")]
+        [ConfigOption("data", typeof(LazyControlJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [Description(@"An array of data points for the series. The points can be given in three ways:  	An array of numerical values. In this case, the numerical values will  	be interpreted as y values, and x values will be automatically calculated, 	either starting at 0 and incrementing by 1, or from pointStart  	and pointInterval given in the plotOptions. If the axis is 	has categories, these will be used. This option is not available for range series. Example:data: [0, 5, 3, 5] 	 	An array of arrays with two values. In this case, the first value is the 	x value and the second is the y value. If the first value is a string, it is 	applied as the name of the point, and the x value is incremented following 	the above rules.For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange. Example:data: [[5, 2], [6, 3], [8, 2]]An array of objects with named values. In this case the objects are 	point configuration objects as seen below.Range series values are given by low and high.Example:data: [{	name: 'Point 1',	color: '#00FF00',	y: 0}, {	name: 'Point 2',	color: '#FF00FF',	y: 5}] Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting.")]
+        public virtual Data Data
+        {
+            get
+            {
+                return this._Data;
+            }
+            set
+            {
+                if (this._Data != null)
+                {
+                    this.Controls.Remove(this._Data);
+                    this.LazyItems.Remove(this._Data);
+                }
 
+                this._Data = value;
+
+                if (this._Data != null)
+                {
+                    this.LazyItems.Add(this._Data);
+                    this.Controls.Add(this._Data);
+                }
+            }
+        }
 
     
         [Browsable(false)]
@@ -278,6 +309,8 @@ namespace Ext.ux.Highcharts.ChartSeries
                 list.Add("yAxis", new ConfigOption("yAxis", null, null, this.YAxis));
 
                 list.Add("zIndex", new ConfigOption("zIndex", null, null, this.ZIndex));
+
+                list.Add("data", new ConfigOption("data", new SerializationOptions("data", typeof(LazyControlJsonConverter)), null, this.Data));
 
                 return list;
             }
@@ -311,95 +344,6 @@ namespace Ext.ux.Highcharts.ChartSeries
 
 
     
-
-        /// <summary>
-        /// An array of data points for the series. The points can be given in three ways:  	An array of numerical values. In this case, the numerical values will  	be interpreted as y values, and x values will be automatically calculated, 	either starting at 0 and incrementing by 1, or from pointStart  	and pointInterval given in the plotOptions. If the axis is 	has categories, these will be used. This option is not available for range series. Example:data: [0, 5, 3, 5] 	 	An array of arrays with two values. In this case, the first value is the 	x value and the second is the y value. If the first value is a string, it is 	applied as the name of the point, and the x value is incremented following 	the above rules.For range series, the arrays will be interpreted as [x, low, high]. In this cases, the X value can be skipped altogether to make use of pointStart and pointRange. Example:data: [[5, 2], [6, 3], [8, 2]]An array of objects with named values. In this case the objects are 	point configuration objects as seen below.Range series values are given by low and high.Example:data: [{	name: 'Point 1',	color: '#00FF00',	y: 0}, {	name: 'Point 2',	color: '#FF00FF',	y: 5}] Note that line series and derived types like spline and area, require data to be sorted by X because it interpolates mouse coordinates for the tooltip. Column and scatter series, where each point has its own mouse event, does not require sorting.
-        /// </summary>
-        public partial class Data : Observable
-        {
-
-    
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                return list;
-            }
-        }
-
-
-    
-	        private DataEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public DataEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new DataEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class DataEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
 
     
 

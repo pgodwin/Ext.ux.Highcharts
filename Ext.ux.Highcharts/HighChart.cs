@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using System.Web.UI;
 using Ext.Net;
 
-[assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.highcharts.src.js", "text/javascript")]
-[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.js", "text/javascript")]
-namespace Ext.ux.Highcharts
+
+namespace Ext.ux.Highcharts.Chart
 {
+    [assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.highcharts.src.js", "text/javascript")]
+    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.js", "text/javascript")]
 
     [Designer(typeof(EmptyDesigner))]
     //[DefaultProperty("")]

@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
 using Newtonsoft.Json;
+using Ext.ux.Highcharts.Chart;
 
 namespace Ext.ux.Highcharts.Chart
 {
@@ -802,7 +803,67 @@ namespace Ext.ux.Highcharts.Chart
                     this.State.Set("ZoomType", value);
                 }
             }
+
+        private Options3d _Options3d;
+        [Meta]
+        [DefaultValue(null)]
+        [Category("HighCharts")]
+        [ConfigOption("options3d", typeof(LazyControlJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [Description(@"Options to render charts in 3 dimensions. This feature requires highcharts-3d.js, found in the download package or online at code.highcharts.com/highcharts-3d.js.")]
+        public virtual Options3d Options3d
+        {
+            get
+            {
+                return this._Options3d;
+            }
+            set
+            {
+                if (this._Options3d != null)
+                {
+                    this.Controls.Remove(this._Options3d);
+                    this.LazyItems.Remove(this._Options3d);
+                }
 
+                this._Options3d = value;
+
+                if (this._Options3d != null)
+                {
+                    this.LazyItems.Add(this._Options3d);
+                    this.Controls.Add(this._Options3d);
+                }
+            }
+        }
+        private ResetZoomButton _ResetZoomButton;
+        [Meta]
+        [DefaultValue(null)]
+        [Category("HighCharts")]
+        [ConfigOption("resetZoomButton", typeof(LazyControlJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [Description(@"The button that appears after a selection zoom, allowing the user to reset zoom.")]
+        public virtual ResetZoomButton ResetZoomButton
+        {
+            get
+            {
+                return this._ResetZoomButton;
+            }
+            set
+            {
+                if (this._ResetZoomButton != null)
+                {
+                    this.Controls.Remove(this._ResetZoomButton);
+                    this.LazyItems.Remove(this._ResetZoomButton);
+                }
+
+                this._ResetZoomButton = value;
+
+                if (this._ResetZoomButton != null)
+                {
+                    this.LazyItems.Add(this._ResetZoomButton);
+                    this.Controls.Add(this._ResetZoomButton);
+                }
+            }
+        }
 
     
         [Browsable(false)]
@@ -894,6 +955,10 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("width", new ConfigOption("width", null, null, this.Width));
 
                 list.Add("zoomType", new ConfigOption("zoomType", null, "", this.ZoomType));
+
+                list.Add("options3d", new ConfigOption("options3d", new SerializationOptions("options3d", typeof(LazyControlJsonConverter)), null, this.Options3d));
+
+                list.Add("resetZoomButton", new ConfigOption("resetZoomButton", new SerializationOptions("resetZoomButton", typeof(LazyControlJsonConverter)), null, this.ResetZoomButton));
 list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }
@@ -927,848 +992,6 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
 
 
     
-
-        /// <summary>
-        /// Options to render charts in 3 dimensions. This feature requires highcharts-3d.js, found in the download package or online at code.highcharts.com/highcharts-3d.js.
-        /// </summary>
-        public partial class Options3d : Observable
-        {
-
-    
-            /// <summary>
-            /// One of the two rotation angles for the chart.
-            /// </summary>
-            [ConfigOption("alpha", null)]
-            [DefaultValue(0)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"One of the two rotation angles for the chart.")]
-            public double? Alpha
-            {
-                get
-                {
-                    return this.State.Get<double?>("Alpha", 0);
-                }
-                set
-                {
-                    this.State.Set("Alpha", value);
-                }
-            }
-
-            /// <summary>
-            /// One of the two rotation angles for the chart.
-            /// </summary>
-            [ConfigOption("beta", null)]
-            [DefaultValue(0)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"One of the two rotation angles for the chart.")]
-            public double? Beta
-            {
-                get
-                {
-                    return this.State.Get<double?>("Beta", 0);
-                }
-                set
-                {
-                    this.State.Set("Beta", value);
-                }
-            }
-
-            /// <summary>
-            /// The total depth of the chart.
-            /// </summary>
-            [ConfigOption("depth", null)]
-            [DefaultValue(100)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The total depth of the chart.")]
-            public double? Depth
-            {
-                get
-                {
-                    return this.State.Get<double?>("Depth", 100);
-                }
-                set
-                {
-                    this.State.Set("Depth", value);
-                }
-            }
-
-            /// <summary>
-            /// Wether to render the chart using the 3D functionality.
-            /// </summary>
-            [ConfigOption("enabled", null)]
-            [DefaultValue(false)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Wether to render the chart using the 3D functionality.")]
-            public bool? Enabled
-            {
-                get
-                {
-                    return this.State.Get<bool?>("Enabled", false);
-                }
-                set
-                {
-                    this.State.Set("Enabled", value);
-                }
-            }
-
-            /// <summary>
-            /// Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts.It is not used for 3D pie charts.
-            /// </summary>
-            [ConfigOption("viewDistance", null)]
-            [DefaultValue(100)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Defines the distance the viewer is standing in front of the chart, this setting is important to calculate the perspective effect in column and scatter charts.It is not used for 3D pie charts.")]
-            public double? ViewDistance
-            {
-                get
-                {
-                    return this.State.Get<double?>("ViewDistance", 100);
-                }
-                set
-                {
-                    this.State.Set("ViewDistance", value);
-                }
-            }
-
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("alpha", new ConfigOption("alpha", null, 0, this.Alpha));
-
-                list.Add("beta", new ConfigOption("beta", null, 0, this.Beta));
-
-                list.Add("depth", new ConfigOption("depth", null, 100, this.Depth));
-
-                list.Add("enabled", new ConfigOption("enabled", null, false, this.Enabled));
-
-                list.Add("viewDistance", new ConfigOption("viewDistance", null, 100, this.ViewDistance));
-
-                return list;
-            }
-        }
-
-
-    
-	        private Options3dEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public Options3dEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new Options3dEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-        /// <summary>
-        /// Provides the option to draw a frame around the charts by defining a bottom, front and back panel. 
-        /// </summary>
-        public partial class Frame : Observable
-        {
-
-    
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                return list;
-            }
-        }
-
-
-    
-	        private FrameEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public FrameEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new FrameEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-        /// <summary>
-        /// Defines the back panel of the frame around 3D charts.
-        /// </summary>
-        public partial class Back : Observable
-        {
-
-    
-            /// <summary>
-            /// The color of the panel.
-            /// </summary>
-            [ConfigOption("color", null)]
-            [DefaultValue(@"transparent")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The color of the panel.")]
-            public string Color
-            {
-                get
-                {
-                    return this.State.Get<string>("Color", @"transparent");
-                }
-                set
-                {
-                    this.State.Set("Color", value);
-                }
-            }
-
-            /// <summary>
-            /// Thickness of the panel.
-            /// </summary>
-            [ConfigOption("size", null)]
-            [DefaultValue(1)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Thickness of the panel.")]
-            public double? Size
-            {
-                get
-                {
-                    return this.State.Get<double?>("Size", 1);
-                }
-                set
-                {
-                    this.State.Set("Size", value);
-                }
-            }
-
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("color", new ConfigOption("color", null, @"transparent", this.Color));
-
-                list.Add("size", new ConfigOption("size", null, 1, this.Size));
-
-                return list;
-            }
-        }
-
-
-    
-	        private BackEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public BackEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new BackEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class BackEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
-
-        /// <summary>
-        /// The bottom of the frame around a 3D chart.
-        /// </summary>
-        public partial class Bottom : Observable
-        {
-
-    
-            /// <summary>
-            /// The color of the panel.
-            /// </summary>
-            [ConfigOption("color", null)]
-            [DefaultValue(@"transparent")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The color of the panel.")]
-            public string Color
-            {
-                get
-                {
-                    return this.State.Get<string>("Color", @"transparent");
-                }
-                set
-                {
-                    this.State.Set("Color", value);
-                }
-            }
-
-            /// <summary>
-            /// The thickness of the panel.
-            /// </summary>
-            [ConfigOption("size", null)]
-            [DefaultValue(1)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The thickness of the panel.")]
-            public double? Size
-            {
-                get
-                {
-                    return this.State.Get<double?>("Size", 1);
-                }
-                set
-                {
-                    this.State.Set("Size", value);
-                }
-            }
-
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("color", new ConfigOption("color", null, @"transparent", this.Color));
-
-                list.Add("size", new ConfigOption("size", null, 1, this.Size));
-
-                return list;
-            }
-        }
-
-
-    
-	        private BottomEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public BottomEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new BottomEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class BottomEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
-
-        /// <summary>
-        /// The side for the frame around a 3D chart.
-        /// </summary>
-        public partial class Side : Observable
-        {
-
-    
-            /// <summary>
-            /// The color of the panel.
-            /// </summary>
-            [ConfigOption("color", null)]
-            [DefaultValue(@"transparent")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The color of the panel.")]
-            public string Color
-            {
-                get
-                {
-                    return this.State.Get<string>("Color", @"transparent");
-                }
-                set
-                {
-                    this.State.Set("Color", value);
-                }
-            }
-
-            /// <summary>
-            /// The thickness of the panel.
-            /// </summary>
-            [ConfigOption("size", null)]
-            [DefaultValue(1)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The thickness of the panel.")]
-            public double? Size
-            {
-                get
-                {
-                    return this.State.Get<double?>("Size", 1);
-                }
-                set
-                {
-                    this.State.Set("Size", value);
-                }
-            }
-
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("color", new ConfigOption("color", null, @"transparent", this.Color));
-
-                list.Add("size", new ConfigOption("size", null, 1, this.Size));
-
-                return list;
-            }
-        }
-
-
-    
-	        private SideEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public SideEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new SideEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class SideEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class FrameEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class Options3dEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
-
-        /// <summary>
-        /// The button that appears after a selection zoom, allowing the user to reset zoom.
-        /// </summary>
-        public partial class ResetZoomButton : Observable
-        {
-
-    
-            /// <summary>
-            /// The position of the button. This is an object that can hold the properties align, verticalAlign, x and y.
-            /// </summary>
-            [ConfigOption("position", null)]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The position of the button. This is an object that can hold the properties align, verticalAlign, x and y.")]
-            public object Position
-            {
-                get
-                {
-                    return this.State.Get<object>("Position", null);
-                }
-                set
-                {
-                    this.State.Set("Position", value);
-                }
-            }
-
-            /// <summary>
-            /// What frame the button should be placed related to. Can be either ""plot"" or ""chart"".
-            /// </summary>
-            [ConfigOption("relativeTo", null)]
-            [DefaultValue(@"plot")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"What frame the button should be placed related to. Can be either ""plot"" or ""chart"".")]
-            public string RelativeTo
-            {
-                get
-                {
-                    return this.State.Get<string>("RelativeTo", @"plot");
-                }
-                set
-                {
-                    this.State.Set("RelativeTo", value);
-                }
-            }
-
-            /// <summary>
-            /// A collection of attributes for the button. The object takes SVG attributes like  fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover.
-            /// </summary>
-            [ConfigOption("theme", null)]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"A collection of attributes for the button. The object takes SVG attributes like  fill, stroke, stroke-width or r, the border radius. The theme also supports style, a collection of CSS properties for the text. Equivalent attributes for the hover state are given in theme.states.hover.")]
-            public object Theme
-            {
-                get
-                {
-                    return this.State.Get<object>("Theme", null);
-                }
-                set
-                {
-                    this.State.Set("Theme", value);
-                }
-            }
-
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("position", new ConfigOption("position", null, null, this.Position));
-
-                list.Add("relativeTo", new ConfigOption("relativeTo", null, @"plot", this.RelativeTo));
-
-                list.Add("theme", new ConfigOption("theme", null, null, this.Theme));
-
-                return list;
-            }
-        }
-
-
-    
-	        private ResetZoomButtonEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public ResetZoomButtonEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new ResetZoomButtonEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class ResetZoomButtonEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
 
     
 

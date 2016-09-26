@@ -5,7 +5,7 @@ using Ext.Net;
 namespace Ext.ux.Highcharts.ChartSeries
 {
     [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.FunnelSerie.js", "text/javascript")]
-    public partial class BaseFunnelSerie : Waterfall
+    public partial class BaseFunnelSerie : WaterfallSeries
     {
         protected override List<ResourceItem> Resources
         {

@@ -16,7 +16,7 @@ namespace Ext.ux.Highcharts.ChartSeries
     /// </summary>
     [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.AreaSplineRangeSerie.js", "text/javascript")]
 
-    public partial class BaseAreaSplineSerie : BaseRangeSerie
+    public partial class BaseAreaSplineRangeSerie : BaseRangeSerie
     {
         protected override List<ResourceItem> Resources
         {

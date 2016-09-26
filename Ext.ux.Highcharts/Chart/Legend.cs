@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
 using Newtonsoft.Json;
+using Ext.ux.Highcharts.Chart;
 
 namespace Ext.ux.Highcharts.Chart
 {
@@ -702,7 +703,67 @@ namespace Ext.ux.Highcharts.Chart
                     this.State.Set("y", value);
                 }
             }
+
+        private Navigation _Navigation;
+        [Meta]
+        [DefaultValue(null)]
+        [Category("HighCharts")]
+        [ConfigOption("navigation", typeof(LazyControlJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [Description(@"Options for the paging or navigation appearing when the legend is overflown.")]
+        public virtual Navigation Navigation
+        {
+            get
+            {
+                return this._Navigation;
+            }
+            set
+            {
+                if (this._Navigation != null)
+                {
+                    this.Controls.Remove(this._Navigation);
+                    this.LazyItems.Remove(this._Navigation);
+                }
 
+                this._Navigation = value;
+
+                if (this._Navigation != null)
+                {
+                    this.LazyItems.Add(this._Navigation);
+                    this.Controls.Add(this._Navigation);
+                }
+            }
+        }
+        private Title _Title;
+        [Meta]
+        [DefaultValue(null)]
+        [Category("HighCharts")]
+        [ConfigOption("title", typeof(LazyControlJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [Description(@"A title to be added on top of the legend.")]
+        public virtual Title Title
+        {
+            get
+            {
+                return this._Title;
+            }
+            set
+            {
+                if (this._Title != null)
+                {
+                    this.Controls.Remove(this._Title);
+                    this.LazyItems.Remove(this._Title);
+                }
+
+                this._Title = value;
+
+                if (this._Title != null)
+                {
+                    this.LazyItems.Add(this._Title);
+                    this.Controls.Add(this._Title);
+                }
+            }
+        }
 
     
         [Browsable(false)]
@@ -784,6 +845,10 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("x", new ConfigOption("x", null, 0, this.x));
 
                 list.Add("y", new ConfigOption("y", null, 0, this.y));
+
+                list.Add("navigation", new ConfigOption("navigation", new SerializationOptions("navigation", typeof(LazyControlJsonConverter)), null, this.Navigation));
+
+                list.Add("title", new ConfigOption("title", new SerializationOptions("title", typeof(LazyControlJsonConverter)), null, this.Title));
 
                 return list;
             }
@@ -817,338 +882,6 @@ namespace Ext.ux.Highcharts.Chart
 
 
     
-
-        /// <summary>
-        /// Options for the paging or navigation appearing when the legend is overflown.
-        /// </summary>
-        public partial class Navigation : Observable
-        {
-
-    
-            /// <summary>
-            /// The color for the active up or down arrow in the legend page navigation.
-            /// </summary>
-            [ConfigOption("activeColor", null)]
-            [DefaultValue(@"#3E576F")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The color for the active up or down arrow in the legend page navigation.")]
-            public string ActiveColor
-            {
-                get
-                {
-                    return this.State.Get<string>("ActiveColor", @"#3E576F");
-                }
-                set
-                {
-                    this.State.Set("ActiveColor", value);
-                }
-            }
-
-            /// <summary>
-            /// How to animate the pages when navigating up or down. A value of true applies the default navigation given in  the chart.animation option. Additional options can be given as an object containing values for easing and duration.  .
-            /// </summary>
-            [ConfigOption("animation", null)]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"How to animate the pages when navigating up or down. A value of true applies the default navigation given in  the chart.animation option. Additional options can be given as an object containing values for easing and duration.  .")]
-            public object Animation
-            {
-                get
-                {
-                    return this.State.Get<object>("Animation", null);
-                }
-                set
-                {
-                    this.State.Set("Animation", value);
-                }
-            }
-
-            /// <summary>
-            /// The pixel size of the up and down arrows in the legend paging navigation.  .
-            /// </summary>
-            [ConfigOption("arrowSize", null)]
-            [DefaultValue(12)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The pixel size of the up and down arrows in the legend paging navigation.  .")]
-            public double? ArrowSize
-            {
-                get
-                {
-                    return this.State.Get<double?>("ArrowSize", 12);
-                }
-                set
-                {
-                    this.State.Set("ArrowSize", value);
-                }
-            }
-
-            /// <summary>
-            /// The color of the inactive up or down arrow in the legend page navigation.  .
-            /// </summary>
-            [ConfigOption("inactiveColor", null)]
-            [DefaultValue(@"#CCC")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The color of the inactive up or down arrow in the legend page navigation.  .")]
-            public string InactiveColor
-            {
-                get
-                {
-                    return this.State.Get<string>("InactiveColor", @"#CCC");
-                }
-                set
-                {
-                    this.State.Set("InactiveColor", value);
-                }
-            }
-
-            /// <summary>
-            /// Text styles for the legend page navigation.
-            /// </summary>
-            [ConfigOption("style", null)]
-            [DefaultValue("")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Text styles for the legend page navigation.")]
-            public string Style
-            {
-                get
-                {
-                    return this.State.Get<string>("Style", "");
-                }
-                set
-                {
-                    this.State.Set("Style", value);
-                }
-            }
-
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("activeColor", new ConfigOption("activeColor", null, @"#3E576F", this.ActiveColor));
-
-                list.Add("animation", new ConfigOption("animation", null, null, this.Animation));
-
-                list.Add("arrowSize", new ConfigOption("arrowSize", null, 12, this.ArrowSize));
-
-                list.Add("inactiveColor", new ConfigOption("inactiveColor", null, @"#CCC", this.InactiveColor));
-
-                list.Add("style", new ConfigOption("style", null, "", this.Style));
-
-                return list;
-            }
-        }
-
-
-    
-	        private NavigationEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public NavigationEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new NavigationEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class NavigationEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
-
-        /// <summary>
-        /// A title to be added on top of the legend.
-        /// </summary>
-        public partial class Title : Observable
-        {
-
-    
-            /// <summary>
-            /// Generic CSS styles for the legend title.
-            /// </summary>
-            [ConfigOption("style", null)]
-            [DefaultValue(@"{""fontWeight"":""bold""}")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Generic CSS styles for the legend title.")]
-            public string Style
-            {
-                get
-                {
-                    return this.State.Get<string>("Style", @"{""fontWeight"":""bold""}");
-                }
-                set
-                {
-                    this.State.Set("Style", value);
-                }
-            }
-
-            /// <summary>
-            /// A text or HTML string for the title. 
-            /// </summary>
-            [ConfigOption("text", null)]
-            [DefaultValue(@"null")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"A text or HTML string for the title. ")]
-            public string Text
-            {
-                get
-                {
-                    return this.State.Get<string>("Text", @"null");
-                }
-                set
-                {
-                    this.State.Set("Text", value);
-                }
-            }
-
-
-    
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [XmlIgnore]
-        [JsonIgnore]
-        public override ConfigOptionsCollection ConfigOptions
-        {
-            get
-            {
-                ConfigOptionsCollection list = base.ConfigOptions;
-
-
-                list.Add("style", new ConfigOption("style", null, @"{""fontWeight"":""bold""}", this.Style));
-
-                list.Add("text", new ConfigOption("text", null, @"null", this.Text));
-
-                return list;
-            }
-        }
-
-
-    
-	        private TitleEvents events;
-
-			/// <summary>
-			/// Client-side JavaScript Event Handlers
-			/// </summary>
-			[Meta]
-            [ConfigOption("events", JsonMode.Object)]
-            [Category("2. Observable")]
-            [NotifyParentProperty(true)]
-            [PersistenceMode(PersistenceMode.InnerProperty)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public TitleEvents Listeners
-			{
-				get
-				{
-					if (this.events == null)
-					{
-						this.events = new TitleEvents();
-					}
-			
-					return this.events;
-				}
-			}
-
-
-    
-
-    
-
-        /// <summary>
-        /// Client Side Events#
-        /// </summary>
-        public partial class TitleEvents : ComponentListeners
-        {
-
-
-
-
-            /// <summary>
-            /// 
-            /// </summary>
-		    [Browsable(false)]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		    [XmlIgnore]
-            [JsonIgnore]
-            public override ConfigOptionsCollection ConfigOptions
-            {
-                get
-                {
-                    ConfigOptionsCollection list = base.ConfigOptions;
-                    
-                    return list;
-                }
-            }
-
-        }
-
-
-        }
-
 
     
 
