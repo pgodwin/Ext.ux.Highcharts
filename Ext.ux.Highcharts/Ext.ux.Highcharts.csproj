@@ -61,6 +61,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chart.ux\BaseAreaSerie.cs" />
+    <Compile Include="Chart.ux\BaseAreaRangeSerie.cs" />
+    <Compile Include="Chart.ux\BaseAreaSplineRangeSerie.cs" />
+    <Compile Include="Chart.ux\BaseBarSerie.cs" />
+    <Compile Include="Chart.ux\BaseBoxPlotSerie.cs" />
+    <Compile Include="Chart.ux\BaseBubbleSerie.cs" />
+    <Compile Include="Chart.ux\BaseColumnRangeSerie.cs" />
+    <Compile Include="Chart.ux\BaseColumnSerie.cs" />
+    <Compile Include="Chart.ux\BaseErrorBarSerie.cs" />
+    <Compile Include="Chart.ux\BaseFunnelSerie.cs" />
+    <Compile Include="Chart.ux\BaseGaugeSerie.cs" />
+    <Compile Include="Chart.ux\BaseHeatmapSerie.cs" />
+    <Compile Include="Chart.ux\BaseLineSerie.cs" />
+    <Compile Include="Chart.ux\BaseMapBubbleSerie.cs" />
+    <Compile Include="Chart.ux\BaseMapLineSerie.cs" />
+    <Compile Include="Chart.ux\BaseMapPointSerie.cs" />
+    <Compile Include="Chart.ux\BaseMapSerie.cs" />
+    <Compile Include="Chart.ux\BasePieSerie.cs" />
+    <Compile Include="Chart.ux\BasePyramidSerie.cs" />
+    <Compile Include="Chart.ux\BaseScatterSerie.cs" />
+    <Compile Include="Chart.ux\BaseSolidGaugeSerie.cs" />
+    <Compile Include="Chart.ux\BaseSplineSerie.cs" />
+    <Compile Include="Chart.ux\BaseWaterfallSerie.cs" />
+    <Compile Include="Chart.ux\HighChartSeriesCollection.cs" />
+    <Compile Include="Chart.ux\BaseRangeSerie.cs" />
+    <Compile Include="Chart.ux\BaseSerie.cs" />
     <Compile Include="Chart\Chart.cs" />
     <Compile Include="Chart\Credits.cs" />
     <Compile Include="Chart\Data.cs" />
@@ -106,13 +132,9 @@
     <Compile Include="Config\ChartConfig.cs" />
     <Compile Include="Config\ChartConfigBase.cs" />
     <Compile Include="Config\ChartConfigurationCollection.cs" />
-    <Compile Include="Series\ColumnSerie.cs" />
-    <Compile Include="Series\ColumnSerieBase.cs" />
     <Compile Include="HighChart.cs" />
     <Compile Include="HighChartBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Series\Serie.cs" />
-    <Compile Include="Series\SerieBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Chart\ux\Highcharts.js" />

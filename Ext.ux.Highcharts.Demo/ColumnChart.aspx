@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ColumnChart.aspx.cs" Inherits="Ext.ux.Highcharts.Demo.ColumnChart" %>
 <%@ Register TagPrefix="a" Namespace="Ext.ux.Highcharts" Assembly="Ext.ux.Highcharts" %>
-<%@ Register TagPrefix="a" Namespace="Ext.ux.Highcharts.Series" Assembly="Ext.ux.Highcharts" %>
+<%@ Register TagPrefix="a" Namespace="Ext.ux.Highcharts.ChartSeries" Assembly="Ext.ux.Highcharts" %>
 
 <!DOCTYPE html>
 
@@ -37,10 +37,10 @@
                         </ext:Store>
                     </Store>
                     <Series>
-                        <a:ColumnSerie runat="server" DataIndex="Value" />
+                        <a:Bar runat="server" DataIndex="Value" />
                     </Series>
                     <ChartConfig runat="server">
-                        <Chart runat="server" ShowAxes="true" Type="column" >
+                        <Chart runat="server" ShowAxes="true" Type="bar" >
                             <Listeners>
                                 <Click Handler="console.log(event);" />
                             </Listeners>

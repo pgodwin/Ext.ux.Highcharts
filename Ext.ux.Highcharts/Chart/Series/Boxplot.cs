@@ -19,7 +19,7 @@ namespace Ext.ux.Highcharts.ChartSeries
         /// <summary>
         /// A boxplot series. If the .type">type option is not specified, it is inherited from chart.type.For options that apply to multiple series, it is recommended to add them to the pointOptions.series options structure. To apply to all series of this specific type, apply it to plotOptions.boxplot.
         /// </summary>
-        public partial class Boxplot : Series
+        public partial class Boxplot : BaseBoxPlotSerie //Series
         {
 
     

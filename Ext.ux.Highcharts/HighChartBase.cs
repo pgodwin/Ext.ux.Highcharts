@@ -9,8 +9,8 @@ using System.Web.UI;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+using Ext.ux.Highcharts.ChartSeries;
 using Ext.ux.Highcharts.Config;
-using Ext.ux.Highcharts.Series;
 using Newtonsoft.Json;
 using Component = Ext.Net.Component;
 
@@ -121,7 +121,7 @@ namespace Ext.ux.Highcharts
             }
         }
 
-        void series_AfterItemAdd(Serie component)
+        void series_AfterItemAdd(BaseSerie component)
         {
             component.RegisterResources();
             //ResourceManager.RegisterControlResources<Serie>();
@@ -212,7 +212,7 @@ namespace Ext.ux.Highcharts
             {
                 ConfigOptionsCollection list = base.ConfigOptions;
 
-                list.Add("storeID", new ConfigOption("storeID", new SerializationOptions("store", JsonMode.ToClientID), "", this.StoreID));
+                list.Add("storeId", new ConfigOption("storeId", new SerializationOptions("store", JsonMode.ToClientID), "", this.StoreID));
                 list.Add("store", new ConfigOption("store", new SerializationOptions("store>Primary"), null, this.Store));
 
                 list.Add("series", new ConfigOption("series", new SerializationOptions("series", typeof(ItemCollectionJsonConverter)), null, this.Series));
