@@ -8,7 +8,7 @@ using System.Web.UI;
 using Ext.Net;
 
 
-namespace Ext.ux.Highcharts.Chart
+namespace Ext.ux.Highcharts
 {
     [assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.highcharts.src.js", "text/javascript")]
     [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.js", "text/javascript")]

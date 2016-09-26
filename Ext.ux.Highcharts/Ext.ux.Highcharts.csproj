@@ -84,7 +84,9 @@
     <Compile Include="Chart.ux\BaseSolidGaugeSerie.cs" />
     <Compile Include="Chart.ux\BaseSplineSerie.cs" />
     <Compile Include="Chart.ux\BaseWaterfallSerie.cs" />
-    <Compile Include="Chart.ux\HighChartSeriesCollection.cs" />
+    <Compile Include="Chart.ux\Options3dResources.cs" />
+    <Compile Include="Config\YAxisCollection.cs" />
+    <Compile Include="HighChartSeriesCollection.cs" />
     <Compile Include="Chart.ux\BaseRangeSerie.cs" />
     <Compile Include="Chart.ux\BaseSerie.cs" />
     <Compile Include="Chart\AreaPlotOptions.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="Config\ChartConfig.cs" />
     <Compile Include="Config\ChartConfigBase.cs" />
     <Compile Include="Config\ChartConfigurationCollection.cs" />
+    <Compile Include="Config\XAxisCollection.cs" />
     <Compile Include="HighChart.cs" />
     <Compile Include="HighChartBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,8 +18,7 @@ namespace Ext.ux.Highcharts
 {
     
     [Meta]
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.highcharts.src.js", "text/javascript")]
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.js", "text/javascript")]
+    
     public abstract partial class HighChartBase : ComponentBase, IStore<Store>, INoneContentable
     {
 
