@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("allowDecimals", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to allow decimals in this axis' ticks. When counting integers, like persons or hits on a web page, decimals must be avoided in the axis tick labels.")]
             public bool? AllowDecimals
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("alternateGridColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When using an alternate grid color, a band is painted across the plot area between every other grid line.")]
             public string AlternateGridColor
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("categories", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            [TypeConverter(typeof(StringArrayConverter))]
             [Category("HighChart")]
             [Description(@"If categories are present for the xAxis, names are used instead of numbers for that axis. Since Highcharts 3.0, categories can also be extracted by giving each point a name and setting axis type to category. However, if you have multiple series, best practice remains defining the categories array.Example:categories: ['Apples', 'Bananas', 'Oranges']		 Defaults to null")]
             public string[] Categories
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("ceiling", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The highest allowed value for automatically computed axis extremes.")]
             public double? Ceiling
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("dateTimeLabelFormats", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"For a datetime axis, the scale will automatically adjust to the appropriate unit. This member gives the default string representations used for each unit. For an overview of the replacement codes, see dateFormat. Defaults to:{	millisecond: '%H:%M:%S.%L',	second: '%H:%M:%S',	minute: '%H:%M',	hour: '%H:%M',	day: '%e. %b',	week: '%e. %b',	month: '%b \'%y',	year: '%Y'}")]
             public object DateTimeLabelFormats
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("endOnTick", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to force the axis to end on a tick. Use this option with the maxPadding option to control the axis end.")]
             public bool? EndOnTick
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("floor", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The lowest allowed value for automatically computed axis extremes.")]
             public double? Floor
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("gridLineColor", null)]
             [DefaultValue(@"#D8D8D8")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Color of the grid lines extending the ticks across the plot area.")]
             public string GridLineColor
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("gridLineDashStyle", null)]
             [DefaultValue(@"Solid")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The dash or dot style of the grid lines. For possible values, see this demonstration.")]
             public string GridLineDashStyle
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("gridLineInterpolation", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Polar charts only. Whether the grid lines should draw as a polygon with straight lines between categories, or as circles. Can be either circle or polygon.")]
             public string GridLineInterpolation
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("gridLineWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the grid lines extending the ticks across the plot area.")]
             public double? GridLineWidth
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("gridZIndex", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The Z index of the grid lines.")]
             public double? GridZIndex
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An id for the axis. This can be used after render time to get a pointer to the axis object through chart.get().")]
             public string Id
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("lineColor", null)]
             [DefaultValue(@"#C0D0E0")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the line marking the axis itself.")]
             public string LineColor
@@ -310,6 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("lineWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the line marking the axis itself.")]
             public double? LineWidth
@@ -330,6 +347,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("linkedTo", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Index of another axis that this axis is linked to. When an axis is linked to a master axis, it will take the same extremes as the master, but as assigned by min or max or by setExtremes. It can be used to show additional info, or to ease reading the chart by duplicating the scales.")]
             public double? LinkedTo
@@ -350,6 +368,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("max", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The maximum value of the axis. If null, the max value is automatically calculated. If the endOnTick option is true, the max value might be rounded up. The actual maximum value is also influenced by  chart.alignTicks.")]
             public double? Max
@@ -370,6 +389,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("maxColor", null)]
             [DefaultValue(@"#102D4C")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Solid gauge only. Unless stops are set, the color to represent the maximum value of the Y axis.")]
             public string MaxColor
@@ -390,6 +410,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("maxPadding", null)]
             [DefaultValue(0.05)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area.")]
             public double? MaxPadding
@@ -410,6 +431,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("maxZoom", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Deprecated. Renamed to minRange as of Highcharts 2.2.")]
             public double? MaxZoom
@@ -430,6 +452,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("min", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The minimum value of the axis. If null the min value is automatically calculated. If the startOnTick option is true, the min value might be rounded down.")]
             public double? Min
@@ -450,6 +473,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minColor", null)]
             [DefaultValue(@"#EFEFFF")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Solid gauge only. Unless stops are set, the color to represent the minimum value of the Y axis.")]
             public string MinColor
@@ -470,6 +494,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minPadding", null)]
             [DefaultValue(0.05)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area.")]
             public double? MinPadding
@@ -490,6 +515,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minRange", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The minimum range to display on this axis. The entire axis will not be allowed to span over a smaller interval than this. For example, for a datetime axis the main unit is milliseconds. If minRange is set to 3600000, you can't zoom in more than to one hour. The default minRange for the x axis is five times the smallest interval between any of the data points. On a logarithmic axis, the unit for the minimum range is the power. So a minRange of 	1 means that the axis can be zoomed to 10-100, 100-1000, 1000-10000 etc.Note that the minPadding, maxPadding, startOnTick and endOnTick settings also affect how the extremes of the axis are computed.")]
             public double? MinRange
@@ -510,6 +536,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minTickInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, this can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis.")]
             public double? MinTickInterval
@@ -530,6 +557,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorGridLineColor", null)]
             [DefaultValue(@"#E0E0E0")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Color of the minor, secondary grid lines.")]
             public string MinorGridLineColor
@@ -550,6 +578,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorGridLineDashStyle", null)]
             [DefaultValue(@"Solid")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The dash or dot style of the minor grid lines. For possible values, see this demonstration.")]
             public string MinorGridLineDashStyle
@@ -570,6 +599,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorGridLineWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Width of the minor, secondary grid lines.")]
             public double? MinorGridLineWidth
@@ -590,6 +620,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorTickColor", null)]
             [DefaultValue(@"#A0A0A0")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Color for the minor tick marks.")]
             public string MinorTickColor
@@ -610,6 +641,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorTickInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Tick interval in scale units for the minor ticks. On a linear axis, if ""auto"",  the minor tick interval is calculated as a fifth of the tickInterval. If null, minor ticks are not shown. On logarithmic axes, the unit is the power of the value. For example, setting 	the minorTickInterval to 1 puts one tick on each of 0.1, 1, 10, 100 etc. Setting 	the minorTickInterval to 0.1 produces 9 ticks between 1 and 10,  	10 and 100 etc. A minorTickInterval of ""auto"" on a log axis results in a best guess, 	attempting to enter approximately 5 minor ticks between each major tick.If user settings dictate minor ticks to become too dense, they don't make sense, and will be ignored to prevent performance problems.On axes using categories, minor ticks are not supported.")]
             public object MinorTickInterval
@@ -630,6 +662,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorTickLength", null)]
             [DefaultValue(2)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel length of the minor tick marks.")]
             public double? MinorTickLength
@@ -650,6 +683,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorTickPosition", null)]
             [DefaultValue(@"outside")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The position of the minor tick marks relative to the axis line. Can be one of inside and outside.")]
             public string MinorTickPosition
@@ -670,6 +704,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("minorTickWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel width of the minor tick mark.")]
             public double? MinorTickWidth
@@ -690,6 +725,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("offset", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The distance in pixels from the plot area to the axis line. A positive offset moves the axis with it's line, labels and ticks away from the plot area. This is typically used when two or more axes are displayed on the same side of the plot.")]
             public double? Offset
@@ -710,6 +746,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("opposite", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to display the axis on the opposite side of the normal. The normal is on the left side for vertical axes and bottom for horizontal, so the opposite sides will be right and top respectively. This is typically used with dual or multiple axes.")]
             public bool? Opposite
@@ -730,6 +767,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("reversed", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to reverse the axis so that the highest number is closest to the origin. If the chart is inverted, the x axis is reversed by default.")]
             public bool? Reversed
@@ -750,6 +788,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("reversedStacks", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"If true, the first series in a stack will be drawn on top in a positive, non-reversed Y axis. If false, the first series is in the base of the stack.")]
             public bool? ReversedStacks
@@ -770,6 +809,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("showEmpty", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to show the axis line and title when the axis has no data.")]
             public bool? ShowEmpty
@@ -790,6 +830,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("showFirstLabel", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to show the first tick label.")]
             public bool? ShowFirstLabel
@@ -810,6 +851,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("showLastLabel", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to show the last tick label.")]
             public bool? ShowLastLabel
@@ -830,6 +872,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("startOfWeek", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"For datetime axes, this decides where to put the tick between weeks. 0 = Sunday, 1 = Monday.")]
             public double? StartOfWeek
@@ -850,6 +893,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("startOnTick", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to force the axis to start on a tick. Use this option with the maxPadding option to control the axis start.")]
             public bool? StartOnTick
@@ -870,6 +914,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("stops", JsonMode.AlwaysArray)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Solid gauge series only. Color stops for the solid gauge. Use this in cases where a linear gradient between a minColor and maxColor is not sufficient. The stops is an array of tuples, where the first item is a float between 0 and 1 assigning the relative position in the gradient, and the second item is the color.For solid gauges, the Y axis also inherits the concept of data classes from the Highmaps color axis.")]
             public string Stops
@@ -890,6 +935,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickAmount", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The amount of ticks to draw on the axis. This opens up for aligning the ticks of multiple charts or panes within a chart. This option overrides the tickPixelInterval option.This option only has an effect on linear axes. Datetime, logarithmic or category axes are not affected.")]
             public double? TickAmount
@@ -910,6 +956,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickColor", null)]
             [DefaultValue(@"#C0D0E0")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Color for the main tick marks.")]
             public string TickColor
@@ -930,6 +977,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The interval of the tick marks in axis units. When null, the tick interval is computed to approximately follow the tickPixelInterval on linear and datetime axes. On categorized axes, a null tickInterval will default to 1, one category.  Note that datetime axes are based on milliseconds, so for  example an interval of one day is expressed as 24 * 3600 * 1000. On logarithmic axes, the tickInterval is based on powers, so a tickInterval of 1 means 	one tick on each of 0.1, 1, 10, 100 etc. A tickInterval of 2 means a tick of 0.1, 10, 1000 etc. 	A tickInterval of 0.2 puts a tick on 0.1, 0.2, 0.4, 0.6, 0.8, 1, 2, 4, 6, 8, 10, 20, 40 etc.If the tickInterval is too dense for labels to be drawn, Highcharts may remove ticks.")]
             public double? TickInterval
@@ -950,6 +998,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickLength", null)]
             [DefaultValue(10)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel length of the main tick marks.")]
             public double? TickLength
@@ -970,6 +1019,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickPixelInterval", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"If tickInterval is null this option sets the approximate pixel interval of the tick marks. Not applicable to categorized axis. Defaults to 72  for the Y axis and 100 for	the X axis.")]
             public double? TickPixelInterval
@@ -990,6 +1040,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickPosition", null)]
             [DefaultValue(@"outside")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The position of the major tick marks relative to the axis line. Can be one of inside and outside.")]
             public string TickPosition
@@ -1010,6 +1061,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickPositioner", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A callback function returning array defining where the ticks are laid out on the axis. This overrides the default behaviour of tickPixelInterval and tickInterval. The automatic tick positions are accessible through this.tickPositions and can be modified by the callback.")]
             public string TickPositioner
@@ -1030,6 +1082,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickPositions", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An array defining where the ticks are laid out on the axis. This overrides the default behaviour of tickPixelInterval and tickInterval.")]
             public double[] TickPositions
@@ -1050,6 +1103,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel width of the major tick marks.")]
             public double? TickWidth
@@ -1070,6 +1124,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("tickmarkPlacement", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"For categorized axes only. If on the tick mark is placed in the center of  the category, if between the tick mark is placed between categories. The default is between if the tickInterval is 1, else on.")]
             public string TickmarkPlacement
@@ -1090,6 +1145,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("type", null)]
             [DefaultValue(@"linear")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The type of axis. Can be one of ""linear"", ""logarithmic"", ""datetime"" or ""category"". In a datetime axis, the numbers are given in milliseconds, and tick marks are placed 		on appropriate values like full hours or days. In a category axis, the point names of the chart's series are used for categories, if not a categories array is defined.")]
             public string Type
@@ -1110,6 +1166,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("units", JsonMode.AlwaysArray)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Datetime axis only. An array determining what time intervals the ticks are allowed to fall on. Each array item is an array where the first value is the time unit and the  second value another array of allowed multiples. Defaults to:units: [[	'millisecond', // unit name	[1, 2, 5, 10, 20, 25, 50, 100, 200, 500] // allowed multiples], [	'second',	[1, 2, 5, 10, 15, 30]], [	'minute',	[1, 2, 5, 10, 15, 30]], [	'hour',	[1, 2, 3, 4, 6, 8, 12]], [	'day',	[1]], [	'week',	[1]], [	'month',	[1, 3, 6]], [	'year',	null]]")]
             public string Units

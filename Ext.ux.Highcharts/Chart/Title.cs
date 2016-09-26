@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("align", null)]
             [DefaultValue(@"center")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The horizontal alignment of the title. Can be one of ""left"", ""center"" and ""right"".")]
             public string Align
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("floating", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When the title is floating, the plot area will not move to make space for it.")]
             public bool? Floating
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("margin", null)]
             [DefaultValue(15)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The margin between the title and the plot area, or if a subtitle is present, the margin between the subtitle and the plot area.")]
             public double? Margin
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue(@"{ ""color"": ""#333333"", ""fontSize"": ""18px"" }")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for the title. Use this for font styling, but use align, x and y for text alignment.")]
             public string Style
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("text", null)]
             [DefaultValue(@"Chart title")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The title of the chart. To disable the title, set the text to null.")]
             public string Text
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use HTML to render the text.")]
             public bool? UseHTML
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("verticalAlign", null)]
             [DefaultValue(@" ")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The vertical alignment of the title. Can be one of ""top"", ""middle"" and ""bottom"". When a value is given, the title behaves as floating.")]
             public string VerticalAlign
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("x", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The x position of the title relative to the alignment within chart.spacingLeft and chart.spacingRight.")]
             public double? x
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The y position of the title relative to the alignment within chart.spacingTop and chart.spacingBottom. By default it depends on the font size.")]
             public double? y

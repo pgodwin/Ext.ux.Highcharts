@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("align", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Defines the horizontal alignment of the stack total label.  Can be one of ""left"", ""center"" or ""right"". The default value is calculated at runtime and depends on orientation and whether  the stack is positive or negative.")]
             public string Align
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("enabled", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Enable or disable the stack total labels.")]
             public bool? Enabled
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("format", null)]
             [DefaultValue(@"{total}")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A format string for the data label. Available variables are the same as for formatter.")]
             public string Format
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("formatter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Callback JavaScript function to format the label. The value is  given by this.total. Defaults to: function() {	return this.total;}")]
             public string Formatter
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("rotation", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Rotation of the labels in degrees.")]
             public double? Rotation
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue(@"{ ""color"": ""#000000"", ""fontSize"": ""11px"", ""fontWeight"": ""bold"", ""textShadow"": ""0 0 6px contrast, 00 3px contrast"" }")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for the label.")]
             public string Style
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("textAlign", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The text alignment for the label. While align determines where the texts anchor point is placed with regards to the stack, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". The default value is calculated at runtime and depends on orientation and whether the stack is positive or negative.")]
             public string TextAlign
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use HTML to render the labels.")]
             public bool? UseHTML
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("verticalAlign", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Defines the vertical alignment of the stack total label. Can be one of ""top"", ""middle"" or ""bottom"". The default value is calculated at runtime and depends on orientation and whether  the stack is positive or negative.")]
             public string VerticalAlign
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("x", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The x position offset of the label relative to the left of the stacked bar. The default value is calculated at runtime and depends on orientation and whether the stack is positive or negative.")]
             public double? x
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The y position offset of the label relative to the tick position on the axis. The default value is calculated at runtime and depends on orientation and whether  the stack is positive or negative.")]
             public double? y

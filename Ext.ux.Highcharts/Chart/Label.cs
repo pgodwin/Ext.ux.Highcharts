@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("align", null)]
             [DefaultValue(@"center")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Horizontal alignment of the label. Can be one of ""left"", ""center"" or ""right"".")]
             public string Align
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("rotation", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Rotation of the text label in degrees .")]
             public double? Rotation
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for the text label.")]
             public object Style
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("text", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The string text itself. A subset of HTML is supported.")]
             public string Text
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("textAlign", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The text alignment for the label. While align determines where the texts anchor point is placed within the plot band, textAlign determines how the text is aligned against its anchor point. Possible values are ""left"", ""center"" and ""right"". Defaults to the same as the align option.")]
             public string TextAlign
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use HTML to render the labels.")]
             public bool? UseHTML
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("verticalAlign", null)]
             [DefaultValue(@"top")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Vertical alignment of the label relative to the plot band. Can be one of ""top"", ""middle"" or ""bottom"".")]
             public string VerticalAlign
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("x", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Horizontal position relative the alignment. Default varies by orientation.")]
             public double? x
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("y", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Vertical position of the text baseline relative to the alignment. Default varies by orientation.")]
             public double? y

@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("backgroundColor", null)]
             [DefaultValue(@"black")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The background or fill color of the gauge's dial. ")]
             public string BackgroundColor
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("baseLength", null)]
             [DefaultValue(@"70%")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The length of the dial's base part, relative to the total radius or length of the dial. ")]
             public string BaseLength
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("baseWidth", null)]
             [DefaultValue(3)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel width of the base of the gauge dial. The base is the part closest to the pivot, defined by baseLength. ")]
             public double? BaseWidth
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderColor", null)]
             [DefaultValue(@"silver")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border color or stroke of the gauge's dial. By default, the borderWidth is 0, so this must be set in addition to a custom border color.")]
             public string BorderColor
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the gauge dial border in pixels.")]
             public double? BorderWidth
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("radius", null)]
             [DefaultValue(@"80%")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The radius or length of the dial, in percentages relative to the radius of the gauge itself.")]
             public string Radius
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("rearLength", null)]
             [DefaultValue(@"10%")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The length of the dial's rear end, the part that extends out on the other side of the pivot. Relative to the dial's length. ")]
             public string RearLength
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("topWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the top of the dial, closest to the perimeter. The pivot narrows in from the base to the top.")]
             public double? TopWidth

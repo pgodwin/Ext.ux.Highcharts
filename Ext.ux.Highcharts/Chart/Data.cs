@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("columns", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A two-dimensional array representing the input data on tabular form. This input can be used when the data is already parsed, for example from a grid view component. Each cell can be a string or number. If not switchRowsAndColumns is set, the columns are interpreted as series.")]
             public object[,] Columns
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("complete", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The callback that is evaluated when the data is finished loading, optionally from an external source, and parsed. The first argument passed is a finished chart options object, containing the series. These options can be extended with additional options and passed directly to the chart constructor.")]
             public string Complete
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("csv", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A comma delimited string to be parsed. Related options are startRow, endRow, startColumn and endColumn to delimit what part of the table is used. The lineDelimiter and itemDelimiter options define the CSV delimiter formats.")]
             public string Csv
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("dateFormat", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Which of the predefined date formats in Date.prototype.dateFormats to use to parse date values. Defaults to a best guess based on what format gives valid and ordered dates.Valid options include:YYYY-mm-dddd/mm/YYYYmm/dd/YYYYdd/mm/YYmm/dd/YY")]
             public string DateFormat
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("decimalPoint", null)]
             [DefaultValue(@".")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The decimal point used for parsing numbers in the CSV.")]
             public string DecimalPoint
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("endColumn", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"In tabular input data, the last column (indexed by 0) to use. Defaults to the last column containing data.")]
             public double? EndColumn
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("endRow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"In tabular input data, the last row (indexed by 0) to use. Defaults to the last row containing data.")]
             public double? EndRow
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("firstRowAsNames", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use the first row in the data set as series names. ")]
             public bool? FirstRowAsNames
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("googleSpreadsheetKey", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The key for a Google Spreadsheet to load. See general information on GS.")]
             public string GoogleSpreadsheetKey
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("googleSpreadsheetWorksheet", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The Google Spreadsheet worksheet to use in combination with googleSpreadsheetKey. The available id's from your sheet can be read from https://spreadsheets.google.com/feeds/worksheets/{key}/public/basic")]
             public string GoogleSpreadsheetWorksheet
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemDelimiter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Item or cell delimiter for parsing CSV. Defaults to the tab character \t if a tab character is found in the CSV string, if not it defaults to ,.")]
             public string ItemDelimiter
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("lineDelimiter", null)]
             [DefaultValue(@"\n")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Line delimiter for parsing CSV.")]
             public string LineDelimiter
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("parseDate", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A callback function to parse string representations of dates into JavaScript timestamps. Should return an integer timestamp on success.")]
             public string ParseDate
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("parsed", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A callback function to access the parsed columns, the two-dimentional input data array directly, before they are interpreted into series data and categories. Return false to stop completion, or call this.complete() to continue async.")]
             public string Parsed
@@ -310,6 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("rows", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The same as the columns input option, but defining rows intead of columns.")]
             public object[,] Rows
@@ -330,6 +347,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("seriesMapping", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An array containing object with Point property names along with what column id the property should be taken from.")]
             public object[] SeriesMapping
@@ -350,6 +368,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("startColumn", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"In tabular input data, the first column (indexed by 0) to use.")]
             public double? StartColumn
@@ -370,6 +389,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("startRow", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"In tabular input data, the first row (indexed by 0) to use.")]
             public double? StartRow
@@ -390,6 +410,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("switchRowsAndColumns", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Switch rows and columns of the input data, so that this.columns effectively becomes the rows of the data set, and the rows are interpreted as series.")]
             public bool? SwitchRowsAndColumns
@@ -410,6 +431,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("table", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A HTML table or the id of such to be parsed as input data. Related options are startRow, endRow, startColumn and endColumn to delimit what part of the table is used.")]
             public object Table

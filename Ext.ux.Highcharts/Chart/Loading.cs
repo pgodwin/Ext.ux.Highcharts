@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("hideDuration", null)]
             [DefaultValue(100)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The duration in milliseconds of the fade out effect.")]
             public double? HideDuration
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("labelStyle", null)]
             [DefaultValue(@"{ ""fontWeight"": ""bold"", ""position"": ""relative"", ""top"": ""45%"" }")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for the loading label span.")]
             public string LabelStyle
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("showDuration", null)]
             [DefaultValue(100)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The duration in milliseconds of the fade in effect.")]
             public double? ShowDuration
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for the loading screen that covers the plot area. Defaults to:style: {	position: 'absolute',	backgroundColor: 'white',	opacity: 0.5,	textAlign: 'center'}")]
             public string Style

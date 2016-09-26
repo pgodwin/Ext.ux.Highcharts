@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("allowPointSelect", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Allow this series' points to be selected by clicking on the markers, bars or pie slices.")]
             public bool? AllowPointSelect
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("animation", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Enable or disable the initial animation when a series is displayed. The animation can also be set as a configuration object. Please note that this option only applies to the initial animation of the series itself. For other animations, see chart.animation and the animation parameter under the API methods.		The following properties are supported:  duration  The duration of the animation in milliseconds.easingWhen using jQuery as the general framework, the easing can be set to linear or	swing. More easing functions are available with the use of jQuery plug-ins, most notably				the jQuery UI suite. See the jQuery docs. When using MooTools as the general framework, use the property name transition instead of easing.Due to poor performance, animation is disabled in old IE browsers for column charts and polar charts.")]
             public bool? Animation
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderColor", null)]
             [DefaultValue(@"#FFFFFF")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the border surrounding each column or bar.")]
             public string BorderColor
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderRadius", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The corner radius of the border surrounding each column or bar.")]
             public double? BorderRadius
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the border surrounding each column or bar.")]
             public double? BorderWidth
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("color", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The main color of the series. In heat maps this color is rarely used, as we mostly use the color to denote the value of each point. Unless options are set in the colorAxis, the default value is pulled from the options.colors array.")]
             public string Color
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("colorByPoint", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When using automatic point colors pulled from the options.colors collection, this option determines whether the chart should receive  one color per series or one color per point.")]
             public bool? ColorByPoint
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("colors", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            [TypeConverter(typeof(StringArrayConverter))]
             [Category("HighChart")]
             [Description(@"A series specific or series type specific color set to apply instead of the global colors when colorByPoint is true.")]
             public string[] Colors
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("colsize", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The column size - how many X axis units each column in the heatmap should span.")]
             public double? Colsize
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("cropThreshold", null)]
             [DefaultValue(50)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When the series contains less points than the crop threshold, all points are drawn,  event if the points fall outside the visible plot area at the current zoom. The advantage of drawing all points (including markers and columns), is that animation is performed on updates. On the other hand, when the series contains more points than the crop threshold, the series data is cropped to only contain points that fall within the plot area. The advantage of cropping away invisible points is to increase performance on large series.  .")]
             public double? CropThreshold
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("cursor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"You can set the cursor to ""pointer"" if you have click events attached to  the series, to signal to the user that the points and lines can be clicked.")]
             public string Cursor
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("enableMouseTracking", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Enable or disable the mouse tracking for a specific series. This includes point tooltips and click events on graphs and points. For large datasets it improves performance.")]
             public bool? EnableMouseTracking
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("getExtremesFromAll", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use the Y extremes of the total chart width or only the zoomed area when zooming in on parts of the X axis. By default, the Y axis adjusts to the min and max of the visible data. Cartesian series only.")]
             public bool? GetExtremesFromAll
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("keys", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            [TypeConverter(typeof(StringArrayConverter))]
             [Category("HighChart")]
             [Description(@"An array specifying which option maps to which key in the data point array. This makes it convenient to work with unstructured data arrays from different sources.")]
             public string[] Keys
@@ -310,6 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("linkedTo", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The id of another series to link to. Additionally, the value can be "":previous"" to link to the previous series. When two series are linked, only the first one appears in the legend. Toggling the visibility of this also toggles the linked series.")]
             public string LinkedTo
@@ -330,6 +347,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("maxPointWidth", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The maximum allowed pixel width for a column, translated to the height of a bar in a bar chart. This prevents the columns from becoming too wide when there is a small number of points in the chart.")]
             public double? MaxPointWidth
@@ -350,6 +368,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("rowsize", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The row size - how many Y axis units each heatmap row should span.")]
             public double? Rowsize
@@ -370,6 +389,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("selected", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to select the series initially. If showCheckbox is true, the checkbox next to the series name will be checked for a selected series.")]
             public bool? Selected
@@ -390,6 +410,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("shadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to apply a drop shadow to the graph line. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.")]
             public object Shadow
@@ -410,6 +431,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("showCheckbox", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"If true, a checkbox is displayed next to the legend item to allow selecting the series. The state of the checkbox is determined by the selected option.")]
             public bool? ShowCheckbox
@@ -430,6 +452,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("showInLegend", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to display this particular series or series type in the legend. The default value is true for standalone series, false for linked series.")]
             public bool? ShowInLegend
@@ -450,6 +473,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("stickyTracking", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc.")]
             public bool? StickyTracking
@@ -470,6 +494,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("turboThreshold", null)]
             [DefaultValue(1000)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable.")]
             public double? TurboThreshold
@@ -490,6 +515,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("visible", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Set the initial visibility of the series.")]
             public bool? Visible
@@ -510,6 +536,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("zoneAxis", null)]
             [DefaultValue(@"y")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Defines the Axis on which the zones are applied.")]
             public string ZoneAxis

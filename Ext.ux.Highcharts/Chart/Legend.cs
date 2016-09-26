@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("align", null)]
             [DefaultValue(@"center")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The horizontal alignment of the legend box within the chart area. Valid values are left, center and right.In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area.")]
             public string Align
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("backgroundColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The background color of the legend.")]
             public string BackgroundColor
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderColor", null)]
             [DefaultValue(@"#909090")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the drawn border around the legend.")]
             public string BorderColor
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderRadius", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border corner radius of the legend.")]
             public double? BorderRadius
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the drawn border around the legend.")]
             public double? BorderWidth
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Enable or disable the legend.")]
             public bool? Enabled
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("floating", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When the legend is floating, the plot area ignores it and is allowed to be placed below it.")]
             public bool? Floating
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemDistance", null)]
             [DefaultValue(20)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"In a legend with horizontal layout, the itemDistance defines the pixel distance between each item. ")]
             public double? ItemDistance
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemHiddenStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for each legend item when the corresponding series or point is hidden. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from style unless overridden here. Defaults to:itemHiddenStyle: {	color: '#CCC'}")]
             public string ItemHiddenStyle
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemHoverStyle", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for each legend item in hover mode. Only a subset of CSS is supported, notably those options related to text. Properties are inherited from style unless overridden here. Defaults to:itemHoverStyle: {	color: '#000'}")]
             public string ItemHoverStyle
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemMarginBottom", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel bottom margin for each legend item.")]
             public double? ItemMarginBottom
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemMarginTop", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel top margin for each legend item.")]
             public double? ItemMarginTop
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemStyle", null)]
             [DefaultValue(@"{ ""color"": ""#333333"", ""cursor"": ""pointer"", ""fontSize"": ""12px"", ""fontWeight"": ""bold"" }")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for each legend item. Only a subset of CSS is supported, notably those options related to text.")]
             public string ItemStyle
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("itemWidth", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width for each legend item. This is useful in a horizontal layout with many items when you want the items to align vertically.  .")]
             public double? ItemWidth
@@ -310,6 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("labelFormat", null)]
             [DefaultValue(@"{name}")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A format string for each legend label. Available variables relates to properties on the series, or the point in case of pies.")]
             public string LabelFormat
@@ -330,6 +347,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("labelFormatter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Callback function to format each of the series' labels. The this keyword refers to the series object, or the point object in case of pie charts. By default the series or point name is printed.")]
             public string LabelFormatter
@@ -350,6 +368,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("layout", null)]
             [DefaultValue(@"horizontal")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The layout of the legend items. Can be one of ""horizontal"" or ""vertical"".")]
             public string Layout
@@ -370,6 +389,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("lineHeight", null)]
             [DefaultValue(16)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Line height for the legend items. Deprecated as of 2.1. Instead, the line height for each  item can be set using itemStyle.lineHeight, and the padding between items using itemMarginTop and itemMarginBottom.")]
             public double? LineHeight
@@ -390,6 +410,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("margin", null)]
             [DefaultValue(12)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"If the plot area sized is calculated automatically and the legend is not floating, the legend margin is the  space between the legend and the axis labels or plot area.")]
             public double? Margin
@@ -410,6 +431,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("maxHeight", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Maximum pixel height for the legend. When the maximum height is extended, navigation will show.")]
             public double? MaxHeight
@@ -430,6 +452,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("padding", null)]
             [DefaultValue(8)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The inner padding of the legend box.")]
             public double? Padding
@@ -450,6 +473,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("reversed", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to reverse the order of the legend items compared to the order of the series or points as defined in the configuration object.")]
             public bool? Reversed
@@ -470,6 +494,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("rtl", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to show the symbol on the right side of the text rather than the left side.  This is common in Arabic and Hebraic.")]
             public bool? Rtl
@@ -490,6 +515,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("shadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to apply a drop shadow to the legend. A backgroundColor also needs to be applied for this to take effect. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.")]
             public object Shadow
@@ -510,6 +536,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for the legend area. In the 1.x versions the position of the legend area was determined by CSS. In 2.x, the position is determined by properties like  align, verticalAlign, x and y, but the styles are still parsed for backwards compatibility.")]
             public string Style
@@ -530,6 +557,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolHeight", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel height of the symbol for series types that use a rectangle in the legend. Defaults to the font size of legend items.")]
             public double? SymbolHeight
@@ -550,6 +578,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolPadding", null)]
             [DefaultValue(5)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel padding between the legend item symbol and the legend item text.")]
             public double? SymbolPadding
@@ -570,6 +599,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolRadius", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border radius of the symbol for series types that use a rectangle in the legend.")]
             public double? SymbolRadius
@@ -590,6 +620,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolWidth", null)]
             [DefaultValue(16)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel width of the legend item symbol.")]
             public double? SymbolWidth
@@ -610,6 +641,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use HTML to render the legend item texts. Prior to 4.1.7, when using HTML, legend.navigation was disabled.")]
             public bool? UseHTML
@@ -630,6 +662,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("verticalAlign", null)]
             [DefaultValue(@"bottom")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The vertical alignment of the legend box. Can be one of top, middle or  bottom. Vertical position can be further determined by the y option.In the case that the legend is aligned in a corner position, the layout option will determine whether to place it above/below or on the side of the plot area.")]
             public string VerticalAlign
@@ -650,6 +683,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("width", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the legend box.")]
             public double? Width
@@ -670,6 +704,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("x", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The x offset of the legend relative to its horizontal alignment align within chart.spacingLeft and chart.spacingRight. Negative x moves it to the left, positive x moves it to the right. ")]
             public double? x
@@ -690,6 +725,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("y", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The vertical offset of the legend relative to it's vertical alignment verticalAlign within chart.spacingTop and chart.spacingBottom. Negative y moves it up, positive y moves it down.")]
             public double? y

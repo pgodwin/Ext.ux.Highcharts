@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("align", null)]
             [DefaultValue(@"right")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Alignment for the buttons.")]
             public string Align
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to enable buttons.")]
             public bool? Enabled
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("height", null)]
             [DefaultValue(20)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Pixel height of the buttons.")]
             public double? Height
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolFill", null)]
             [DefaultValue(@"#E0E0E0")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Fill color for the symbol within the button.")]
             public string SymbolFill
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolSize", null)]
             [DefaultValue(14)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel size of the symbol on the button.")]
             public double? SymbolSize
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolStroke", null)]
             [DefaultValue(@"#666")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the symbol's stroke or line.")]
             public string SymbolStroke
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolStrokeWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel stroke width of the symbol on the button.")]
             public double? SymbolStrokeWidth
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolX", null)]
             [DefaultValue(12.5)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The x position of the center of the symbol inside the button.")]
             public double? SymbolX
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("symbolY", null)]
             [DefaultValue(10.5)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The y position of the center of the symbol inside the button.")]
             public double? SymbolY
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("text", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A text string to add to the individual button. ")]
             public string Text
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("theme", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A configuration object for the button theme. The object accepts SVG properties like stroke-width, stroke and fill. Tri-state button styles are supported by the states.hover and states.select objects.")]
             public object Theme
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("verticalAlign", null)]
             [DefaultValue(@"top")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The vertical alignment of the buttons. Can be one of ""top"", ""middle"" or ""bottom"".")]
             public string VerticalAlign
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("width", null)]
             [DefaultValue(24)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel width of the button.")]
             public double? Width
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("y", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The vertical offset of the button's position relative to its verticalAlign.			 .")]
             public double? y

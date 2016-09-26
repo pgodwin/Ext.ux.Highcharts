@@ -278,7 +278,7 @@ namespace Ext.ux.Highcharts.ChartSeries
                 list.Add("updateNoRecord", new ConfigOption("updateNoRecord", null, false, this.UpdateNoRecord));
                 list.Add("visible", new ConfigOption("visible", null, true, this.Visible));
                 list.Add("xField", new ConfigOption("xField", null, "", this.XField));
-                list.Add("yField", new ConfigOption("yField", null, "", this.XField));
+                list.Add("yField", new ConfigOption("yField", null, "", this.YField));
 
                 return list;
             }

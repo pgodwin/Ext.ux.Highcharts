@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("allowPointSelect", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Allow this series' points to be selected by clicking on the markers, bars or pie slices.")]
             public bool? AllowPointSelect
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("borderColor", null)]
             [DefaultValue(@"#FFFFFF")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the border surrounding each slice.")]
             public string BorderColor
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("borderWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the border surrounding each slice.")]
             public double? BorderWidth
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("center", JsonMode.AlwaysArray)]
             [DefaultValue(new object[] { "50%", "50%"})]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The center of the series. By default, it is centered in the middle of the plot area, so it fills the plot area height.")]
             public object[] Center
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("colors", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            [TypeConverter(typeof(StringArrayConverter))]
             [Category("HighChart")]
             [Description(@"A series specific or series type specific color set to use instead of the global colors.")]
             public string[] Colors
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("cursor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"You can set the cursor to ""pointer"" if you have click events attached to  the series, to signal to the user that the points and lines can be clicked.")]
             public string Cursor
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("depth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The thickness of a 3D pie. Requires highcharts-3d.js")]
             public double? Depth
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("enableMouseTracking", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Enable or disable the mouse tracking for a specific series. This includes point tooltips and click events on graphs and points. For large datasets it improves performance.")]
             public bool? EnableMouseTracking
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("getExtremesFromAll", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use the Y extremes of the total chart width or only the zoomed area when zooming in on parts of the X axis. By default, the Y axis adjusts to the min and max of the visible data. Cartesian series only.")]
             public bool? GetExtremesFromAll
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("height", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The height of the funnel or pyramid. If it is a number it defines the pixel height, if it is a percentage string it is the percentage of the plot area height.")]
             public object Height
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An id for the series. This can be used after render time to get a pointer to the series object through chart.get().")]
             public string Id
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("index", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The index of the series in the chart, affecting the internal index in the chart.series array, the visible Z index as well as the order in the legend.")]
             public double? Index
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("keys", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            [TypeConverter(typeof(StringArrayConverter))]
             [Category("HighChart")]
             [Description(@"An array specifying which option maps to which key in the data point array. This makes it convenient to work with unstructured data arrays from different sources.")]
             public string[] Keys
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("legendIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The sequential index of the series in the legend.  Try it:  	Legend in opposite order .")]
             public double? LegendIndex
@@ -310,6 +326,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("linkedTo", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The id of another series to link to. Additionally, the value can be "":previous"" to link to the previous series. When two series are linked, only the first one appears in the legend. Toggling the visibility of this also toggles the linked series.")]
             public string LinkedTo
@@ -330,6 +347,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("minSize", null)]
             [DefaultValue(80)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The minimum size for a pie in response to auto margins. The pie will try to shrink to make room for data labels in side the plot area, but only to this size.")]
             public double? MinSize
@@ -350,6 +368,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("name", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The name of the series as shown in the legend, tooltip etc.")]
             public string Name
@@ -370,6 +389,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("neckHeight", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The height of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area height.")]
             public object NeckHeight
@@ -390,6 +410,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("neckWidth", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the neck, the lower part of the funnel. A number defines pixel width, a percentage string defines a percentage of the plot area width.")]
             public object NeckWidth
@@ -410,6 +431,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("reversed", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A reversed funnel has the widest area down. A reversed funnel with no neck width and neck height is a pyramid.")]
             public bool? Reversed
@@ -430,6 +452,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("selected", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to select the series initially. If showCheckbox is true, the checkbox next to the series name will be checked for a selected series.")]
             public bool? Selected
@@ -450,6 +473,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("shadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to apply a drop shadow to the graph line. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.")]
             public object Shadow
@@ -470,6 +494,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("showInLegend", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to display this particular series or series type in the legend. Since 2.1, pies are not shown in the legend by default.")]
             public bool? ShowInLegend
@@ -490,6 +515,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("slicedOffset", null)]
             [DefaultValue(10)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"If a point is sliced, moved out from the center, how many pixels should  it be moved?.")]
             public double? SlicedOffset
@@ -510,6 +536,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("stickyTracking", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series.")]
             public bool? StickyTracking
@@ -530,6 +557,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("type", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component.")]
             public string Type
@@ -550,6 +578,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("visible", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Set the initial visibility of the series.")]
             public bool? Visible
@@ -570,6 +599,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("width", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the funnel compared to the width of the plot area, or the pixel width if it is a number.")]
             public object Width
@@ -590,6 +620,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("zIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Define the visual z index of the series.")]
             public double? ZIndex
@@ -610,6 +641,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("zoneAxis", null)]
             [DefaultValue(@"y")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Defines the Axis on which the zones are applied.")]
             public string ZoneAxis

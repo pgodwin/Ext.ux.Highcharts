@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("enabled", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to show the credits text.")]
             public bool? Enabled
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("href", null)]
             [DefaultValue(@"http://www.highcharts.com")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The URL for the credits label.")]
             public string Href
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("position", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Position configuration for the credits label. Supported properties are  align, verticalAlign, x and y. Defaults to position: {	align: 'right',	x: -10,	verticalAlign: 'bottom',	y: -5}")]
             public object Position
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"CSS styles for the credits label. Defaults to:style: {	cursor: 'pointer',	color: '#909090',	fontSize: '10px'}")]
             public string Style
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("text", null)]
             [DefaultValue(@"Highcharts.com")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The text for the credits label.")]
             public string Text

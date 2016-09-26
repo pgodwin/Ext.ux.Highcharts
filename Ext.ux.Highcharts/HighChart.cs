@@ -10,6 +10,7 @@ using Ext.Net;
 
 namespace Ext.ux.Highcharts
 {
+    [assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.adapters.standalone-framework.js", "text/javascript")]
     [assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.highcharts.src.js", "text/javascript")]
     [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.js", "text/javascript")]
 
@@ -31,11 +32,13 @@ namespace Ext.ux.Highcharts
             get
             {
                 List<ResourceItem> baseList = base.Resources;
-                baseList.Capacity += 2;
+                baseList.Capacity += 3;
 
                 // Highchart itself
                 //baseList.Add(new ClientScriptItem("Ext.ux.Highcharts.Resources.Highcharts.highcharts.js", "Ext.ux.Highcharts.Resources.Highcharts.highcharts.src.js", "Resources/Highcharts/highcharts.js", "Resources/Highcharts/highcharts.src.js"));
+                baseList.Add(new ClientScriptItem(typeof(HighChart), "Ext.ux.Highcharts.Resources.Highcharts.adapters.standalone-framework.js", "Resources/Highcharts/adapters/standalone-framework.js"));
                 baseList.Add(new ClientScriptItem(typeof(HighChart), "Ext.ux.Highcharts.Resources.Highcharts.highcharts.src.js", "Resources/Highcharts/highcharts.src.js"));
+
                 
                 // Sencha Wrapper
                 baseList.Add(new ClientScriptItem(typeof(HighChart), "Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.js", "Resources/Chart/ux/Highcharts.js"));

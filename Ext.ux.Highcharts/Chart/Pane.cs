@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("background", JsonMode.AlwaysArray)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An object, or array of objects, for backgrounds. Sub options include backgroundColor (can be solid or gradient), shape (""solid"" or ""arc""), innerWidth, outerWidth, borderWidth, borderColor.")]
             public object[] Background
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("center", JsonMode.AlwaysArray)]
             [DefaultValue(new object[] { "50%", "50%"})]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The center of a polar chart or angular gauge, given as an array of [x, y] positions. Positions can be given as integers that transform to pixels, or as percentages of the plot area size.")]
             public object[] Center
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("endAngle", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The end angle of the polar X axis or gauge value axis, given in degrees where 0 is north. Defaults to startAngle + 360.")]
             public double? EndAngle
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("size", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The size of the pane, either as a number defining pixels, or a percentage defining a percentage of the plot are.")]
             public object Size
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("startAngle", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The start angle of the polar X axis or gauge axis, given in degrees where 0 is north. Defaults to 0.")]
             public double? StartAngle

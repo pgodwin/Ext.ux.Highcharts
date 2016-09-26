@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("backgroundColor", null)]
             [DefaultValue(@"black")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The background color or fill of the pivot.")]
             public string BackgroundColor
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderColor", null)]
             [DefaultValue(@"silver")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border or stroke color of the pivot. In able to change this, the borderWidth must also be set to something other than the default 0.")]
             public string BorderColor
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border or stroke width of the pivot.")]
             public double? BorderWidth
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("radius", null)]
             [DefaultValue(5)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel radius of the pivot.")]
             public double? Radius

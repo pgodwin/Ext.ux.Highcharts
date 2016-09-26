@@ -119,7 +119,10 @@ namespace Utils.HighChartClassGen
                 this.NameSpace = "Series";
             }
             if (item.title == "series")
+            {
+                this.SubType = SeriesBaseTypeMappings.GetMappingForSeries(item.title);
                 this.NameSpace = "Series";
+            }
 
             // Remove plural 's' off the end of item names
             //if (parent != null && parent.returnType != null && parent.returnType.Contains("array") && parent.name.EndsWith("s"))
@@ -277,7 +280,9 @@ namespace Utils.HighChartClassGen
                 .Replace("#SERIALISER#", this.OriginalItem.GetAttributeSerialisationOptions())
                 .Replace("#JSNAME#", this.JavascriptName)
                 .Replace("#TYPE#", this.Type)
-                .Replace("#NAME#", this.Name);
+                .Replace("#NAME#", this.Name)
+                .Replace("#TYPECONVERTER#", TypeConverterMappings.GetTypeConverter(this.Type));
+
         }
 
         public virtual string GetConfigItem()

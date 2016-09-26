@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("align", null)]
             [DefaultValue(@"center")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The alignment of the data label compared to the point.  If right, the right side of the label should be touching the point. For points with an extent, like columns, the alignments also dictates how to align it inside the box, as given with the inside option. Can be one of ""left"", ""center"" or ""right"".")]
             public string Align
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("allowOverlap", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to allow data labels to overlap. To make the labels less sensitive for overlapping, the dataLabels.padding can be set to 0.")]
             public bool? AllowOverlap
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("backgroundColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The background color or gradient for the data label. Defaults to undefined.")]
             public string BackgroundColor
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border color for the data label. Defaults to undefined.")]
             public string BorderColor
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderRadius", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border radius in pixels for the data label.")]
             public double? BorderRadius
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The border width in pixels for the data label.")]
             public double? BorderWidth
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("color", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The text color for the data labels. Defaults to null.")]
             public string Color
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("crop", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to hide data labels that are outside the plot area. By default, the data label is moved inside the plot area according to the overflow option.")]
             public bool? Crop
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("defer", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to defer displaying the data labels until the initial series animation has finished.")]
             public bool? Defer
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("enabled", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Enable or disable the data labels.")]
             public bool? Enabled
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("format", null)]
             [DefaultValue(@"{y}")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A format string for the data label. Available variables are the same as for formatter.")]
             public string Format
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("formatter", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Callback JavaScript function to format the data label. Note that if a format is defined, the format takes precedence and the formatter is ignored. Available data are:  this.percentage  Stacked series and pies only. The point's percentage of the total.  this.point  The point object. The point name, if defined, is available through this.point.name.  this.series:  The series object. The series name is available through this.series.name.  this.total  Stacked series only. The total value at this point's x value.				  this.x:  The x value.  this.y:  The y value.")]
             public string Formatter
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("inside", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"For points with an extent, like columns, whether to align the data label inside the box or to the actual value point. Defaults to false in most cases, true in stacked columns.")]
             public bool? Inside
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("overflow", null)]
             [DefaultValue(@"justify")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"How to handle data labels that flow outside the plot area. The default is justify, which aligns them inside the plot area. For columns and bars, this means it will be moved inside the bar. To display data labels outside the plot area, set crop to false and overflow to ""none"".")]
             public string Overflow
@@ -310,6 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("padding", null)]
             [DefaultValue(5)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When either the borderWidth or the backgroundColor is set, this		is the padding within the box.")]
             public double? Padding
@@ -330,6 +347,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("rotation", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Text rotation in degrees. Note that due to a more complex structure, backgrounds, borders and padding will be lost on a rotated data label.")]
             public double? Rotation
@@ -350,6 +368,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("shadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The shadow of the box. Works best with borderWidth or backgroundColor. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.")]
             public object Shadow
@@ -370,6 +389,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("shape", null)]
             [DefaultValue(@"square")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The name of a symbol to use for the border around the label. Symbols are predefined functions on the Renderer object.")]
             public string Shape
@@ -390,6 +410,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue(@"{""color"": ""contrast"", ""fontSize"": ""11px"", ""fontWeight"": ""bold"", ""textShadow"": ""0 0 6px contrast, 0 0 3px contrast"" }")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Styles for the label.")]
             public string Style
@@ -410,6 +431,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("useHTML", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to use HTML to render the labels.")]
             public bool? UseHTML
@@ -430,6 +452,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("verticalAlign", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The vertical alignment of a data label. Can be one of top, middle or bottom. The default value depends on the data, for instance in a column chart, the label is above positive values and below negative values.")]
             public string VerticalAlign
@@ -450,6 +473,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("x", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The x position offset of the label relative to the point. ")]
             public double? x
@@ -470,6 +494,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("y", null)]
             [DefaultValue(-6)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The y position offset of the label relative to the point. ")]
             public double? y
@@ -490,6 +515,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("zIndex", null)]
             [DefaultValue(6)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The Z index of the data labels. The default Z index puts it above the series. Use a Z index of 2 to display it behind the series.")]
             public double? ZIndex
@@ -510,6 +536,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("xHigh", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"X offset of the higher data labels relative to the point value.")]
             public double? XHigh
@@ -530,6 +557,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("xLow", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"X offset of the lower data labels relative to the point value.")]
             public double? XLow
@@ -550,6 +578,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("yHigh", null)]
             [DefaultValue(-6)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Y offset of the higher data labels relative to the point value.")]
             public double? YHigh
@@ -570,6 +599,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("yLow", null)]
             [DefaultValue(16)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Y offset of the lower data labels relative to the point value.")]
             public double? YLow
@@ -590,6 +620,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("connectorColor", null)]
             [DefaultValue(@"{point.color}")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the line connecting the data label to the pie slice. The default color is the same as the point's color.")]
             public string ConnectorColor
@@ -610,6 +641,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("connectorPadding", null)]
             [DefaultValue(5)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The distance from the data label to the connector.")]
             public double? ConnectorPadding
@@ -630,6 +662,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("connectorWidth", null)]
             [DefaultValue(1)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The width of the line connecting the data label to the pie slice.")]
             public double? ConnectorWidth
@@ -650,6 +683,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("distance", null)]
             [DefaultValue(30)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The distance of the data label from the pie's edge. Negative numbers put the data label on top of the pie slices. Connectors are only shown for data labels outside the pie.")]
             public double? Distance
@@ -670,6 +704,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("softConnector", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to render the connector as a soft arc or a line with sharp break.")]
             public bool? SoftConnector

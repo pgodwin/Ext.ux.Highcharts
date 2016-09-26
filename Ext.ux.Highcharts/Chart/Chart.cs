@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("alignTicks", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When using multiple axis, the ticks of two or more opposite axes will  automatically be aligned by adding ticks to the axis or axes with the least ticks. This can be prevented by setting alignTicks to false. If the grid lines look messy, it's a good idea to hide them for the secondary axis by setting gridLineWidth to 0.")]
             public bool? AlignTicks
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("animation", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Set the overall animation for all chart updating. Animation can be disabled throughout the chart by setting it to false here. It can be overridden for each individual API method as a function parameter. The only animation not affected by this option is the  initial series animation, see plotOptions.series.animation.  The animation can either be set as a boolean or a configuration object. If true, it will use the 'swing' jQuery easing and a duration of 500 ms. If used as a configuration object, the following properties are supported:   	duration 	The duration of the animation in milliseconds. 	 	easing 	When using jQuery as the general framework, the easing can be set to linear or 	swing. More easing functions are available with the use of jQuery plug-ins, most notably 	the jQuery UI suite. See the jQuery docs. When using  	MooTools as the general framework, use the property name transition instead  	of easing. ")]
             public object Animation
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("backgroundColor", null)]
             [DefaultValue(@"#FFFFFF")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The background color or gradient for the outer chart area.")]
             public string BackgroundColor
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderColor", null)]
             [DefaultValue(@"#4572A7")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the outer chart border.")]
             public string BorderColor
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderRadius", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The corner radius of the outer chart border.")]
             public double? BorderRadius
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("borderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel width of the outer chart border.")]
             public double? BorderWidth
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("className", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"A CSS class name to apply to the charts container div, allowing unique CSS styling for each chart.")]
             public string ClassName
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("defaultSeriesType", null)]
             [DefaultValue(@"line")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Alias of type.")]
             public string DefaultSeriesType
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("height", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An explicit height for the chart. By default the height is calculated from the offset height of the containing element, or 400 pixels if the containing element's height is 0.")]
             public double? Height
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("ignoreHiddenSeries", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"If true, the axes will scale to the remaining visible series once one series is hidden. If false, hiding and showing a series will not affect the axes or the other series. For stacks, once one series within the stack is hidden, the rest of the stack will close in around it even if the axis is not affected.")]
             public bool? IgnoreHiddenSeries
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("inverted", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to invert the axes so that the x axis is vertical and y axis is horizontal. When true, the x axis is reversed by default. If a bar series is present in the chart, it will be inverted automatically.")]
             public bool? Inverted
@@ -250,6 +263,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("margin", JsonMode.AlwaysArray)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The margin between the outer edge of the chart and the plot area. The numbers in the array designate top, right, bottom and left respectively. Use the options marginTop, marginRight, marginBottom and marginLeft for shorthand setting of one option. Since version 2.1, the margin is 0 by default. The actual space is dynamically calculated  from the offset of axis labels, axis title, title, subtitle and legend in addition to the spacingTop, spacingRight, spacingBottom and spacingLeft options.		 Defaults to [null].")]
             public string Margin
@@ -270,6 +284,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("marginBottom", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The margin between the bottom outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the default dynamic margin. See also spacingBottom.")]
             public double? MarginBottom
@@ -290,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("marginLeft", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The margin between the left outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the default dynamic margin. See also spacingLeft.")]
             public double? MarginLeft
@@ -310,6 +326,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("marginRight", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The margin between the right outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the default dynamic margin. See also spacingRight.")]
             public double? MarginRight
@@ -330,6 +347,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("marginTop", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The margin between the top outer edge of the chart and the plot area. Use this to set a fixed pixel value for the margin as opposed to the default dynamic margin. See also spacingTop.")]
             public double? MarginTop
@@ -350,6 +368,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("panKey", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Allows setting a key to switch between zooming and panning. ")]
             public string PanKey
@@ -370,6 +389,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("panning", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Allow panning in a chart. Best used with panKey to combine zooming and panning.")]
             public bool? Panning
@@ -390,6 +410,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("pinchType", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Equivalent to zoomType, but for multitouch gestures only. By default, the pinchType is the same as the zoomType setting. However, pinching can be enabled separately in some cases, for example in stock charts where a mouse drag pans the chart, while pinching is enabled.")]
             public string PinchType
@@ -410,6 +431,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("plotBackgroundColor", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The background color or gradient for the plot area.")]
             public string PlotBackgroundColor
@@ -430,6 +452,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("plotBackgroundImage", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The URL for an image to use as the plot background. To set an image as the background for the entire chart, set a CSS background image to the container element. Note that for the image to be applied to exported charts, its URL needs to be accessible by the export server.")]
             public string PlotBackgroundImage
@@ -450,6 +473,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("plotBorderColor", null)]
             [DefaultValue(@"#C0C0C0")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The color of the inner chart or plot area border.")]
             public string PlotBorderColor
@@ -470,6 +494,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("plotBorderWidth", null)]
             [DefaultValue(0)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The pixel width of the plot area border.")]
             public double? PlotBorderWidth
@@ -490,6 +515,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("plotShadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to apply a drop shadow to the plot area. Requires that plotBackgroundColor be set. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.")]
             public object PlotShadow
@@ -510,6 +536,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("polar", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When true, cartesian charts like line, spline, area and column are transformed into the polar coordinate system. Requires highcharts-more.js.")]
             public bool? Polar
@@ -530,6 +557,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("reflow", null)]
             [DefaultValue(true)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to reflow the chart to fit the width of the container div on resizing the window.")]
             public bool? Reflow
@@ -550,6 +578,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("renderTo", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The HTML element where the chart will be rendered. If it is a string, the element by that id is used. The HTML element can also be passed by direct reference.")]
             public object RenderTo
@@ -570,6 +599,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("selectionMarkerFill", null)]
             [DefaultValue(@"rgba(69,114,167,0.25)")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The background color of the marker square when selecting (zooming in on) an area of the chart.")]
             public string SelectionMarkerFill
@@ -590,6 +620,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("shadow", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to apply a drop shadow to the outer chart area. Requires that  backgroundColor be set. Since 2.3 the shadow can be an object configuration containing color, offsetX, offsetY, opacity and width.")]
             public object Shadow
@@ -610,6 +641,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("showAxes", null)]
             [DefaultValue(false)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Whether to show the axes initially. This only applies to empty charts where series are added dynamically, as axes are automatically added to cartesian series.")]
             public bool? ShowAxes
@@ -630,6 +662,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("spacing", JsonMode.AlwaysArray)]
             [DefaultValue(new double[] { 10, 10, 15, 10})]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The distance between the outer edge of the chart and the content, like title, legend, axis title or labels. The numbers in the array designate top, right, bottom and left respectively. Use the options spacingTop, spacingRight, spacingBottom and spacingLeft options for shorthand setting of one option.")]
             public double[] Spacing
@@ -650,6 +683,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("spacingBottom", null)]
             [DefaultValue(15)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The space between the bottom edge of the chart and the content (plot area, axis title and labels, title, subtitle or  legend in top position).")]
             public double? SpacingBottom
@@ -670,6 +704,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("spacingLeft", null)]
             [DefaultValue(10)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The space between the left edge of the chart and the content (plot area, axis title and labels, title, subtitle or  legend in top position).")]
             public double? SpacingLeft
@@ -690,6 +725,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("spacingRight", null)]
             [DefaultValue(10)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The space between the right edge of the chart and the content (plot area, axis title and labels, title, subtitle or  legend in top position).")]
             public double? SpacingRight
@@ -710,6 +746,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("spacingTop", null)]
             [DefaultValue(10)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The space between the top edge of the chart and the content (plot area, axis title and labels, title, subtitle or  legend in top position).")]
             public double? SpacingTop
@@ -730,6 +767,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("style", null)]
             [DefaultValue(@"{""fontFamily"":""'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif"",""fontSize"":""12px""}")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Additional CSS styles to apply inline to the container div. Note that since the default font styles are applied in the renderer, it is ignorant of the individual chart  options and must be set globally. Defaults to:style: {	fontFamily: '""Lucida Grande"", ""Lucida Sans Unicode"", Verdana, Arial, Helvetica, sans-serif', // default font	fontSize: '12px'}")]
             public string Style
@@ -750,6 +788,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("type", null)]
             [DefaultValue(@"line")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The default series type for the chart. Can be any of the chart types listed under plotOptions.")]
             public string Type
@@ -770,6 +809,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("width", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An explicit width for the chart. By default the width is calculated from the offset width of the containing element.")]
             public double? Width
@@ -790,6 +830,7 @@ namespace Ext.ux.Highcharts.Chart
             [ConfigOption("zoomType", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Decides in what dimensions the user can zoom by dragging the mouse. Can be one of x, y or xy.")]
             public string ZoomType

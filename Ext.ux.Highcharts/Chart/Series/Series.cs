@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
+
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
@@ -20,7 +22,7 @@ namespace Ext.ux.Highcharts.ChartSeries
         /// <summary>
         /// The actual series to append to the chart. In addition to 	the members listed below, any member of the plotOptions for that specific	type of plot can be added to a series individually. For example, even though a general	lineWidth is specified in plotOptions.series, an individual	lineWidth can be specified for each series.
         /// </summary>
-        public partial class Series : Observable
+        public partial class Series : BaseSerie
         {
 
     
@@ -30,6 +32,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("dataParser", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"This method is deprecated as of version 2.0. Instead, use options preprocessing as described in the docs.")]
             public string DataParser
@@ -50,6 +53,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("dataURL", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"This method is deprecated as of version 2.0. Instead, load the data using jQuery.ajax and use options preprocessing as described in the docs.")]
             public string DataURL
@@ -70,6 +74,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("id", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"An id for the series. This can be used after render time to get a pointer to the series object through chart.get().")]
             public string Id
@@ -90,6 +95,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("index", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The index of the series in the chart, affecting the internal index in the chart.series array, the visible Z index as well as the order in the legend.")]
             public double? Index
@@ -110,6 +116,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("legendIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The sequential index of the series in the legend.  Try it:  	Legend in opposite order .")]
             public double? LegendIndex
@@ -130,6 +137,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("name", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The name of the series as shown in the legend, tooltip etc.")]
             public string Name
@@ -150,6 +158,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("stack", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"This option allows grouping series in a stacked chart. The stack option can be a string  or a number or anything else, as long as the grouped series' stack options match each other.")]
             public string Stack
@@ -170,6 +179,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("type", null)]
             [DefaultValue("")]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"The type of series. Can be one of area, areaspline, bar, column, line, pie, scatter or spline. From version 2.3, arearange, areasplinerange and columnrange are supported with the highcharts-more.js component.")]
             public string Type
@@ -190,6 +200,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("xAxis", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When using dual or multiple x axes, this number defines which xAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the xAxis array, with 0 being the first.")]
             public object XAxis
@@ -210,6 +221,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("yAxis", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"When using dual or multiple y axes, this number defines which yAxis the particular series is connected to. It refers to either the axis id or the index of the axis in the yAxis array, with 0 being the first.")]
             public object YAxis
@@ -230,6 +242,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             [ConfigOption("zIndex", null)]
             [DefaultValue(null)]
             [NotifyParentProperty(true)]
+            
             [Category("HighChart")]
             [Description(@"Define the visual z index of the series.")]
             public double? ZIndex
