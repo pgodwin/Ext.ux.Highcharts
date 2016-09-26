@@ -305,6 +305,7 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("zIndex", new ConfigOption("zIndex", null, null, this.ZIndex));
 
                 list.Add("label", new ConfigOption("label", new SerializationOptions("label", typeof(LazyControlJsonConverter)), null, this.Label));
+
 
                 list.Add("innerRadius", new ConfigOption("innerRadius", null, null, this.InnerRadius));
 

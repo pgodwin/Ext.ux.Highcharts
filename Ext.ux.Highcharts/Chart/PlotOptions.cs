@@ -729,50 +729,73 @@ namespace Ext.ux.Highcharts.Chart
 
 
                 list.Add("area", new ConfigOption("area", new SerializationOptions("area", typeof(LazyControlJsonConverter)), null, this.Area));
+
 
                 list.Add("arearange", new ConfigOption("arearange", new SerializationOptions("arearange", typeof(LazyControlJsonConverter)), null, this.Arearange));
+
 
                 list.Add("areaspline", new ConfigOption("areaspline", new SerializationOptions("areaspline", typeof(LazyControlJsonConverter)), null, this.Areaspline));
+
 
                 list.Add("areasplinerange", new ConfigOption("areasplinerange", new SerializationOptions("areasplinerange", typeof(LazyControlJsonConverter)), null, this.Areasplinerange));
+
 
                 list.Add("bar", new ConfigOption("bar", new SerializationOptions("bar", typeof(LazyControlJsonConverter)), null, this.Bar));
+
 
                 list.Add("boxplot", new ConfigOption("boxplot", new SerializationOptions("boxplot", typeof(LazyControlJsonConverter)), null, this.Boxplot));
+
 
                 list.Add("bubble", new ConfigOption("bubble", new SerializationOptions("bubble", typeof(LazyControlJsonConverter)), null, this.Bubble));
+
 
                 list.Add("column", new ConfigOption("column", new SerializationOptions("column", typeof(LazyControlJsonConverter)), null, this.Column));
+
 
                 list.Add("columnrange", new ConfigOption("columnrange", new SerializationOptions("columnrange", typeof(LazyControlJsonConverter)), null, this.Columnrange));
+
 
                 list.Add("errorbar", new ConfigOption("errorbar", new SerializationOptions("errorbar", typeof(LazyControlJsonConverter)), null, this.Errorbar));
+
 
                 list.Add("funnel", new ConfigOption("funnel", new SerializationOptions("funnel", typeof(LazyControlJsonConverter)), null, this.Funnel));
+
 
                 list.Add("gauge", new ConfigOption("gauge", new SerializationOptions("gauge", typeof(LazyControlJsonConverter)), null, this.Gauge));
+
 
                 list.Add("heatmap", new ConfigOption("heatmap", new SerializationOptions("heatmap", typeof(LazyControlJsonConverter)), null, this.Heatmap));
+
 
                 list.Add("line", new ConfigOption("line", new SerializationOptions("line", typeof(LazyControlJsonConverter)), null, this.Line));
+
 
                 list.Add("pie", new ConfigOption("pie", new SerializationOptions("pie", typeof(LazyControlJsonConverter)), null, this.Pie));
+
 
                 list.Add("polygon", new ConfigOption("polygon", new SerializationOptions("polygon", typeof(LazyControlJsonConverter)), null, this.Polygon));
+
 
                 list.Add("pyramid", new ConfigOption("pyramid", new SerializationOptions("pyramid", typeof(LazyControlJsonConverter)), null, this.Pyramid));
+
 
                 list.Add("scatter", new ConfigOption("scatter", new SerializationOptions("scatter", typeof(LazyControlJsonConverter)), null, this.Scatter));
+
 
                 list.Add("series", new ConfigOption("series", new SerializationOptions("series", typeof(LazyControlJsonConverter)), null, this.Series));
+
 
                 list.Add("solidgauge", new ConfigOption("solidgauge", new SerializationOptions("solidgauge", typeof(LazyControlJsonConverter)), null, this.Solidgauge));
+
 
                 list.Add("spline", new ConfigOption("spline", new SerializationOptions("spline", typeof(LazyControlJsonConverter)), null, this.Spline));
+
 
                 list.Add("treemap", new ConfigOption("treemap", new SerializationOptions("treemap", typeof(LazyControlJsonConverter)), null, this.Treemap));
+
 
                 list.Add("waterfall", new ConfigOption("waterfall", new SerializationOptions("waterfall", typeof(LazyControlJsonConverter)), null, this.Waterfall));
+
 
                 return list;
             }

@@ -847,8 +847,10 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("y", new ConfigOption("y", null, 0, this.y));
 
                 list.Add("navigation", new ConfigOption("navigation", new SerializationOptions("navigation", typeof(LazyControlJsonConverter)), null, this.Navigation));
+
 
                 list.Add("title", new ConfigOption("title", new SerializationOptions("title", typeof(LazyControlJsonConverter)), null, this.Title));
+
 
                 return list;
             }

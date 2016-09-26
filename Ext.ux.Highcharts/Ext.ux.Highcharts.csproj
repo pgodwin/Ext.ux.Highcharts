@@ -30,11 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ext.Net">
-      <HintPath>..\packages\Ext.NET.2.5.3.1\lib\net45\Ext.Net.dll</HintPath>
+    <Reference Include="Ext.Net, Version=2.5.2.10697, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ext.NET.2.5.2\lib\net45\Ext.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Ext.Net.Utilities">
-      <HintPath>..\packages\Ext.NET.Utilities.2.5.0\lib\Ext.Net.Utilities.dll</HintPath>
+    <Reference Include="Ext.Net.Utilities, Version=2.4.0.0, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ext.NET.Utilities.2.4.0\lib\Ext.Net.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -42,7 +44,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -85,6 +87,7 @@
     <Compile Include="Chart.ux\BaseSplineSerie.cs" />
     <Compile Include="Chart.ux\BaseWaterfallSerie.cs" />
     <Compile Include="Chart.ux\Options3dResources.cs" />
+    <Compile Include="Chart\Series\SeriesPlotOptions.cs" />
     <Compile Include="Config\YAxisCollection.cs" />
     <Compile Include="HighChartSeriesCollection.cs" />
     <Compile Include="Chart.ux\BaseRangeSerie.cs" />
@@ -260,10 +263,19 @@
     <EmbeddedResource Include="Resources\Highcharts\themes\skies.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Readme\Ext.NET\Sample.Web.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Ext.NET.Utilities\BREAKING_CHANGES.txt" />
+    <Content Include="App_Readme\Ext.NET.Utilities\LICENSE.txt" />
+    <Content Include="App_Readme\Ext.NET.Utilities\README.txt" />
+    <Content Include="App_Readme\Ext.NET\BREAKING_CHANGES.txt" />
+    <Content Include="App_Readme\Ext.NET\CHANGELOG.txt" />
+    <Content Include="App_Readme\Ext.NET\LICENSE.txt" />
+    <Content Include="App_Readme\Ext.NET\README.txt" />
     <Content Include="Chart\OutputHere.txt" />
+    <Content Include="Ext.NET.Default.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

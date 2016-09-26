@@ -180,6 +180,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("drillUpButton", new ConfigOption("drillUpButton", new SerializationOptions("drillUpButton", typeof(LazyControlJsonConverter)), null, this.DrillUpButton));
 
+
                 return list;
             }
         }

@@ -12,15 +12,15 @@ using Ext.Net.Utilities;
 using Newtonsoft.Json;
 using Ext.ux.Highcharts.Chart;
 
-namespace Ext.ux.Highcharts.Chart
+namespace Ext.ux.Highcharts.ChartSeries
 {
         
 
 
         /// <summary>
-        /// A bubble series is a three dimensional series type where each point renders an X, Y and Z value. Each points is drawn as a bubble where the position along the X and Y axes mark the X and Y values, and the size of the bubble relates to the Z value.
+        /// General options for all series types.
         /// </summary>
-        public partial class BubblePlotOptions : Observable
+        public partial class SeriesPlotOptions : Observable
         {
 
     
@@ -85,6 +85,46 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// Polar charts only. Whether to connect the ends of a line series plot across the extremes.
+            /// </summary>
+            [ConfigOption("connectEnds", null)]
+            [DefaultValue(true)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Polar charts only. Whether to connect the ends of a line series plot across the extremes.")]
+            public bool? ConnectEnds
+            {
+                get
+                {
+                    return this.State.Get<bool?>("ConnectEnds", true);
+                }
+                set
+                {
+                    this.State.Set("ConnectEnds", value);
+                }
+            }
+
+            /// <summary>
+            /// Whether to connect a graph line across null points.
+            /// </summary>
+            [ConfigOption("connectNulls", null)]
+            [DefaultValue(false)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Whether to connect a graph line across null points.")]
+            public bool? ConnectNulls
+            {
+                get
+                {
+                    return this.State.Get<bool?>("ConnectNulls", false);
+                }
+                set
+                {
+                    this.State.Set("ConnectNulls", value);
+                }
+            }
+
+            /// <summary>
             /// When the series contains less points than the crop threshold, all points are drawn,  event if the points fall outside the visible plot area at the current zoom. The advantage of drawing all points (including markers and columns), is that animation is performed on updates. On the other hand, when the series contains more points than the crop threshold, the series data is cropped to only contain points that fall within the plot area. The advantage of cropping away invisible points is to increase performance on large series.  .
             /// </summary>
             [ConfigOption("cropThreshold", null)]
@@ -141,26 +181,6 @@ namespace Ext.ux.Highcharts.Chart
                 set
                 {
                     this.State.Set("DashStyle", value);
-                }
-            }
-
-            /// <summary>
-            /// Whether to display negative sized bubbles. The threshold is given by the zThreshold option, and negative bubbles can be visualized by setting negativeColor.
-            /// </summary>
-            [ConfigOption("displayNegative", null)]
-            [DefaultValue(true)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Whether to display negative sized bubbles. The threshold is given by the zThreshold option, and negative bubbles can be visualized by setting negativeColor.")]
-            public bool? DisplayNegative
-            {
-                get
-                {
-                    return this.State.Get<bool?>("DisplayNegative", true);
-                }
-                set
-                {
-                    this.State.Set("DisplayNegative", value);
                 }
             }
 
@@ -225,18 +245,18 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// The width of the line connecting the data points.
+            /// Pixel with of the graph line.
             /// </summary>
             [ConfigOption("lineWidth", null)]
-            [DefaultValue(0)]
+            [DefaultValue(2)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"The width of the line connecting the data points.")]
+            [Description(@"Pixel with of the graph line.")]
             public double? LineWidth
             {
                 get
                 {
-                    return this.State.Get<double?>("LineWidth", 0);
+                    return this.State.Get<double?>("LineWidth", 2);
                 }
                 set
                 {
@@ -265,53 +285,13 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. 
-            /// </summary>
-            [ConfigOption("maxSize", null)]
-            [DefaultValue(@"20%")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Maximum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. ")]
-            public string MaxSize
-            {
-                get
-                {
-                    return this.State.Get<string>("MaxSize", @"20%");
-                }
-                set
-                {
-                    this.State.Set("MaxSize", value);
-                }
-            }
-
-            /// <summary>
-            /// Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. 
-            /// </summary>
-            [ConfigOption("minSize", null)]
-            [DefaultValue(@"8")]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"Minimum bubble size. Bubbles will automatically size between the minSize and maxSize to reflect the z value of each bubble. Can be either pixels (when no unit is given), or a percentage of the smallest one of the plot width and height. ")]
-            public string MinSize
-            {
-                get
-                {
-                    return this.State.Get<string>("MinSize", @"8");
-                }
-                set
-                {
-                    this.State.Set("MinSize", value);
-                }
-            }
-
-            /// <summary>
-            /// When a point's Z value is below the zThreshold setting, this color is used.
+            /// The color for the parts of the graph or points that are below the threshold.
             /// </summary>
             [ConfigOption("negativeColor", null)]
             [DefaultValue(@"null")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"When a point's Z value is below the zThreshold setting, this color is used.")]
+            [Description(@"The color for the parts of the graph or points that are below the threshold.")]
             public string NegativeColor
             {
                 get
@@ -361,6 +341,26 @@ namespace Ext.ux.Highcharts.Chart
                 set
                 {
                     this.State.Set("PointIntervalUnit", value);
+                }
+            }
+
+            /// <summary>
+            /// Possible values: null, ""on"", ""between"".In a column chart, when pointPlacement is ""on"", the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is ""between"", the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart.Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding.Note that pointPlacement needs a pointRange to work. For column series this is computed, but for line-type series it needs to be set.Defaults to null in cartesian charts, ""between"" in polar charts.
+            /// </summary>
+            [ConfigOption("pointPlacement", null)]
+            [DefaultValue(null)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"Possible values: null, ""on"", ""between"".In a column chart, when pointPlacement is ""on"", the point will not create any padding of the X axis. In a polar column chart this means that the first column points directly north. If the pointPlacement is ""between"", the columns will be laid out between ticks. This is useful for example for visualising an amount between two points in time or in a certain sector of a polar chart.Since Highcharts 3.0.2, the point placement can also be numeric, where 0 is on the axis value, -0.5 is between this value and the previous, and 0.5 is between this value and the next. Unlike the textual options, numeric point placement options won't affect axis padding.Note that pointPlacement needs a pointRange to work. For column series this is computed, but for line-type series it needs to be set.Defaults to null in cartesian charts, ""between"" in polar charts.")]
+            public object PointPlacement
+            {
+                get
+                {
+                    return this.State.Get<object>("PointPlacement", null);
+                }
+                set
+                {
+                    this.State.Set("PointPlacement", value);
                 }
             }
 
@@ -465,38 +465,38 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
-            /// Whether the bubble's value should be represented by the area or the width of the bubble. The default, area, corresponds best to the human perception of the size of each bubble. 
+            /// Whether to stack the values of each series on top of each other. Possible values are null to disable, ""normal"" to stack by value or ""percent"".
             /// </summary>
-            [ConfigOption("sizeBy", null)]
-            [DefaultValue(@"area")]
+            [ConfigOption("stacking", null)]
+            [DefaultValue("")]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"Whether the bubble's value should be represented by the area or the width of the bubble. The default, area, corresponds best to the human perception of the size of each bubble. ")]
-            public string SizeBy
+            [Description(@"Whether to stack the values of each series on top of each other. Possible values are null to disable, ""normal"" to stack by value or ""percent"".")]
+            public string Stacking
             {
                 get
                 {
-                    return this.State.Get<string>("SizeBy", @"area");
+                    return this.State.Get<string>("Stacking", "");
                 }
                 set
                 {
-                    this.State.Set("SizeBy", value);
+                    this.State.Set("Stacking", value);
                 }
             }
 
             /// <summary>
-            /// Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series.
+            /// Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc.
             /// </summary>
             [ConfigOption("stickyTracking", null)]
-            [DefaultValue(false)]
+            [DefaultValue(true)]
             [NotifyParentProperty(true)]
             [Category("HighChart")]
-            [Description(@"Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series.")]
+            [Description(@"Sticky tracking of mouse events. When true, the mouseOut event on a series isn't triggered until the mouse moves over another series, or out of the plot area. When false, the mouseOut event on a series is triggered when the mouse leaves the area around the series' graph or markers. This also implies the tooltip. When stickyTracking is false and tooltip.shared is false, the  tooltip will be hidden when moving the mouse between series. Defaults to true for line and area type series, but to false for columns, pies etc.")]
             public bool? StickyTracking
             {
                 get
                 {
-                    return this.State.Get<bool?>("StickyTracking", false);
+                    return this.State.Get<bool?>("StickyTracking", true);
                 }
                 set
                 {
@@ -525,6 +525,26 @@ namespace Ext.ux.Highcharts.Chart
             }
 
             /// <summary>
+            /// When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable.
+            /// </summary>
+            [ConfigOption("turboThreshold", null)]
+            [DefaultValue(1000)]
+            [NotifyParentProperty(true)]
+            [Category("HighChart")]
+            [Description(@"When a series contains a data array that is longer than this, only one dimensional arrays of numbers, or two dimensional arrays with x and y values are allowed. Also, only the first point is tested, and the rest are assumed to be the same format. This saves expensive data checking and indexing in long series. Set it to 0 disable.")]
+            public double? TurboThreshold
+            {
+                get
+                {
+                    return this.State.Get<double?>("TurboThreshold", 1000);
+                }
+                set
+                {
+                    this.State.Set("TurboThreshold", value);
+                }
+            }
+
+            /// <summary>
             /// Set the initial visibility of the series.
             /// </summary>
             [ConfigOption("visible", null)]
@@ -541,66 +561,6 @@ namespace Ext.ux.Highcharts.Chart
                 set
                 {
                     this.State.Set("Visible", value);
-                }
-            }
-
-            /// <summary>
-            /// The minimum for the Z value range. Defaults to the highest Z value in the data.
-            /// </summary>
-            [ConfigOption("zMax", null)]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The minimum for the Z value range. Defaults to the highest Z value in the data.")]
-            public double? ZMax
-            {
-                get
-                {
-                    return this.State.Get<double?>("ZMax", null);
-                }
-                set
-                {
-                    this.State.Set("ZMax", value);
-                }
-            }
-
-            /// <summary>
-            /// The minimum for the Z value range. Defaults to the lowest Z value in the data.
-            /// </summary>
-            [ConfigOption("zMin", null)]
-            [DefaultValue(null)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"The minimum for the Z value range. Defaults to the lowest Z value in the data.")]
-            public double? ZMin
-            {
-                get
-                {
-                    return this.State.Get<double?>("ZMin", null);
-                }
-                set
-                {
-                    this.State.Set("ZMin", value);
-                }
-            }
-
-            /// <summary>
-            /// When displayNegative is false, bubbles with lower Z values are skipped. When displayNegative is true and a negativeColor is given, points with lower Z is colored.
-            /// </summary>
-            [ConfigOption("zThreshold", null)]
-            [DefaultValue(0)]
-            [NotifyParentProperty(true)]
-            [Category("HighChart")]
-            [Description(@"When displayNegative is false, bubbles with lower Z values are skipped. When displayNegative is true and a negativeColor is given, points with lower Z is colored.")]
-            public double? ZThreshold
-            {
-                get
-                {
-                    return this.State.Get<double?>("ZThreshold", 0);
-                }
-                set
-                {
-                    this.State.Set("ZThreshold", value);
                 }
             }
 
@@ -824,13 +784,15 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("color", new ConfigOption("color", null, "", this.Color));
 
+                list.Add("connectEnds", new ConfigOption("connectEnds", null, true, this.ConnectEnds));
+
+                list.Add("connectNulls", new ConfigOption("connectNulls", null, false, this.ConnectNulls));
+
                 list.Add("cropThreshold", new ConfigOption("cropThreshold", null, 300, this.CropThreshold));
 
                 list.Add("cursor", new ConfigOption("cursor", null, "", this.Cursor));
 
                 list.Add("dashStyle", new ConfigOption("dashStyle", null, @"Solid", this.DashStyle));
-
-                list.Add("displayNegative", new ConfigOption("displayNegative", null, true, this.DisplayNegative));
 
                 list.Add("enableMouseTracking", new ConfigOption("enableMouseTracking", null, true, this.EnableMouseTracking));
 
@@ -838,19 +800,17 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("keys", new ConfigOption("keys", new SerializationOptions("keys", JsonMode.AlwaysArray), null, this.Keys));
 
-                list.Add("lineWidth", new ConfigOption("lineWidth", null, 0, this.LineWidth));
+                list.Add("lineWidth", new ConfigOption("lineWidth", null, 2, this.LineWidth));
 
                 list.Add("linkedTo", new ConfigOption("linkedTo", null, "", this.LinkedTo));
-
-                list.Add("maxSize", new ConfigOption("maxSize", null, @"20%", this.MaxSize));
-
-                list.Add("minSize", new ConfigOption("minSize", null, @"8", this.MinSize));
 
                 list.Add("negativeColor", new ConfigOption("negativeColor", null, @"null", this.NegativeColor));
 
                 list.Add("pointInterval", new ConfigOption("pointInterval", null, 1, this.PointInterval));
 
                 list.Add("pointIntervalUnit", new ConfigOption("pointIntervalUnit", null, "", this.PointIntervalUnit));
+
+                list.Add("pointPlacement", new ConfigOption("pointPlacement", null, null, this.PointPlacement));
 
                 list.Add("pointStart", new ConfigOption("pointStart", null, 0, this.PointStart));
 
@@ -862,19 +822,15 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("showInLegend", new ConfigOption("showInLegend", null, true, this.ShowInLegend));
 
-                list.Add("sizeBy", new ConfigOption("sizeBy", null, @"area", this.SizeBy));
+                list.Add("stacking", new ConfigOption("stacking", null, "", this.Stacking));
 
-                list.Add("stickyTracking", new ConfigOption("stickyTracking", null, false, this.StickyTracking));
+                list.Add("stickyTracking", new ConfigOption("stickyTracking", null, true, this.StickyTracking));
 
                 list.Add("threshold", new ConfigOption("threshold", null, 0, this.Threshold));
 
+                list.Add("turboThreshold", new ConfigOption("turboThreshold", null, 1000, this.TurboThreshold));
+
                 list.Add("visible", new ConfigOption("visible", null, true, this.Visible));
-
-                list.Add("zMax", new ConfigOption("zMax", null, null, this.ZMax));
-
-                list.Add("zMin", new ConfigOption("zMin", null, null, this.ZMin));
-
-                list.Add("zThreshold", new ConfigOption("zThreshold", null, 0, this.ZThreshold));
 
                 list.Add("zoneAxis", new ConfigOption("zoneAxis", null, @"y", this.ZoneAxis));
 
@@ -902,7 +858,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
 
 
     
-	        private BubblePlotOptionsEvents events;
+	        private SeriesPlotOptionsEvents events;
 
 			/// <summary>
 			/// Client-side JavaScript Event Handlers
@@ -913,13 +869,13 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
             [NotifyParentProperty(true)]
             [PersistenceMode(PersistenceMode.InnerProperty)]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-            public BubblePlotOptionsEvents Listeners
+            public SeriesPlotOptionsEvents Listeners
 			{
 				get
 				{
 					if (this.events == null)
 					{
-						this.events = new BubblePlotOptionsEvents();
+						this.events = new SeriesPlotOptionsEvents();
 					}
 			
 					return this.events;
@@ -934,7 +890,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class BubblePlotOptionsEvents : ComponentListeners
+        public partial class SeriesPlotOptionsEvents : ComponentListeners
         {
 
 

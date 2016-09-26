@@ -1084,66 +1084,54 @@ namespace Ext.ux.Highcharts.Chart
                 }
             }
         }
-        private PlotBands _PlotBands;
+
+        private ItemsCollection<PlotBands> _plotBands;
+
         [Meta]
         [DefaultValue(null)]
         [Category("HighCharts")]
-        [ConfigOption("plotBands", typeof(LazyControlJsonConverter))]
+        [ConfigOption("plotBands", typeof(ItemCollectionJsonConverter))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [Description(@"An array of colored bands stretching across the plot area marking an interval on the axis.In a gauge, a plot band on the Y axis (value axis) will stretch along the perimeter of the gauge.")]
-        public virtual PlotBands PlotBands
+        public virtual ItemsCollection<PlotBands> PlotBands
         {
             get
             {
-                return this._PlotBands;
-            }
-            set
-            {
-                if (this._PlotBands != null)
+                if (this._plotBands == null)
                 {
-                    this.Controls.Remove(this._PlotBands);
-                    this.LazyItems.Remove(this._PlotBands);
-                }
+                    this._plotBands = new ItemsCollection<PlotBands>();
+                    this._plotBands.AfterItemAdd += this.AfterItemAdd;
+                    this._plotBands.AfterItemRemove += this.AfterItemRemove;
 
-                this._PlotBands = value;
-
-                if (this._PlotBands != null)
-                {
-                    this.LazyItems.Add(this._PlotBands);
-                    this.Controls.Add(this._PlotBands);
                 }
+                return this._plotBands;
             }
-        }
-        private PlotLines _PlotLines;
+        }
+
+
+        private ItemsCollection<PlotLines> _plotLines;
+
         [Meta]
         [DefaultValue(null)]
         [Category("HighCharts")]
-        [ConfigOption("plotLines", typeof(LazyControlJsonConverter))]
+        [ConfigOption("plotLines", typeof(ItemCollectionJsonConverter))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [Description(@"An array of lines stretching across the plot area, marking a specific value on one of the axes.")]
-        public virtual PlotLines PlotLines
+        public virtual ItemsCollection<PlotLines> PlotLines
         {
             get
             {
-                return this._PlotLines;
-            }
-            set
-            {
-                if (this._PlotLines != null)
+                if (this._plotLines == null)
                 {
-                    this.Controls.Remove(this._PlotLines);
-                    this.LazyItems.Remove(this._PlotLines);
-                }
+                    this._plotLines = new ItemsCollection<PlotLines>();
+                    this._plotLines.AfterItemAdd += this.AfterItemAdd;
+                    this._plotLines.AfterItemRemove += this.AfterItemRemove;
 
-                this._PlotLines = value;
-
-                if (this._PlotLines != null)
-                {
-                    this.LazyItems.Add(this._PlotLines);
-                    this.Controls.Add(this._PlotLines);
                 }
+                return this._plotLines;
             }
-        }
+        }
+
         private Title _Title;
         [Meta]
         [DefaultValue(null)]
@@ -1289,14 +1277,19 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("units", new ConfigOption("units", new SerializationOptions("units", JsonMode.AlwaysArray), "", this.Units));
 
                 list.Add("breaks", new ConfigOption("breaks", new SerializationOptions("breaks", typeof(LazyControlJsonConverter)), null, this.Breaks));
+
 
                 list.Add("labels", new ConfigOption("labels", new SerializationOptions("labels", typeof(LazyControlJsonConverter)), null, this.Labels));
+
 
-                list.Add("plotBands", new ConfigOption("plotBands", new SerializationOptions("plotBands", typeof(LazyControlJsonConverter)), null, this.PlotBands));
+                list.Add("plotBands", new ConfigOption("plotBands", new SerializationOptions("plotBands", typeof(ItemCollectionJsonConverter)), null, this.PlotBands));
+
 
-                list.Add("plotLines", new ConfigOption("plotLines", new SerializationOptions("plotLines", typeof(LazyControlJsonConverter)), null, this.PlotLines));
+                list.Add("plotLines", new ConfigOption("plotLines", new SerializationOptions("plotLines", typeof(ItemCollectionJsonConverter)), null, this.PlotLines));
+
 
                 list.Add("title", new ConfigOption("title", new SerializationOptions("title", typeof(LazyControlJsonConverter)), null, this.Title));
+
 list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }

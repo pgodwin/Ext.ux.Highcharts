@@ -44,36 +44,30 @@ namespace Ext.ux.Highcharts.Chart
                 }
             }
 
-        private Items _Items;
+
+        private ItemsCollection<Items> _items;
+
         [Meta]
         [DefaultValue(null)]
         [Category("HighCharts")]
-        [ConfigOption("items", typeof(LazyControlJsonConverter))]
+        [ConfigOption("items", typeof(ItemCollectionJsonConverter))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [Description(@"A HTML label that can be positioned anywhere in the chart area.")]
-        public virtual Items Items
+        public virtual ItemsCollection<Items> Items
         {
             get
             {
-                return this._Items;
-            }
-            set
-            {
-                if (this._Items != null)
+                if (this._items == null)
                 {
-                    this.Controls.Remove(this._Items);
-                    this.LazyItems.Remove(this._Items);
-                }
+                    this._items = new ItemsCollection<Items>();
+                    this._items.AfterItemAdd += this.AfterItemAdd;
+                    this._items.AfterItemRemove += this.AfterItemRemove;
 
-                this._Items = value;
-
-                if (this._Items != null)
-                {
-                    this.LazyItems.Add(this._Items);
-                    this.Controls.Add(this._Items);
                 }
+                return this._items;
             }
         }
+
 
     
         [Browsable(false)]
@@ -90,7 +84,8 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("style", new ConfigOption("style", null, "", this.Style));
 
-                list.Add("items", new ConfigOption("items", new SerializationOptions("items", typeof(LazyControlJsonConverter)), null, this.Items));
+                list.Add("items", new ConfigOption("items", new SerializationOptions("items", typeof(ItemCollectionJsonConverter)), null, this.Items));
+
 
                 return list;
             }

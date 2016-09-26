@@ -70,6 +70,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("contextButton", new ConfigOption("contextButton", new SerializationOptions("contextButton", typeof(LazyControlJsonConverter)), null, this.ContextButton));
 
+
                 return list;
             }
         }

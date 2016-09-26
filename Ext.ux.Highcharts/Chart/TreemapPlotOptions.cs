@@ -614,36 +614,30 @@ namespace Ext.ux.Highcharts.Chart
                 }
             }
         }
-        private Levels _Levels;
+
+        private ItemsCollection<Levels> _levels;
+
         [Meta]
         [DefaultValue(null)]
         [Category("HighCharts")]
-        [ConfigOption("levels", typeof(LazyControlJsonConverter))]
+        [ConfigOption("levels", typeof(ItemCollectionJsonConverter))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [Description(@"Set options on specific levels. Takes precedence over series options, but not point options.")]
-        public virtual Levels Levels
+        public virtual ItemsCollection<Levels> Levels
         {
             get
             {
-                return this._Levels;
-            }
-            set
-            {
-                if (this._Levels != null)
+                if (this._levels == null)
                 {
-                    this.Controls.Remove(this._Levels);
-                    this.LazyItems.Remove(this._Levels);
-                }
+                    this._levels = new ItemsCollection<Levels>();
+                    this._levels.AfterItemAdd += this.AfterItemAdd;
+                    this._levels.AfterItemRemove += this.AfterItemRemove;
 
-                this._Levels = value;
-
-                if (this._Levels != null)
-                {
-                    this.LazyItems.Add(this._Levels);
-                    this.Controls.Add(this._Levels);
                 }
+                return this._levels;
             }
-        }
+        }
+
         private Point _Point;
         [Meta]
         [DefaultValue(null)]
@@ -835,16 +829,22 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("zoneAxis", new ConfigOption("zoneAxis", null, @"y", this.ZoneAxis));
 
                 list.Add("dataLabels", new ConfigOption("dataLabels", new SerializationOptions("dataLabels", typeof(LazyControlJsonConverter)), null, this.DataLabels));
+
 
-                list.Add("levels", new ConfigOption("levels", new SerializationOptions("levels", typeof(LazyControlJsonConverter)), null, this.Levels));
+                list.Add("levels", new ConfigOption("levels", new SerializationOptions("levels", typeof(ItemCollectionJsonConverter)), null, this.Levels));
+
 
                 list.Add("point", new ConfigOption("point", new SerializationOptions("point", typeof(LazyControlJsonConverter)), null, this.Point));
+
 
                 list.Add("states", new ConfigOption("states", new SerializationOptions("states", typeof(LazyControlJsonConverter)), null, this.States));
+
 
                 list.Add("tooltip", new ConfigOption("tooltip", new SerializationOptions("tooltip", typeof(LazyControlJsonConverter)), null, this.Tooltip));
+
 
                 list.Add("zones", new ConfigOption("zones", new SerializationOptions("zones", typeof(LazyControlJsonConverter)), null, this.Zones));
+
 list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }

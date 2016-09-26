@@ -253,8 +253,10 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("radiusPlus", new ConfigOption("radiusPlus", null, 2, this.RadiusPlus));
 
                 list.Add("halo", new ConfigOption("halo", new SerializationOptions("halo", typeof(LazyControlJsonConverter)), null, this.Halo));
+
 
                 list.Add("marker", new ConfigOption("marker", new SerializationOptions("marker", typeof(LazyControlJsonConverter)), null, this.Marker));
+
 
                 return list;
             }

@@ -99,8 +99,10 @@ namespace Ext.ux.Highcharts.Chart
 
 
                 list.Add("hover", new ConfigOption("hover", new SerializationOptions("hover", typeof(LazyControlJsonConverter)), null, this.Hover));
+
 
                 list.Add("select", new ConfigOption("select", new SerializationOptions("select", typeof(LazyControlJsonConverter)), null, this.Select));
+
 
                 return list;
             }

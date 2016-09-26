@@ -224,6 +224,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("label", new ConfigOption("label", new SerializationOptions("label", typeof(LazyControlJsonConverter)), null, this.Label));
 
+
                 return list;
             }
         }

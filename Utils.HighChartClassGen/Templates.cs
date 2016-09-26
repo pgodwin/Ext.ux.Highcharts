@@ -106,6 +106,32 @@ namespace Ext.ux.Highcharts.Chart#SUBNAMESPACE#
             }
         }";
 
+        public const string ControlArrayPropertyTemplate = @"
+
+        private #TYPE# _#JSNAME#;
+
+        [Meta]
+        [DefaultValue(null)]
+        [Category(""HighCharts"")]
+        [ConfigOption(""#JSNAME#"", typeof(ItemCollectionJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [Description(@""#DESCRIPTION#"")]
+        public virtual #TYPE# #NAME#
+        {
+            get
+            {
+                if (this._#JSNAME# == null)
+                {
+                    this._#JSNAME# = new #TYPE#();
+                    this._#JSNAME#.AfterItemAdd += this.AfterItemAdd;
+                    this._#JSNAME#.AfterItemRemove += this.AfterItemRemove;
+
+                }
+                return this._#JSNAME#;
+            }
+        }
+";
+
 
         public const string ConfigOptionTemplate = @"
                 list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", #SERIALISER#, #DEFAULTVALUE#, this.#NAME#));
@@ -114,9 +140,14 @@ namespace Ext.ux.Highcharts.Chart#SUBNAMESPACE#
 
         public const string ControlConfigOptionTemplate = @"
                 list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", new SerializationOptions(""#JSNAME#"", typeof(LazyControlJsonConverter)), null, this.#NAME#));
+
 ";
 
+        public const string ControlArrayConfigOptionTemplate = @"
+                list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", new SerializationOptions(""#JSNAME#"", typeof(ItemCollectionJsonConverter)), null, this.#NAME#));
 
+";
+        
         public const string ConfigPropertyTemplate = @"
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]

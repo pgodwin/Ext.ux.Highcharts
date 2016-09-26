@@ -20,7 +20,7 @@ namespace Ext.ux.Highcharts.ChartSeries
         /// <summary>
         /// The actual series to append to the chart. In addition to 	the members listed below, any member of the plotOptions for that specific	type of plot can be added to a series individually. For example, even though a general	lineWidth is specified in plotOptions.series, an individual	lineWidth can be specified for each series.
         /// </summary>
-        public partial class Series : BaseSerie
+        public partial class Series : Observable
         {
 
     
@@ -311,6 +311,7 @@ namespace Ext.ux.Highcharts.ChartSeries
                 list.Add("zIndex", new ConfigOption("zIndex", null, null, this.ZIndex));
 
                 list.Add("data", new ConfigOption("data", new SerializationOptions("data", typeof(LazyControlJsonConverter)), null, this.Data));
+
 
                 return list;
             }

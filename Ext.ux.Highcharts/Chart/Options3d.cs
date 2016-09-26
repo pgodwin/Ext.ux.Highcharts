@@ -180,6 +180,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("frame", new ConfigOption("frame", new SerializationOptions("frame", typeof(LazyControlJsonConverter)), null, this.Frame));
 
+
                 return list;
             }
         }

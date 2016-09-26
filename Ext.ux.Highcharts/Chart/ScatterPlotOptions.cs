@@ -747,16 +747,22 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("zoneAxis", new ConfigOption("zoneAxis", null, @"y", this.ZoneAxis));
 
                 list.Add("dataLabels", new ConfigOption("dataLabels", new SerializationOptions("dataLabels", typeof(LazyControlJsonConverter)), null, this.DataLabels));
+
 
                 list.Add("marker", new ConfigOption("marker", new SerializationOptions("marker", typeof(LazyControlJsonConverter)), null, this.Marker));
+
 
                 list.Add("point", new ConfigOption("point", new SerializationOptions("point", typeof(LazyControlJsonConverter)), null, this.Point));
+
 
                 list.Add("states", new ConfigOption("states", new SerializationOptions("states", typeof(LazyControlJsonConverter)), null, this.States));
+
 
                 list.Add("tooltip", new ConfigOption("tooltip", new SerializationOptions("tooltip", typeof(LazyControlJsonConverter)), null, this.Tooltip));
+
 
                 list.Add("zones", new ConfigOption("zones", new SerializationOptions("zones", typeof(LazyControlJsonConverter)), null, this.Zones));
+
 list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }

@@ -136,6 +136,7 @@ namespace Ext.ux.Highcharts.Chart
 
                 list.Add("buttonOptions", new ConfigOption("buttonOptions", new SerializationOptions("buttonOptions", typeof(LazyControlJsonConverter)), null, this.ButtonOptions));
 
+
                 return list;
             }
         }

@@ -103,6 +103,8 @@ namespace Utils.HighChartClassGen
         }
         public MockClass(HighChartDocItem item, List<HighChartDocItem> items)
         {
+            var parent = items.FirstOrDefault(i => i.name == item.parent);
+
             this.SubType = "Observable";
             bool isSeries = false;
             bool isPlotOptions = item.parent == "plotOptions";
@@ -118,6 +120,10 @@ namespace Utils.HighChartClassGen
             }
             if (item.title == "series")
                 this.NameSpace = "Series";
+
+            // Remove plural 's' off the end of item names
+            //if (parent != null && parent.returnType != null && parent.returnType.Contains("array") && parent.name.EndsWith("s"))
+              //  item.title = item.title.TrimEnd(new[] {'s'});
 
             if (isSeries)
                 this.Name  = item.title.ToCamelCase() + "Series";
@@ -296,20 +302,37 @@ namespace Utils.HighChartClassGen
             this.OriginalItem = item;
             this.Name = item.title.ToCamelCase();
             this.JavascriptName = item.title;
-            
+
+
+            if (item.returnType == "Array<Object>")
+            {
+                this.IsArray = true;
+                this.Type = "ItemsCollection<" + item.title.ToCamelCase() + nameToAppend + ">";
+            }
+            else
+            {
+                this.IsArray = false;
+                this.Type = item.title.ToCamelCase() + nameToAppend;
+            }
+
             if (item.description != null)
                 this.Description = Regex.Replace(item.description, @"<(.|n)*?>", string.Empty).Replace("&nbsp", "");
 
-            this.DefaultValue = "new " + item.title.ToCamelCase() + "();";
+            //this.DefaultValue = "new " + item.title.ToCamelCase() + "();";
+            this.DefaultValue = "null;";
 
 
-            this.Type = item.title.ToCamelCase() + nameToAppend;
+            
             
         }
 
+        public bool IsArray { get; set; }
+
         public override string GetOutput()
         {
-            return Templates.ControlPropertyTemplate
+            string template = this.IsArray ? Templates.ControlArrayPropertyTemplate : Templates.ControlPropertyTemplate;
+
+            return template
               .Replace("#DESCRIPTION#", Regex.Replace(this.Description, @"\r\n?|\n", "").Replace("\"", @""""""))
               .Replace("#DEFAULTVALUE#", this.DefaultValue)
               .Replace("#JSNAME#", this.JavascriptName)
@@ -319,7 +342,9 @@ namespace Utils.HighChartClassGen
 
         public override string GetConfigItem()
         {
-            return Templates.ControlConfigOptionTemplate
+            string template = this.IsArray ? Templates.ControlArrayConfigOptionTemplate : Templates.ControlConfigOptionTemplate;
+
+            return template
                .Replace("#JSNAME#", this.JavascriptName)
                .Replace("#NAME#", this.Name)
                .Replace("#DEFAULTVALUE#", this.DefaultValue);

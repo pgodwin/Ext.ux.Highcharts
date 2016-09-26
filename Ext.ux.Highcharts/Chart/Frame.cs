@@ -129,10 +129,13 @@ namespace Ext.ux.Highcharts.Chart
 
 
                 list.Add("back", new ConfigOption("back", new SerializationOptions("back", typeof(LazyControlJsonConverter)), null, this.Back));
+
 
                 list.Add("bottom", new ConfigOption("bottom", new SerializationOptions("bottom", typeof(LazyControlJsonConverter)), null, this.Bottom));
+
 
                 list.Add("side", new ConfigOption("side", new SerializationOptions("side", typeof(LazyControlJsonConverter)), null, this.Side));
+
 
                 return list;
             }

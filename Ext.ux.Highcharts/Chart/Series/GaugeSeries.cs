@@ -829,20 +829,28 @@ namespace Ext.ux.Highcharts.ChartSeries
                 list.Add("zoneAxis", new ConfigOption("zoneAxis", null, @"y", this.ZoneAxis));
 
                 list.Add("data", new ConfigOption("data", new SerializationOptions("data", typeof(LazyControlJsonConverter)), null, this.Data));
+
 
                 list.Add("dataLabels", new ConfigOption("dataLabels", new SerializationOptions("dataLabels", typeof(LazyControlJsonConverter)), null, this.DataLabels));
+
 
                 list.Add("dial", new ConfigOption("dial", new SerializationOptions("dial", typeof(LazyControlJsonConverter)), null, this.Dial));
+
 
                 list.Add("pivot", new ConfigOption("pivot", new SerializationOptions("pivot", typeof(LazyControlJsonConverter)), null, this.Pivot));
+
 
                 list.Add("point", new ConfigOption("point", new SerializationOptions("point", typeof(LazyControlJsonConverter)), null, this.Point));
+
 
                 list.Add("states", new ConfigOption("states", new SerializationOptions("states", typeof(LazyControlJsonConverter)), null, this.States));
+
 
                 list.Add("tooltip", new ConfigOption("tooltip", new SerializationOptions("tooltip", typeof(LazyControlJsonConverter)), null, this.Tooltip));
+
 
                 list.Add("zones", new ConfigOption("zones", new SerializationOptions("zones", typeof(LazyControlJsonConverter)), null, this.Zones));
+
 list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }

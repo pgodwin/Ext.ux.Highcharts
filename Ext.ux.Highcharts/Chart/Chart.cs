@@ -957,8 +957,10 @@ namespace Ext.ux.Highcharts.Chart
                 list.Add("zoomType", new ConfigOption("zoomType", null, "", this.ZoomType));
 
                 list.Add("options3d", new ConfigOption("options3d", new SerializationOptions("options3d", typeof(LazyControlJsonConverter)), null, this.Options3d));
+
 
                 list.Add("resetZoomButton", new ConfigOption("resetZoomButton", new SerializationOptions("resetZoomButton", typeof(LazyControlJsonConverter)), null, this.ResetZoomButton));
+
 list.Add("events", new ConfigOption("events", new SerializationOptions("events", JsonMode.Object), null, this.Listeners));
                 return list;
             }
