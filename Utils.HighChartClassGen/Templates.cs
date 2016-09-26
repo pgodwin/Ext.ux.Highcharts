@@ -20,6 +20,7 @@ using System.Xml.Serialization;
 using Ext.Net;
 using Ext.Net.Utilities;
 using Newtonsoft.Json;
+using Ext.ux.Highcharts.Chart;
 
 namespace Ext.ux.Highcharts.Chart#SUBNAMESPACE#
 {

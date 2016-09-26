@@ -9,6 +9,12 @@ using Newtonsoft.Json;
 
 namespace Utils.HighChartClassGen
 {
+
+    public static class Shared
+    {
+        public static List<MockClass> SharedClasses = new List<MockClass>();
+    }
+
     class Program
     {
 
@@ -26,6 +32,28 @@ namespace Utils.HighChartClassGen
 
                 var outClasses = GetClasses(items);
 
+                // For each sub-class in our shared classes, create a new version with the distinct classes and and properties
+                var distinctClasses = Shared.SharedClasses.ToLookup(c => c.Name);
+                var sharedClasses = new List<MockClass>();
+                foreach (var classesByName in distinctClasses)
+                {
+                    if (outClasses.Any(c => c.Name == classesByName.Key))
+                        continue;
+                    // Grab the properties, etc of each class and combine them into one...
+                    var listeners = classesByName.SelectMany(c => c.Listeners).ToLookup(l => l.Name).Select(l => l.FirstOrDefault());
+                    var properties = classesByName.SelectMany(c => c.Properties)
+                            .ToLookup(l => l.Name)
+                            .Select(l => l.FirstOrDefault());
+
+                    var firstClass = classesByName.First();
+                    firstClass.Properties = properties.ToList();
+                    firstClass.Listeners = listeners.ToList();
+
+                    sharedClasses.Add(firstClass);
+                }
+
+                outClasses.AddRange(sharedClasses);
+
                 foreach (var cls in outClasses)
                 {
                     string path = @".\Output\";
@@ -39,6 +67,9 @@ namespace Utils.HighChartClassGen
 
                     File.WriteAllText(path + Path.DirectorySeparatorChar + cls.Name + ".cs", cls.GetOutput());
                 }
+
+
+                
 
                 Console.WriteLine();
             }
@@ -60,27 +91,40 @@ namespace Utils.HighChartClassGen
             }
             return classes;
         }
+
     }
 
 
     public class MockClass
     {
-
+        public override string ToString()
+        {
+            return this.JavascriptName;
+        }
         public MockClass(HighChartDocItem item, List<HighChartDocItem> items)
         {
             this.SubType = "Observable";
+            bool isSeries = false;
+            bool isPlotOptions = item.parent == "plotOptions";
 
             if (item.title.Contains("series<"))
             {
-                item.title = item.title.Replace("series<", "").Replace(">", "");
+                isSeries = true;
+                var title = item.title.Replace("series<", "").Replace(">", "");
+                item.title = title;
                 //this.SubType = "Series";
-                this.SubType = SeriesBaseTypeMappings.GetMappingForSeries(item.title);
+                this.SubType = SeriesBaseTypeMappings.GetMappingForSeries(title);
                 this.NameSpace = "Series";
             }
             if (item.title == "series")
                 this.NameSpace = "Series";
 
-            this.Name = item.title.ToCamelCase();
+            if (isSeries)
+                this.Name  = item.title.ToCamelCase() + "Series";
+            else if (isPlotOptions)
+                this.Name = item.title.ToCamelCase() + "PlotOptions";
+            else
+                this.Name = item.title.ToCamelCase();
             this.JavascriptName = item.title;
             this.Description = string.IsNullOrEmpty(item.description) ? "" : Regex.Replace(item.description, @"<(.|n)*?>", string.Empty).Replace("&nbsp", "");
 
@@ -92,13 +136,15 @@ namespace Utils.HighChartClassGen
                 .ToList();
 
             // Find sub classes
-            this.SubClasses = items.Where(i => i.isParent == true && i.parent == item.name && i.title != "events")
+            this.SubClasses = items.Where(i => i.isParent == true && i.parent == item.name && i.title != "events") 
                     .Select(i => new MockClass(i, items))
                     .ToList();
 
+            Shared.SharedClasses.AddRange(this.SubClasses);
+
             var subClassProperties =
                 items.Where(i => i.isParent == true && i.parent == item.name && i.title != "events")
-                    .Select(i => new MockPropertyForClass(i))
+                .Select(i => new MockPropertyForClass(i, this.Name == "PlotOptions" ? "PlotOptions" : ""))
                     .ToList();
 
             this.Properties.AddRange(subClassProperties);
@@ -165,12 +211,13 @@ namespace Utils.HighChartClassGen
                 .Replace("#NAME#", this.Name)
                 .Replace("#SUBTYPE#", this.SubType)
                 .Replace("#PROPERTIES#", properties)
-                .Replace("#CLASSES#", subClasses)
+                //.Replace("#CLASSES#", subClasses)
+                .Replace("#CLASSES#", "")
                 .Replace("#LISTENERCONFIG#", listenerProperty)
                 .Replace("#CONFIGOPTIONS#", configProperty)
                 .Replace("#LISTENERCLASS#", listenerClass);
 
-            if (this.IsTopMost)
+            //if (this.IsTopMost)
                 output = Templates.NameSpaceTemplate
                     .Replace("#SUBNAMESPACE#", string.IsNullOrEmpty(this.NameSpace) ? "" : this.NameSpace)
                     .Replace("#CLASSBODY#", output);
@@ -244,7 +291,7 @@ namespace Utils.HighChartClassGen
     public class MockPropertyForClass : MockProperty
     {
 
-        public MockPropertyForClass(HighChartDocItem item) : base(item)
+        public MockPropertyForClass(HighChartDocItem item, string nameToAppend) : base(item)
         {
             this.OriginalItem = item;
             this.Name = item.title.ToCamelCase();
@@ -255,8 +302,8 @@ namespace Utils.HighChartClassGen
 
             this.DefaultValue = "new " + item.title.ToCamelCase() + "();";
 
-            
-            this.Type = item.title.ToCamelCase();
+
+            this.Type = item.title.ToCamelCase() + nameToAppend;
             
         }
 
