@@ -71,9 +71,50 @@ namespace Ext.ux.Highcharts.Chart#SUBNAMESPACE#
             }
 ";
 
+
+
+        public const string ControlPropertyTemplate = @"
+        private #TYPE# _#NAME#;
+        [Meta]
+        [DefaultValue(null)]
+        [Category(""HighCharts"")]
+        [ConfigOption(""#JSNAME#"", typeof(LazyControlJsonConverter))]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [Description(@""#DESCRIPTION#"")]
+        public virtual #TYPE# #NAME#
+        {
+            get
+            {
+                return this._#NAME#;
+            }
+            set
+            {
+                if (this._#NAME# != null)
+                {
+                    this.Controls.Remove(this._#NAME#);
+                    this.LazyItems.Remove(this._#NAME#);
+                }
+
+                this._#NAME# = value;
+
+                if (this._#NAME# != null)
+                {
+                    this.LazyItems.Add(this._#NAME#);
+                    this.Controls.Add(this._#NAME#);
+                }
+            }
+        }";
+
+
         public const string ConfigOptionTemplate = @"
                 list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", #SERIALISER#, #DEFAULTVALUE#, this.#NAME#));
 ";
+
+
+        public const string ControlConfigOptionTemplate = @"
+                list.Add(""#JSNAME#"", new ConfigOption(""#JSNAME#"", new SerializationOptions(""#JSNAME#"", typeof(LazyControlJsonConverter)), null, this.#NAME#));
+";
+
 
         public const string ConfigPropertyTemplate = @"
         [Browsable(false)]

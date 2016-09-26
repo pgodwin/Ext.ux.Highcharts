@@ -73,7 +73,8 @@ namespace Utils.HighChartClassGen
             if (item.title.Contains("series<"))
             {
                 item.title = item.title.Replace("series<", "").Replace(">", "");
-                this.SubType = "Series";
+                //this.SubType = "Series";
+                this.SubType = SeriesBaseTypeMappings.GetMappingForSeries(item.title);
                 this.NameSpace = "Series";
             }
             if (item.title == "series")
@@ -94,6 +95,13 @@ namespace Utils.HighChartClassGen
             this.SubClasses = items.Where(i => i.isParent == true && i.parent == item.name && i.title != "events")
                     .Select(i => new MockClass(i, items))
                     .ToList();
+
+            var subClassProperties =
+                items.Where(i => i.isParent == true && i.parent == item.name && i.title != "events")
+                    .Select(i => new MockPropertyForClass(i))
+                    .ToList();
+
+            this.Properties.AddRange(subClassProperties);
 
             var eventsItem = items.FirstOrDefault(i => i.isParent == true && i.parent == item.name && i.title == "events");
             if (eventsItem != null)
@@ -180,6 +188,10 @@ namespace Utils.HighChartClassGen
 
     public class MockProperty
     {
+        public MockProperty()
+        {
+            
+        }
 
         public MockProperty(HighChartDocItem item)
         {
@@ -187,7 +199,10 @@ namespace Utils.HighChartClassGen
             this.Name = item.title.ToCamelCase();
             this.JavascriptName = item.title;
             this.Type = item.returnType.ToDotNetType();
-            this.Description = Regex.Replace(item.description, @"<(.|n)*?>", string.Empty).Replace("&nbsp", "");
+            if (item.description != null)
+                this.Description = Regex.Replace(item.description, @"<(.|n)*?>", string.Empty).Replace("&nbsp", "");
+            else
+                this.Description = string.Empty;
 
             this.DefaultValue = item.defaults.FormatValue(this.Type);
         }
@@ -201,7 +216,7 @@ namespace Utils.HighChartClassGen
 
         public string DefaultValue { get; set; }
 
-        public string GetOutput()
+        public virtual string GetOutput()
         {
             return Templates.PropertyTemplate
                 .Replace("#DESCRIPTION#", Regex.Replace(this.Description, @"\r\n?|\n", "").Replace("\"", @""""""))
@@ -212,7 +227,7 @@ namespace Utils.HighChartClassGen
                 .Replace("#NAME#", this.Name);
         }
 
-        public string GetConfigItem()
+        public virtual string GetConfigItem()
         {
             return Templates.ConfigOptionTemplate
                 .Replace("#JSNAME#", this.JavascriptName)
@@ -223,6 +238,46 @@ namespace Utils.HighChartClassGen
         }
 
         public HighChartDocItem OriginalItem { get; set; }
+    }
+
+
+    public class MockPropertyForClass : MockProperty
+    {
+
+        public MockPropertyForClass(HighChartDocItem item) : base(item)
+        {
+            this.OriginalItem = item;
+            this.Name = item.title.ToCamelCase();
+            this.JavascriptName = item.title;
+            
+            if (item.description != null)
+                this.Description = Regex.Replace(item.description, @"<(.|n)*?>", string.Empty).Replace("&nbsp", "");
+
+            this.DefaultValue = "new " + item.title.ToCamelCase() + "();";
+
+            
+            this.Type = item.title.ToCamelCase();
+            
+        }
+
+        public override string GetOutput()
+        {
+            return Templates.ControlPropertyTemplate
+              .Replace("#DESCRIPTION#", Regex.Replace(this.Description, @"\r\n?|\n", "").Replace("\"", @""""""))
+              .Replace("#DEFAULTVALUE#", this.DefaultValue)
+              .Replace("#JSNAME#", this.JavascriptName)
+              .Replace("#TYPE#", this.Type)
+              .Replace("#NAME#", this.Name);
+        }
+
+        public override string GetConfigItem()
+        {
+            return Templates.ControlConfigOptionTemplate
+               .Replace("#JSNAME#", this.JavascriptName)
+               .Replace("#NAME#", this.Name)
+               .Replace("#DEFAULTVALUE#", this.DefaultValue);
+        }
+
     }
 
     public class MockEvent     
