@@ -759,7 +759,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class SolidgaugeSeriesEvents : ComponentListeners
+            public partial class SolidgaugeSeriesEvents : SeriesEvents
         {
 
 

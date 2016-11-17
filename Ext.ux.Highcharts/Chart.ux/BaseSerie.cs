@@ -308,6 +308,22 @@ namespace Ext.ux.Highcharts.ChartSeries
             }
         }
 
+        private BaseSerieEvents events;
+
+        /// <summary>
+        /// Client-side JavaScript Event Handlers
+        /// </summary>
+        [Meta]
+        [ConfigOption("events", JsonMode.Object)]
+        [Category("2. Observable")]
+        [NotifyParentProperty(true)]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public virtual BaseSerieEvents Listeners
+        {
+            get { return this.events ?? (this.events = new BaseSerieEvents()); }
+        }
+
      
     }
 }

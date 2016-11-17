@@ -364,7 +364,7 @@ namespace Ext.ux.Highcharts.ChartSeries
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class SeriesEvents : ComponentListeners
+        public partial class SeriesEvents : BaseSerieEvents
         {
 
 

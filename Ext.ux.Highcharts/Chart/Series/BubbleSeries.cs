@@ -1183,7 +1183,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class BubbleSeriesEvents : ComponentListeners
+            public partial class BubbleSeriesEvents : SeriesEvents
         {
 
 

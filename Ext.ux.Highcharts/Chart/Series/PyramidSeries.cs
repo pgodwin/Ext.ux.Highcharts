@@ -920,7 +920,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class PyramidSeriesEvents : ComponentListeners
+            public partial class PyramidSeriesEvents : SeriesEvents
         {
 
 

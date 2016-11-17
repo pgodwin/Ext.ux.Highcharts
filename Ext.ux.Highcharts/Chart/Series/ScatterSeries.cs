@@ -1045,7 +1045,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class ScatterSeriesEvents : ComponentListeners
+            public partial class ScatterSeriesEvents : SeriesEvents
         {
 
 

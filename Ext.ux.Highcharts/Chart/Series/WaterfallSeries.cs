@@ -1380,7 +1380,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class WaterfallSeriesEvents : ComponentListeners
+            public partial class WaterfallSeriesEvents : SeriesEvents
         {
 
 

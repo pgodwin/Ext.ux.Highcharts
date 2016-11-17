@@ -83,6 +83,7 @@
     <Compile Include="Chart.ux\BasePieSerie.cs" />
     <Compile Include="Chart.ux\BasePyramidSerie.cs" />
     <Compile Include="Chart.ux\BaseScatterSerie.cs" />
+    <Compile Include="Chart.ux\BaseSerieEvents.cs" />
     <Compile Include="Chart.ux\BaseSolidGaugeSerie.cs" />
     <Compile Include="Chart.ux\BaseSplineSerie.cs" />
     <Compile Include="Chart.ux\BaseWaterfallSerie.cs" />

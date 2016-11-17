@@ -1403,7 +1403,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class ColumnSeriesEvents : ComponentListeners
+            public partial class ColumnSeriesEvents : SeriesEvents
         {
 
 

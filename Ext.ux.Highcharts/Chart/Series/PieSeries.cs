@@ -989,7 +989,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class PieSeriesEvents : ComponentListeners
+            public partial class PieSeriesEvents : SeriesEvents
         {
 
 

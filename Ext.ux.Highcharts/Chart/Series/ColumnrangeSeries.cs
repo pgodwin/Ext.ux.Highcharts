@@ -1334,7 +1334,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class ColumnrangeSeriesEvents : ComponentListeners
+            public partial class ColumnrangeSeriesEvents : SeriesEvents
         {
 
 

@@ -920,7 +920,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class SeriesPlotOptionsEvents : ComponentListeners
+            public partial class SeriesPlotOptionsEvents : Series.SeriesEvents
         {
 
 

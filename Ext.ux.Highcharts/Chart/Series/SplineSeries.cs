@@ -1160,7 +1160,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class SplineSeriesEvents : ComponentListeners
+            public partial class SplineSeriesEvents : SeriesEvents
         {
 
 

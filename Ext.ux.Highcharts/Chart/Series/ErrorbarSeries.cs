@@ -1209,7 +1209,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class ErrorbarSeriesEvents : ComponentListeners
+            public partial class ErrorbarSeriesEvents : SeriesEvents
         {
 
 

@@ -1035,7 +1035,7 @@ list.Add("events", new ConfigOption("events", new SerializationOptions("events",
         /// <summary>
         /// Client Side Events#
         /// </summary>
-        public partial class HeatmapSeriesEvents : ComponentListeners
+            public partial class HeatmapSeriesEvents : SeriesEvents
         {
 
 
