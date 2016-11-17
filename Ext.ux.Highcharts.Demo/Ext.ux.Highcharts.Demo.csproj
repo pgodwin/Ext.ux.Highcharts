@@ -86,17 +86,41 @@
     <Content Include="App_Readme\Ext.NET\README.txt" />
     <Content Include="App_Readme\Transformer.NET\LICENSE.txt" />
     <Content Include="App_Readme\Transformer.NET\README.txt" />
-    <Content Include="ColumnChart.aspx" />
+    <Content Include="Demos\3dColumns.aspx" />
+    <Content Include="Demos\Area.aspx" />
+    <Content Include="Demos\ColumnChart.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Ext.NET.Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColumnChart.aspx.cs">
+    <Compile Include="Demos\3dColumns.aspx.cs">
+      <DependentUpon>3dColumns.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Demos\3dColumns.aspx.designer.cs">
+      <DependentUpon>3dColumns.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\Area.aspx.cs">
+      <DependentUpon>Area.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Demos\Area.aspx.designer.cs">
+      <DependentUpon>Area.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Demos\ColumnChart.aspx.cs">
       <DependentUpon>ColumnChart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ColumnChart.aspx.designer.cs">
+    <Compile Include="Demos\ColumnChart.aspx.designer.cs">
       <DependentUpon>ColumnChart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
