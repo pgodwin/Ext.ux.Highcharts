@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Web.UI;
 using Ext.Net;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.highcharts-3d.js", "text/javascript")]
 namespace Ext.ux.Highcharts.Chart
 {
     /// <summary>
     /// Class to bring in the 3d Resource Files
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Highcharts.highcharts-3d.js", "text/javascript")]
     
     public partial class Options3d
     {

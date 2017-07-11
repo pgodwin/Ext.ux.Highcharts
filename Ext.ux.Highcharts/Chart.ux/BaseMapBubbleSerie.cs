@@ -3,13 +3,13 @@ using System.ComponentModel;
 using System.Web.UI;
 using Ext.Net;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.MapBubbleSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
     ///  MapBubble Serie class is for plotting bubble data points on the map.
     ///  Expect z-axis value from the data store.
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.MapBubbleSerie.js", "text/javascript")]
     public partial class BaseMapBubbleSerie : Series
     {
         [ConfigOption]

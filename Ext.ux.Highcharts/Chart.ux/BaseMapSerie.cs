@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Web.UI;
 using Ext.Net;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.MapSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
@@ -47,7 +48,6 @@ namespace Ext.ux.Highcharts.ChartSeries
     ///          }
     ///      }]
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.MapSerie.js", "text/javascript")]
     public partial class BaseMapSerie : Series
     {
 

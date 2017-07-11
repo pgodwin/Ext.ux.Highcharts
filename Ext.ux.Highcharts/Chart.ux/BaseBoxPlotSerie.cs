@@ -8,6 +8,7 @@ using System.Web.UI;
 using Ext.Net;
 
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.BoxPlotSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
@@ -25,7 +26,6 @@ namespace Ext.ux.Highcharts.ChartSeries
     ///          xField: 'date'
     ///      }]     
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.BoxPlotSerie.js", "text/javascript")]
     
     public partial class BaseBoxPlotSerie : Series
     {

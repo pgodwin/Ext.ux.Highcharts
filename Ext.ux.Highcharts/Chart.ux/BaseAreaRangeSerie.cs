@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.UI;
 using Ext.Net;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.AreaRangeSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
@@ -14,7 +15,6 @@ namespace Ext.ux.Highcharts.ChartSeries
     /// See {@link Chart.ux.Highcharts.RangeSerie} class for more info
     /// 
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.AreaRangeSerie.js", "text/javascript")]
     public class BaseAreaRangeSerie : Series
     {
 

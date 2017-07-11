@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Web.UI;
 using Ext.Net;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.PieSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
@@ -115,7 +116,6 @@ namespace Ext.ux.Highcharts.ChartSeries
     ///  *colorField* option to map the field.
     ///
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.PieSerie.js", "text/javascript")]
     public partial class BasePieSerie : Series
     {
         protected override List<ResourceItem> Resources

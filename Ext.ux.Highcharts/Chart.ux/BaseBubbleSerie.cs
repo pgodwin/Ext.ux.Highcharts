@@ -8,6 +8,7 @@ using System.Web.UI;
 using Ext.Net;
 using Ext.ux.Highcharts.ChartSeries;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.BubbleSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
@@ -43,7 +44,6 @@ namespace Ext.ux.Highcharts.ChartSeries
     ///  
     ///  See {@link Chart.ux.Highcharts.Serie} class for more info
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.BubbleSerie.js", "text/javascript")]
     public partial class BaseBubbleSerie : Series
     {
 

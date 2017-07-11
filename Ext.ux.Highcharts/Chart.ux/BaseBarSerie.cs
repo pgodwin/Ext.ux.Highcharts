@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.UI;
 using Ext.Net;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.BarSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
@@ -13,7 +14,6 @@ namespace Ext.ux.Highcharts.ChartSeries
     /// 
     ///  See {@link Chart.ux.Highcharts.Serie} class for more info
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.BarSerie.js", "text/javascript")]
     public partial class BaseBarSerie : Series
     {
         protected override List<ResourceItem> Resources

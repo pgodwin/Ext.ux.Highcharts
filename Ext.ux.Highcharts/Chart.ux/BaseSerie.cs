@@ -11,6 +11,7 @@ using Ext.Net;
 //using Ext.ux.Highcharts.Series;
 using Newtonsoft.Json;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.Serie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
     /// <summary>
@@ -103,7 +104,6 @@ namespace Ext.ux.Highcharts.ChartSeries
     /// 
     ///  For 3D column chart, users need to also specify/// chartConfig.chart.type* as 'column'. 
     /// </summary>
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.Serie.js", "text/javascript")]
     
     public partial class BaseSerie : Observable
     {
