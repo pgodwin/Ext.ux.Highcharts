@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Web.UI;
 using Ext.Net;
 
+[assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.MapLineSerie.js", "text/javascript")]
 namespace Ext.ux.Highcharts.ChartSeries
 {
-    [assembly: WebResource("Ext.ux.Highcharts.Resources.Chart.ux.Highcharts.MapLineSerie.js", "text/javascript")]
     public partial class BaseMapLineSerie : BaseMapSerie
     {
         protected override List<ResourceItem> Resources
