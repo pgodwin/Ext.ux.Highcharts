@@ -280,6 +280,10 @@ namespace Ext.ux.Highcharts.ChartSeries
                 list.Add("xField", new ConfigOption("xField", null, "", this.XField));
                 list.Add("yField", new ConfigOption("yField", null, "", this.YField));
 
+                // HighCharts uses events, UX.Highcharts uses listeners....explictly add the listeners as a listeners config
+                list.Add("listeners", new ConfigOption("listeners", new SerializationOptions("listeners", JsonMode.Object), null, this.Listeners2));
+                
+
                 return list;
             }
         }
@@ -308,7 +312,7 @@ namespace Ext.ux.Highcharts.ChartSeries
             }
         }
 
-        private BaseSerieEvents events;
+        private BaseSerieEvents listeners;
 
         /// <summary>
         /// Client-side JavaScript Event Handlers
@@ -321,7 +325,21 @@ namespace Ext.ux.Highcharts.ChartSeries
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public virtual BaseSerieEvents Listeners
         {
-            get { return this.events ?? (this.events = new BaseSerieEvents()); }
+            get { return this.listeners ?? (this.listeners = new BaseSerieEvents()); }
+        }
+
+        /// <summary>
+        /// Explictly include the listeners for the Ux events.
+        /// </summary>
+        [Meta]
+        [ConfigOption("listeners", JsonMode.Object)]
+        [Category("2. Observable")]
+        [NotifyParentProperty(true)]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public BaseSerieEvents Listeners2
+        {
+            get { return this.Listeners; }
         }
 
      
