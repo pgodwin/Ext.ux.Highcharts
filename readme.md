@@ -1,3 +1,11 @@
+
+# Archived May 2021
+I no longer do any work with Ext.net and have no interest in maintaining this source code.
+With Sencha and Ext.net's current license arrangements, I'm not even sure such a library can
+exist without violating both Sencha's and High Chart's licensed.
+
+
+
 # Ext.NET Wrapper for HighCharts Sencha
 Created by Peter Godwin (<pgodwin@gmail.com>)
 
